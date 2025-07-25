@@ -167,50 +167,121 @@ layout: page
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
 <div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎵 音乐云平台</h3>
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎵 Serverless 音乐云平台</h3>
   <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">小程序全栈</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue</span>
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Koa</span>
+    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">云开发</span>
   </div>
   <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/serverless_music_cloud" target="_blank" style="color: var(--vp-c-brand-1);">serverless_music_cloud</a></li>
     <li><strong>技术栈</strong>: 微信小程序 + 云开发</li>
-    <li><strong>特点</strong>: 完整的音乐平台生态系统</li>
     <li><strong>功能</strong>: 音乐播放、用户管理、数据分析</li>
   </ul>
 </div>
 
 <div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">⚡ Vue 源码分析</h3>
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🌟 Varlet UI 组件库</h3>
   <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">框架原理</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue3</span>
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Material Design</span>
   </div>
   <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>内容</strong>: Vue2.x 核心源码深度解析</li>
-    <li><strong>实现</strong>: 简化版 Vue 框架</li>
-    <li><strong>价值</strong>: 帮助理解 Vue 内部工作原理</li>
+    <li><strong>项目</strong>: <a href="https://github.com/varletjs/varlet" target="_blank" style="color: var(--vp-c-brand-1);">Varlet - Vue3 组件库</a></li>
+    <li><strong>贡献</strong>: 深度参与开发，提供60+高质量组件</li>
+    <li><strong>特色</strong>: 支持移动端和桌面端、国际化、暗色模式</li>
   </ul>
 </div>
 
 <div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 系统工具</h3>
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 Port Checker 工具</h3>
   <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">Rust CLI</span>
+    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">Rust</span>
+    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">CLI</span>
   </div>
   <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>工具</strong>: Port Checker 端口检测工具</li>
-    <li><strong>特点</strong>: 高性能、跨平台、易用性强</li>
-    <li><strong>技术</strong>: Rust、命令行开发</li>
+    <li><strong>项目</strong>: <a href="https://crates.io/crates/port-checker" target="_blank" style="color: var(--vp-c-brand-1);">port-checker crate</a></li>
+    <li><strong>功能</strong>: 高性能端口检测和网络诊断工具</li>
+    <li><strong>技术</strong>: Rust、Clap、Tokio、跨平台支持</li>
   </ul>
 </div>
 
 <div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🖥️ 桌面应用</h3>
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">📦 fe-fast 工具包</h3>
   <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">Electron</span>
+    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">NPM</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">前端工具</span>
   </div>
   <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>技术</strong>: Electron + Vue3</li>
-    <li><strong>特点</strong>: 跨平台兼容、现代化界面</li>
-    <li><strong>应用</strong>: 桌面端应用开发</li>
+    <li><strong>项目</strong>: <a href="https://www.npmjs.com/settings/fe-fast/packages" target="_blank" style="color: var(--vp-c-brand-1);">fe-fast npm packages</a></li>
+    <li><strong>内容</strong>: 前端快速开发工具包和组件库</li>
+    <li><strong>特点</strong>: 提升开发效率、模块化设计、易于集成</li>
+  </ul>
+</div>
+
+<div class="project-card">
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔍 miniVue 源码分析</h3>
+  <div style="margin-bottom: 1rem;">
+    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">Vue2</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">源码分析</span>
+  </div>
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/miniVue" target="_blank" style="color: var(--vp-c-brand-1);">miniVue</a></li>
+    <li><strong>内容</strong>: 深度解析 Vue2.x 源码实现</li>
+    <li><strong>特点</strong>: 观察者模式、依赖收集和响应式原理</li>
+  </ul>
+</div>
+
+<div class="project-card">
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🖥️ Electron 桌面应用</h3>
+  <div style="margin-bottom: 1rem;">
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Electron</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue3</span>
+  </div>
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/electron-vite-vue3" target="_blank" style="color: var(--vp-c-brand-1);">electron-vite-vue3</a></li>
+    <li><strong>技术</strong>: Electron + Vue3 + Vite</li>
+    <li><strong>特点</strong>: 跨平台桌面应用开发模板</li>
+  </ul>
+</div>
+
+<div class="project-card">
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎮 WebGL 可视化集合</h3>
+  <div style="margin-bottom: 1rem;">
+    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">WebGL</span>
+    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">可视化</span>
+  </div>
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/webgl-demos" target="_blank" style="color: var(--vp-c-brand-1);">webgl-demos</a></li>
+    <li><strong>内容</strong>: WebGL 可视化代码示例</li>
+    <li><strong>特点</strong>: 3D图形渲染、动画效果和交互设计</li>
+  </ul>
+</div>
+
+<div class="project-card">
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🛒 全栈电商平台</h3>
+  <div style="margin-bottom: 1rem;">
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Egg.js</span>
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Vue</span>
+    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">React</span>
+  </div>
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/egg-shop" target="_blank" style="color: var(--vp-c-brand-1);">egg-shop</a></li>
+    <li><strong>技术</strong>: 前后端分离架构</li>
+    <li><strong>特点</strong>: Vue H5 用户端 + React 管理端</li>
+  </ul>
+</div>
+
+<div class="project-card">
+  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🚀 Next.js Serverless</h3>
+  <div style="margin-bottom: 1rem;">
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Next.js</span>
+    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">Serverless</span>
+  </div>
+  <ul style="margin: 0; padding-left: 1.2rem;">
+    <li><strong>项目</strong>: <a href="https://github.com/william-xue/next-serverless" target="_blank" style="color: var(--vp-c-brand-1);">next-serverless</a></li>
+    <li><strong>技术</strong>: Next.js + React</li>
+    <li><strong>特点</strong>: 现代化全栈开发模式</li>
   </ul>
 </div>
 
@@ -254,8 +325,8 @@ layout: page
       📧 Email
     </a>
     <a href="https://github.com/william-xue" class="tech-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #f3f4f6; color: #374151; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-      🐙 GitHub
-    </a>
+       🐙 GitHub
+     </a>
     <a href="https://x.com/99999_yuan" class="tech-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #e3f2fd; color: #1976d2; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
       🐦 Twitter
     </a>
