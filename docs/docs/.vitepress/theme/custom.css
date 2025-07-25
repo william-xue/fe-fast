@@ -1,0 +1,341 @@
+/* 全局样式优化 */
+
+/* 页面容器优化 */
+.VPContent {
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .VPContent {
+    padding: 0 16px;
+  }
+}
+
+/* 文章页面样式优化 */
+.vp-doc {
+  padding: 32px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .vp-doc {
+    padding: 24px 16px;
+  }
+}
+
+/* 标题样式优化 */
+.vp-doc h1 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc h2 {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--vp-c-text-1);
+  border-bottom: 2px solid var(--vp-c-divider);
+  padding-bottom: 0.5rem;
+}
+
+.vp-doc h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--vp-c-text-1);
+}
+
+/* 段落样式优化 */
+.vp-doc p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+/* 列表样式优化 */
+.vp-doc ul, .vp-doc ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.vp-doc li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+/* 卡片样式组件 */
+.project-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--vp-c-bg-soft);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.project-card h4 {
+  margin: 0 0 1rem 0;
+  color: var(--vp-c-text-1);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  margin: 0.5rem 0;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* 技术标签样式 */
+.tech-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  transform: scale(1.05);
+}
+
+/* 统计卡片样式 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.stats-card {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  transition: all 0.3s ease;
+}
+
+.stats-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.stats-card h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.stats-card p {
+  margin: 0.5rem 0 0 0;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}
+
+/* 文章卡片样式 */
+.article-card {
+  border-left: 4px solid var(--vp-c-brand-1);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.article-card:hover {
+  background: var(--vp-c-bg-alt);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.article-meta {
+  margin: 0;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-description {
+  margin: 0.5rem 0;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+.article-tags {
+  margin-top: 1rem;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .project-card, .article-card {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .vp-doc h1 {
+    font-size: 2rem;
+  }
+  
+  .vp-doc h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* 链接样式优化 */
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+/* 代码块样式优化 */
+.vp-doc code {
+  background: var(--vp-c-bg-mute);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--vp-c-text-1);
+}
+
+/* 引用样式优化 */
+.vp-doc blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 8px 8px 0;
+}
+
+.vp-doc blockquote p {
+  margin: 0;
+  font-style: italic;
+  color: var(--vp-c-text-2);
+}
+
+/* 分割线样式 */
+.vp-doc hr {
+  margin: 3rem 0;
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vp-c-brand-1), transparent);
+  border-radius: 1px;
+}
+
+/* 表格样式优化 */
+.vp-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vp-doc th, .vp-doc td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc td {
+  color: var(--vp-c-text-2);
+}
+
+/* 暗色模式适配 */
+.dark .project-card,
+.dark .stats-card,
+.dark .article-card {
+  border-color: var(--vp-c-divider);
+}
+
+.dark .project-card:hover,
+.dark .stats-card:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card,
+.stats-card,
+.article-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3);
+}

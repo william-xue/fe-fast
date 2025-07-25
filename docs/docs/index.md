@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: "我的个人主页"
-  text: "前端开发者的技术分享与成长记录"
-  tagline: 热爱技术 | 追求极致体验 | 持续学习
+  name: "William Xue"
+  text: "全栈开发者的技术探索与实践之路"
+  tagline: 前端 | 后端 | 云原生 | 开源贡献者
   image:
-    src: https://avatars.githubusercontent.com/u/9919?s=200&v=4
-    alt: 个人头像
+    src: https://avatars.githubusercontent.com/u/20151622?s=200&v=4
+    alt: William Xue
   actions:
     - theme: brand
       text: 查看文章
@@ -21,97 +21,77 @@ hero:
 
 features:
   - icon: 🚀
-    title: 前端技术
-    details: 专注于现代前端技术栈，包括 React、Vue、TypeScript 等，分享实战经验和最佳实践。
+    title: 前端技术栈
+    details: 精通 Vue.js、React、TypeScript，擅长构建现代化单页应用和组件库，具备丰富的前端工程化经验。
+  - icon: ⚙️
+    title: 后端开发
+    details: 熟练使用 Node.js、Golang、Java Spring Boot，具备微服务架构设计和 RESTful API 开发经验。
   - icon: 🛠️
-    title: 工程化实践
-    details: 深入研究前端工程化，包括构建工具、CI/CD、性能优化等，提升开发效率。
-  - icon: 📚
-    title: 技术分享
-    details: 定期分享技术文章和学习心得，记录成长过程，与社区共同进步。
-  - icon: 🎨
-    title: 用户体验
-    details: 关注用户体验设计，追求简洁美观的界面和流畅的交互体验。
+    title: 系统工具
+    details: 使用 Rust 开发高性能命令行工具，关注系统编程和性能优化，追求代码的极致效率。
+  - icon: ☁️
+    title: 云原生技术
+    details: 熟悉云开发、Serverless 架构，具备小程序全栈开发经验，擅长云函数和云数据库应用。
+  - icon: 📱
+    title: 移动端开发
+    details: 具备小程序、H5、React Native 开发经验，关注跨平台解决方案和移动端性能优化。
   - icon: 🌟
-    title: 开源贡献
-    details: 积极参与开源项目，贡献代码和文档，回馈技术社区。
-  - icon: 💡
-    title: 持续学习
-    details: 保持对新技术的好奇心，不断学习和探索，跟上技术发展的步伐。
+    title: 开源实践
+    details: 积极维护开源项目，包括音乐云平台、Vue 源码分析、Electron 桌面应用等多个领域。
 ---
 
 <div style="text-align: center; margin: 3rem 0;">
-  <h2 style="margin-bottom: 1rem;">🔥 最新文章</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+  <h2 style="margin-bottom: 1rem;">🔥 精选项目</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
     <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
       <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="/articles/vitepress-guide" style="text-decoration: none; color: inherit;">VitePress 快速上手指南</a>
+        <a href="https://github.com/william-xue/serverless_music_cloud" style="text-decoration: none; color: inherit;">🎵 Serverless Music Cloud</a>
       </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">2024-01-15</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">详细介绍如何使用 VitePress 搭建个人博客，包括配置、主题定制和部署等内容。</p>
+      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">小程序云开发全栈项目</p>
+      <p style="color: #888; margin: 0; line-height: 1.5;">基于微信小程序云开发的音乐平台，包含前端小程序、管理后台和云函数后端，实现完整的音乐播放和管理功能。</p>
       <div style="margin-top: 1rem;">
-        <span style="background: #f3e5f5; color: #7b1fa2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">VitePress</span>
         <span style="background: #e8f5e8; color: #2e7d32; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Vue</span>
+        <span style="background: #fff3e0; color: #f57c00; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">小程序</span>
+        <span style="background: #e3f2fd; color: #1976d2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">云开发</span>
       </div>
     </div>
     <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
       <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="/articles/react-optimization" style="text-decoration: none; color: inherit;">React 性能优化实践</a>
+        <a href="https://github.com/william-xue/port-checker" style="text-decoration: none; color: inherit;">🔧 Port Checker</a>
       </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">2024-01-10</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">分享在实际项目中应用的 React 性能优化技巧，包括组件优化、状态管理和打包优化。</p>
+      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">Rust 命令行工具</p>
+      <p style="color: #888; margin: 0; line-height: 1.5;">使用 Rust 开发的高性能端口检测工具，提供快速、用户友好的命令行界面，支持批量端口扫描和状态检测。</p>
       <div style="margin-top: 1rem;">
-        <span style="background: #e3f2fd; color: #1976d2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">React</span>
-        <span style="background: #e1f5fe; color: #0277bd; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">性能优化</span>
+        <span style="background: #fce4ec; color: #c2185b; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Rust</span>
+        <span style="background: #f3e5f5; color: #7b1fa2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">CLI</span>
       </div>
     </div>
     <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
       <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="/articles/vue3-features" style="text-decoration: none; color: inherit;">Vue3 新特性深度解析</a>
+        <a href="https://github.com/william-xue/miniVue" style="text-decoration: none; color: inherit;">⚡ Mini Vue</a>
       </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">2024-01-05</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">深入探讨 Vue3 的新特性，包括 Composition API、Teleport、Fragments 等。</p>
+      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">Vue2 源码分析实现</p>
+      <p style="color: #888; margin: 0; line-height: 1.5;">深度解析 Vue2.x 源码，实现观察者模式、依赖收集和响应式系统，帮助理解 Vue 核心原理和设计思想。</p>
       <div style="margin-top: 1rem;">
-        <span style="background: #e8f5e8; color: #2e7d32; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Vue3</span>
-        <span style="background: #fff3e0; color: #f57c00; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Composition API</span>
+        <span style="background: #e8f5e8; color: #2e7d32; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Vue</span>
+        <span style="background: #e1f5fe; color: #0277bd; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">源码分析</span>
       </div>
     </div>
   </div>
-  <a href="/articles" style="display: inline-block; padding: 0.75rem 1.5rem; background: #646cff; color: white; text-decoration: none; border-radius: 6px; margin-top: 1rem;">查看更多文章 →</a>
+  <a href="/projects" style="display: inline-block; padding: 0.75rem 1.5rem; background: #646cff; color: white; text-decoration: none; border-radius: 6px; margin-top: 1rem;">查看更多项目 →</a>
 </div>
 
-<div style="text-align: center; margin: 3rem 0; padding: 2rem; background: #f8f9fa; border-radius: 8px;">
-  <h2 style="margin-bottom: 1rem;">📊 技术统计</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-    <div style="text-align: center;">
-      <h3 style="margin: 0; color: #2c3e50; font-size: 2rem;">15+</h3>
-      <p style="margin: 0.5rem 0 0 0; color: #666;">完成项目</p>
-    </div>
-    <div style="text-align: center;">
-      <h3 style="margin: 0; color: #2c3e50; font-size: 2rem;">3</h3>
-      <p style="margin: 0.5rem 0 0 0; color: #666;">技术文章</p>
-    </div>
-    <div style="text-align: center;">
-      <h3 style="margin: 0; color: #2c3e50; font-size: 2rem;">1.5k+</h3>
-      <p style="margin: 0.5rem 0 0 0; color: #666;">GitHub Stars</p>
-    </div>
-    <div style="text-align: center;">
-      <h3 style="margin: 0; color: #2c3e50; font-size: 2rem;">3+</h3>
-      <p style="margin: 0.5rem 0 0 0; color: #666;">年工作经验</p>
-    </div>
-  </div>
-</div>
 
 <div style="text-align: center; margin: 3rem 0;">
   <h2 style="margin-bottom: 2rem;">🤝 联系我</h2>
   <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-    <a href="mailto:your.email@example.com" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
+    <a href="mailto:xueyuan99999@gmail.com" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
       📧 邮箱联系
     </a>
-    <a href="https://github.com/your-github" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
+    <a href="https://github.com/william-xue" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
       🐙 GitHub
     </a>
-    <a href="https://twitter.com/your-twitter" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
+    <a href="https://x.com/99999_yuan" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
       🐦 Twitter
     </a>
   </div>

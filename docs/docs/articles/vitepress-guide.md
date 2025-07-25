@@ -106,7 +106,8 @@ export default defineConfig({
     
     // 社交链接
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-username' }
+      { icon: 'github', link: 'https://github.com/william-xue' },
+      { icon: 'twitter', link: 'https://twitter.com/99999_yuan' }
     ],
     
     // 页脚

@@ -28,8 +28,8 @@ export default defineConfig({
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-github' },
-      { icon: 'twitter', link: 'https://twitter.com/your-twitter' }
+      { icon: 'github', link: 'https://github.com/william-xue' },
+      { icon: 'twitter', link: 'https://twitter.com/99999_yuan' }
     ],
     footer: {
       message: '基于 VitePress 构建',
