@@ -8,6 +8,15 @@ export default defineConfig({
   // 如果部署到 GitHub Pages 的子路径，需要设置 base
   // 例如：https://username.github.io/repository-name/
   base: '/fe-fast/',
+  head: [
+    [
+      'script',
+      {
+        async: true,
+        src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+      }
+    ]
+  ],
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
