@@ -39,7 +39,7 @@ features:
     title: 开源实践
     details: 积极维护开源项目，包括音乐云平台、Vue 源码分析、Electron 桌面应用等多个领域。
 ---
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div style="text-align: center; margin: 3rem 0;">
   <h2 style="margin-bottom: 1rem;">🔥 精选项目</h2>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
@@ -97,6 +97,14 @@ features:
   </div>
 </div>
 
-<div style="text-align: center; margin: 3rem 0; padding: 2rem; border-top: 1px solid #e1e5e9;">
+<div style="text-align: center; margin: 3rem 0; padding: 1rem; border-top: 1px solid #e1e5e9;">
   <p style="color: #888; margin: 0; font-style: italic;">"代码改变世界，技术创造未来"</p>
+  <footer style="text-align: center; margin-top: 10px;">
+  <span id="busuanzi_container_site_uv">
+    👀 访客数：<span id="busuanzi_value_site_uv"></span> 人
+  </span>
+  <span id="busuanzi_container_site_pv">
+    📈 总访问量：<span id="busuanzi_value_site_pv"></span> 次
+  </span>
+</footer>
 </div>
