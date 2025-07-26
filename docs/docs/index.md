@@ -96,14 +96,6 @@ features:
     </a>
   </div>
 </div>
-<script>
-  if (typeof window !== 'undefined') {
-    const script = document.createElement('script');
-    script.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }
-</script>
 
 <div style="text-align: center; margin: 3rem 0; padding: 1rem; border-top: 1px solid #e1e5e9;">
   <p style="color: #888; margin: 0; font-style: italic;">"代码改变世界，技术创造未来"</p>
