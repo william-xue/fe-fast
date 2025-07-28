@@ -34,28 +34,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
-          cache-dependency-path: docs/pnpm-lock.yaml
-      
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-      
+          cache: 'npm'
+          cache-dependency-path: docs/package-lock.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
       - name: Install dependencies
-        run: |
-          cd docs
-          pnpm install --frozen-lockfile
-      
+        working-directory: ./docs
+        run: npm ci
+
       - name: Build with VitePress
+        working-directory: ./docs
         env:
           NODE_ENV: production
-        run: |
-          cd docs
-          pnpm run docs:build
+        run: npm run docs:build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
