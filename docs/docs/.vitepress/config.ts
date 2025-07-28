@@ -22,7 +22,8 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '关于我', link: '/about' },
       { text: '项目展示', link: '/projects' },
-      { text: '技术文章', link: '/articles' }
+      { text: '技术文章', link: '/articles' },
+      { text: 'CSS Pruner 使用指南', link: '/unused-css-pruner-guide' }
     ],
     sidebar: {
       '/articles/': [
