@@ -5,34 +5,34 @@ export default defineConfig({
   lang: 'zh-CN',
   title: "我的个人主页",
   description: "前端开发者的技术分享与成长记录",
-  // 如果部署到 GitHub Pages 的子路径，需要设置 base
-  // 例如：https://username.github.io/repository-name/
-  base: '/fe-fast/',
+  // 根据环境自动设置 base 路径
+  // 生产环境（GitHub Pages）需要 /fe-fast/，本地开发不需要
+  base: (process as any).env.NODE_ENV === 'production' ? '/fe-fast/' : '/',
   head: [
     [
       'script',
       {
-        async: true,
+        async: '',
         src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
       }
     ]
   ],
   themeConfig: {
+    // 文章布局配置
+    outline: 'deep',
+
     nav: [
       { text: '首页', link: '/' },
       { text: '关于我', link: '/about' },
       { text: '项目展示', link: '/projects' },
-      { text: '技术文章', link: '/articles' },
-      { text: 'CSS Pruner 使用指南', link: '/unused-css-pruner-guide' }
+      { text: '技术文章', link: '/articles' }
     ],
     sidebar: {
       '/articles/': [
         {
           text: '技术文章',
           items: [
-            { text: 'VitePress 快速上手', link: '/articles/vitepress-guide' },
-            { text: 'React 性能优化实践', link: '/articles/react-optimization' },
-            { text: 'Vue3 新特性总结', link: '/articles/vue3-features' }
+            { text: 'CSS Pruner 使用指南', link: '/articles/unused-css-pruner-guide' }
           ]
         }
       ]

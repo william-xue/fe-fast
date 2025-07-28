@@ -4,11 +4,45 @@ layout: page
 
 # 关于我
 
-<div class="project-card" style="text-align: center; margin-bottom: 2rem;">
-  <img src="https://avatars.githubusercontent.com/u/20151622?s=200&v=4" alt="avatar" width="120" style="border-radius: 50%; margin-bottom: 1rem;" />
-  <h2 style="margin: 0;">William Xue</h2>
-  <p style="color: var(--vp-c-text-2); margin: 0.5rem 0; font-size: 1.1rem;">全栈开发工程师</p>
-  <p style="color: var(--vp-c-text-3); margin: 0;">📍 中国 | 💼 5年+ 经验 | 🌟 开源贡献者</p>
+<div class="project-card" style="text-align: center; margin-bottom: 2rem; position: relative; padding: 2rem; border-radius: 12px; background: #0d1117; overflow: hidden; border: 1px solid var(--vp-c-brand-light);">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 500 300">
+      <defs>
+        <pattern id="hacker-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M0 10h20M10 0v20" stroke="var(--vp-c-brand)" stroke-width="0.2"/>
+        </pattern>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <rect x="-50" y="-50" width="500" height="300" fill="url(#hacker-grid)" />
+      <g filter="url(#glow)" stroke-width="0.7" fill="none">
+        <path stroke="var(--vp-c-brand-light)">
+          <animate attributeName="d" dur="10s" repeatCount="indefinite" values="M-50,100 C50,0 150,200 250,100 S350,0 450,100; M-50,100 C50,200 150,0 250,100 S350,200 450,100; M-50,100 C50,0 150,200 250,100 S350,0 450,100;" />
+        </path>
+        <path stroke="var(--vp-c-brand-lighter)" stroke-dasharray="4 4">
+          <animate attributeName="d" dur="15s" repeatCount="indefinite" values="M-50,50 Q100,200 200,100 T450,150; M-50,150 Q100,0 200,100 T450,50; M-50,50 Q100,200 200,100 T450,150;" />
+        </path>
+      </g>
+      <g fill="var(--vp-c-brand-light)">
+        <animateTransform attributeName="transform" type="matrix" dur="20s" repeatCount="indefinite" values="1 0 0 1 0 0; 1 0.2 0 1 0 0; 1 0 0 1 0 0; 1 0 0.2 1 0 0; 1 0 0 1 0 0" />
+        <circle cx="100" cy="75" r="1.5" />
+        <circle cx="150" cy="125" r="1.5" />
+        <circle cx="250" cy="75" r="1.5" />
+        <circle cx="300" cy="125" r="1.5" />
+      </g>
+    </svg>
+  </div>
+  <div style="position: relative; z-index: 1; text-shadow: 0 0 8px var(--vp-c-brand);">
+    <img src="https://avatars.githubusercontent.com/u/20151622?s=200&v=4" alt="avatar" width="120" style="border-radius: 50%; margin-bottom: 1rem; border: 2px solid var(--vp-c-brand-light); box-shadow: 0 0 25px var(--vp-c-brand);" />
+    <h2 style="margin: 0; color: var(--vp-c-text-dark-1);">William Xue</h2>
+    <p style="color: var(--vp-c-text-dark-2); margin: 0.5rem 0; font-size: 1.1rem;">全栈开发工程师</p>
+    <p style="color: var(--vp-c-text-dark-3); margin: 0;">📍 中国 | 💼 5年+ 经验 | 🌟 开源贡献者</p>
+  </div>
 </div>
 
 ## 技能栈

@@ -8,6 +8,21 @@ layout: page
 
 ## 📝 精选文章
 
+<div class="article-card" style="transition: all 0.3s ease; cursor: pointer;" onclick="window.location.href='/articles/unused-css-pruner-guide'" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+    <h4 style="margin: 0;"><a href="/articles/unused-css-pruner-guide" style="color: var(--vp-c-brand-1); text-decoration: none; display: block; padding: 0.5rem 0;">CSS Pruner 使用指南</a></h4>
+    <span style="color: var(--vp-c-text-2); font-size: 0.9rem;">2024-01-25 · 12 分钟阅读</span>
+  </div>
+  
+  详细介绍 **unused-css-pruner** 工具的使用方法和最佳实践。这是一个强大且智能的 CSS 清理工具，能够识别和删除项目中未使用的 CSS 选择器，支持多种前端框架和构建工具集成，帮助优化项目性能。
+  
+  <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">CSS 优化</span>
+    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">构建工具</span>
+    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">性能优化</span>
+  </div>
+</div>
+
 <div class="article-card">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
     <h4 style="margin: 0;">微信小程序云开发全栈实践</h4>
@@ -57,6 +72,8 @@ layout: page
 
 ## 📂 技术分类
 
+<div class="articles-list">
+
 ### 🎯 全栈开发
 - [微信小程序云开发全栈实践](#)
 - [Egg.js + Vue.js 电商系统架构设计](#)
@@ -72,10 +89,17 @@ layout: page
 - [Rust 所有权系统与内存安全](#)
 - [命令行工具开发最佳实践](#)
 
+### 🛠️ 工具与优化
+- [CSS Pruner 使用指南](/articles/unused-css-pruner-guide)
+- [前端性能优化实战指南](#)
+- [构建工具配置与优化](#)
+
 ### 🖥️ 跨平台开发
 - [Electron + Vue3 桌面应用开发实践](#)
 - [WebGL 数据可视化开发指南](#)
 - [跨平台应用架构设计思考](#)
+
+</div>
 
 ## 🏷️ 技术标签
 
@@ -92,13 +116,15 @@ layout: page
   <span style="background: #f1f8e9; color: #689f38; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">WebGL</span>
   <span style="background: #fef7ff; color: #8e24aa; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Golang</span>
   <span style="background: #e3f2fd; color: #1565c0; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Node.js</span>
+  <span style="background: #e8f5e8; color: #388e3c; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">CSS 优化</span>
+  <span style="background: #fff3e0; color: #f57c00; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">性能优化</span>
 </div>
 
 ## 📊 写作统计
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0;">
   <div style="text-align: center; padding: 1rem; border: 1px solid #e1e5e9; border-radius: 8px;">
-    <h3 style="margin: 0; color: #2c3e50;">3</h3>
+    <h3 style="margin: 0; color: #2c3e50;">4</h3>
     <p style="margin: 0.5rem 0 0 0; color: #666;">已发布</p>
   </div>
   <div style="text-align: center; padding: 1rem; border: 1px solid #e1e5e9; border-radius: 8px;">
@@ -106,39 +132,12 @@ layout: page
     <p style="margin: 0.5rem 0 0 0; color: #666;">草稿中</p>
   </div>
   <div style="text-align: center; padding: 1rem; border: 1px solid #e1e5e9; border-radius: 8px;">
-    <h3 style="margin: 0; color: #2c3e50;">8</h3>
+    <h3 style="margin: 0; color: #2c3e50;">10</h3>
     <p style="margin: 0.5rem 0 0 0; color: #666;">技术标签</p>
   </div>
   <div style="text-align: center; padding: 1rem; border: 1px solid #e1e5e9; border-radius: 8px;">
-    <h3 style="margin: 0; color: #2c3e50;">1.2k</h3>
+    <h3 style="margin: 0; color: #2c3e50;">1.5k</h3>
     <p style="margin: 0.5rem 0 0 0; color: #666;">总阅读量</p>
   </div>
 </div>
 
-## 💭 写作计划
-
-### 近期计划
-- [ ] Vite 5.0 新特性解析
-- [ ] 前端监控系统搭建
-- [ ] Micro-frontend 实践指南
-- [ ] Web Components 深入理解
-
-### 长期规划
-- [ ] 前端架构设计系列
-- [ ] 性能优化专题
-- [ ] 开源项目开发日志
-- [ ] 技术面试经验分享
-
----
-
-## 📮 订阅更新
-
-如果你想及时获取我的最新文章，可以通过以下方式订阅：
-
-- 🔔 关注我的 [GitHub](https://github.com/william-xue)
-- 📧 邮件订阅：xue.yuan.99999@gmail.com
-- 🐦 Twitter：[@99999_yuan](https://x.com/99999_yuan)
-
----
-
-*"分享知识，共同成长"*

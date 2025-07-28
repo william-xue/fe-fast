@@ -1,9 +1,24 @@
 /* 全局样式优化 */
 
+/* VitePress 布局变量覆盖 */
+:root {
+  --vp-layout-max-width: 1600px;
+  --vp-content-width: 1400px;
+  --vp-sidebar-width: 280px;
+  --vp-layout-gap: 64px;
+}
+
 /* 页面容器优化 */
 .VPContent {
   padding: 0 24px;
-  max-width: 1200px;
+  max-width: var(--vp-layout-max-width);
+  margin: 0 auto;
+}
+
+/* 文章页面样式优化 */
+.vp-doc {
+  padding: 32px 24px;
+  max-width: var(--vp-content-width);
   margin: 0 auto;
 }
 
@@ -12,13 +27,6 @@
   .VPContent {
     padding: 0 16px;
   }
-}
-
-/* 文章页面样式优化 */
-.vp-doc {
-  padding: 32px 24px;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -40,21 +48,55 @@
 .vp-doc h2 {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--vp-c-divider);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.3;
   color: var(--vp-c-text-1);
-  border-bottom: 2px solid var(--vp-c-divider);
-  padding-bottom: 0.5rem;
 }
 
+/* 技术分类页面美化 */
 .vp-doc h3 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  color: var(--vp-c-brand);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 600;
   line-height: 1.4;
+}
+
+.articles-list ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.articles-list li {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.articles-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--vp-c-brand);
+}
+
+.articles-list li a {
+  text-decoration: none;
   color: var(--vp-c-text-1);
+  font-weight: 500;
+  display: block;
 }
 
 /* 段落样式优化 */
