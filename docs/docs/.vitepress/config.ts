@@ -25,18 +25,9 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '关于我', link: '/about' },
       { text: '项目展示', link: '/projects' },
-      { text: '技术文章', link: '/articles' }
+      { text: 'rusty-pic', link: '/rusty-pic' }
     ],
-    sidebar: {
-      '/articles/': [
-        {
-          text: '技术文章',
-          items: [
-            { text: 'CSS Pruner 使用指南', link: '/articles/unused-css-pruner-guide' }
-          ]
-        }
-      ]
-    },
+    sidebar: {},
     socialLinks: [
       { icon: 'github', link: 'https://github.com/william-xue' },
       { icon: 'twitter', link: 'https://twitter.com/99999_yuan' }
