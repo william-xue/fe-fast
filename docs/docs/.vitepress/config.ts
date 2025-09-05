@@ -12,7 +12,7 @@ export default defineConfig({
     [
       'script',
       {
-        src: '/visitor-stats.js'
+        src: (process as any).env.NODE_ENV === 'production' ? '/fe-fast/visitor-stats.js' : '/visitor-stats.js'
       }
     ]
   ],
