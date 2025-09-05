@@ -12,8 +12,7 @@ export default defineConfig({
     [
       'script',
       {
-        async: '',
-        src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+        src: '/visitor-stats.js'
       }
     ]
   ],

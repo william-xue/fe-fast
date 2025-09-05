@@ -100,11 +100,11 @@ features:
 <div style="text-align: center; margin: 3rem 0; padding: 1rem; border-top: 1px solid #e1e5e9;">
   <p style="color: #888; margin: 0; font-style: italic;">"代码改变世界，技术创造未来"</p>
   <footer style="text-align: center; margin-top: 10px;">
-  <span id="busuanzi_container_site_uv">
-    👀 访客数：<span id="busuanzi_value_site_uv"></span> 人
+  <span>
+    👀 访客数：<span id="custom_visitor_uv"></span> 人
   </span>
-  <span id="busuanzi_container_site_pv">
-    📈 总访问量：<span id="busuanzi_value_site_pv"></span> 次
+  <span>
+    📈 总访问量：<span id="custom_visitor_pv"></span> 次
   </span>
 </footer>
 </div>
