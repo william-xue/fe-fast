@@ -1,10 +1,10 @@
 ---
-layout: page
+layout: doc
 ---
 
 # 作品
 
-按"能不能点开验证"排序：**已上线产品 → 自研开源项目 → 图形可视化演示 → 小玩意与实验 → 开源贡献**。
+按"能不能点开验证"排序：**已上线产品 → 自研开源项目 → 图形可视化演示 → 小玩意 → 开源贡献**。
 
 ## 已上线产品
 
@@ -13,7 +13,7 @@ layout: page
 <div class="cards">
 
 <a class="card" href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🏃 Crazy Trail</h3><span class="live">● 线上</span></div>
+  <div class="head"><h3>Crazy Trail</h3><span class="live">● 线上</span></div>
   <p class="sub">越野跑赛事与路线平台 · 面向国际用户</p>
   <p class="body">中国越野跑赛事、路线与故事的英文内容平台，服务海外跑者。包含赛事信息、路线数据与内容展示。</p>
   <p class="stack"><b>技术</b>：Vue · Java 后端 · MySQL · CI/CD 一键部署</p>
@@ -21,7 +21,7 @@ layout: page
 </a>
 
 <a class="card" href="https://aichechuhai.com/" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🚗 AICHE CHUHAI</h3><span class="live">● 线上</span></div>
+  <div class="head"><h3>AICHE CHUHAI</h3><span class="live">● 线上</span></div>
   <p class="sub">二手车跨境交易平台</p>
   <p class="body">一站式二手车跨境交易平台，覆盖车源展示与交易流程，前端使用 Element Plus 组件体系。</p>
   <p class="stack"><b>技术</b>：Vue 3 · Element Plus · Java 后端 · Redis · CI/CD 一键部署</p>
@@ -39,42 +39,42 @@ layout: page
 <div class="cards">
 
 <a class="card" href="https://github.com/william-xue/selection-drag-engine" target="_blank" rel="noreferrer">
-  <div class="head"><h3>⭐ selection-drag-engine</h3><span class="star">101 ★</span></div>
+  <div class="head"><h3>selection-drag-engine</h3><span class="star">101 ★</span></div>
   <p class="sub">渲染器无关的框选与多选拖拽引擎</p>
   <p class="body">
-    源于 AntV X6 issue #4823。核心是把"批量拖拽"这件事拆干净：<b>rAF 合并</b>把多次指针事件压成一帧一次计算、<b>拖拽快照</b>避免拖拽过程中反复读模型、<b>preview / commit 分离</b>让视觉反馈和状态提交解耦。
+    源于 <a href="https://github.com/antvis/X6/issues/4823" target="_blank" rel="noreferrer">AntV X6 issue #4823</a>。rAF 合并指针事件、拖拽快照避免中途读模型、preview / commit 分离解耦反馈与提交。
   </p>
-  <p class="why"><b>解决什么</b>：拖 100 个图元就掉帧的问题。适用于任何图形编辑器，不绑定渲染器。</p>
+  <p class="why"><b>解决什么</b>：拖 100 个图元掉帧。不绑定渲染器。</p>
   <p class="tags"><span>JavaScript</span><span>rAF 调度</span><span>拖拽状态机</span></p>
 </a>
 
 <a class="card" href="https://github.com/william-xue/pin-graph-lib" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🧩 pin-graph-lib</h3><span class="star">自研引擎</span></div>
+  <div class="head"><h3>pin-graph-lib</h3><span class="star">MIT · npm</span></div>
   <p class="sub">零依赖 SVG 图编辑内核</p>
   <p class="body">
-    2,108 行自研引擎：语义引脚（方向 / 边 / 角色 / 热区）、正交避障布线、吸附、撤销栈、JSON 存档 / 恢复。
+    2,108 行零依赖引擎：语义引脚、正交避障布线、吸附、撤销栈、JSON 存档。
   </p>
-  <p class="why"><b>可核查</b>：49 个单元测试 + 2 套 Chrome E2E 全绿；npm 包 MIT 协议。</p>
+  <p class="why"><b>可核查</b>：49 单测 + 2 套 Chrome E2E，含 2,000 节点框选拖拽场景。</p>
   <p class="tags"><span>SVG</span><span>TypeScript</span><span>49 单测</span><span>E2E</span></p>
 </a>
 
-<a class="card" href="https://github.com/william-xue/x6-plugin-port-editor" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🔌 x6-plugin-port-editor</h3><span class="star">已并入上游</span></div>
-  <p class="sub">AntV X6 端口编辑插件</p>
+<a class="card" href="https://github.com/antvis/X6/pull/5093" target="_blank" rel="noreferrer">
+  <div class="head"><h3>X6 端口编辑插件</h3><span class="star">已合并进上游</span></div>
+  <p class="sub">AntV X6 · PR #5093</p>
   <p class="body">
-    为 AntV X6 增加可视化端口编辑能力，改动已作为 <code>feat: add port editor plugin</code> <b>合并进 X6 主仓库</b>。
+    为 AntV X6 增加可视化端口编辑能力，以 <code>feat: add port editor plugin</code> 合并进主仓库（2026 年 10 月）。配套的独立插件包在 <a href="https://github.com/william-xue/x6-plugin-port-editor" target="_blank" rel="noreferrer">x6-plugin-port-editor</a>。
   </p>
-  <p class="why"><b>意义</b>：不只是"给开源提过 PR"，而是能改动别人的核心引擎并让其接受。</p>
+  <p class="why"><b>可核查</b>：<a href="https://github.com/antvis/X6/pull/5093" target="_blank" rel="noreferrer">PR #5093</a> 的评审记录全部公开。</p>
   <p class="tags"><span>AntV X6</span><span>插件体系</span><span>已合并</span></p>
 </a>
 
 <a class="card" href="https://github.com/william-xue/gridpilot-studio" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🗺️ gridpilot-studio</h3><span class="star">GIS + Agent</span></div>
+  <div class="head"><h3>gridpilot-studio</h3><span class="star">GIS + Agent</span></div>
   <p class="sub">电网 GIS 工作台 + AI Agent</p>
   <p class="body">
-    Vue + deck.gl 渲染 1,327 个场站的真实规模数据。内置可运行的 AI Agent：Node 端 ReAct 循环 + 11 个工具注册表（查数据 / BFS 连通性 / 地图动作）+ SSE 流式输出，5 条端到端验收脚本全绿。
+    Vue + deck.gl 渲染 1,327 个场站。Node 端 ReAct 循环 + 11 个工具注册表 + SSE 流式输出，5 条端到端验收脚本全绿。
   </p>
-  <p class="why"><b>解决什么</b>：让用户用自然语言操控地图数据，而不是点十层菜单。</p>
+  <p class="why"><b>解决什么</b>：用自然语言查询和操纵地图数据。</p>
   <p class="tags"><span>deck.gl</span><span>Vue</span><span>ReAct</span><span>SSE</span></p>
 </a>
 
@@ -82,7 +82,7 @@ layout: page
 
 ## 图形可视化演示系列
 
-同一份**确定性生成**的 20,000 节点数据集，用不同引擎做成 6 个可交互演示 —— 对应六种客户会问到的能力。每个都有讲解视频。
+同一份**确定性生成**的 20,000 节点数据集，用不同引擎做成 6 个可交互演示。每个都有讲解视频。
 
 <div class="series">
 
@@ -117,7 +117,7 @@ layout: page
   <div class="no">04</div>
   <div class="info">
     <h3>图编辑器引擎 <span class="k">零依赖 SVG + TypeScript</span></h3>
-    <p>元件设计器 + 装配画布：语义引脚、连接策略校验、正交避障路由、命令式撤销重做。压测按钮可生成 <b>2,000 个节点并保持 60 FPS</b>；<b>211 个单测全绿</b>，产物仅 130 KB（gzip 36 KB）。</p>
+    <p>元件设计器 + 装配画布：语义引脚、连接策略校验、正交避障路由、命令式撤销重做。压测按钮可生成 <b>2,000 个节点并保持 60 FPS</b>；配套单元测试覆盖核心路径。</p>
   </div>
   <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ 合集</a></div>
 </div>
@@ -143,63 +143,52 @@ layout: page
 </div>
 
 <p class="aside">
-这六个演示的共同点：数据都是确定性生成的合成数据（无客户数据、无真实拓扑），刷新即复现；每一个都挂了实时帧率计数器，性能可以当场验证而不是听我说。
+合成数据，刷新即复现；每个演示都挂了实时帧率计数器。
 </p>
 
-## 小玩意与实验
+## 小玩意
 
-不上台面的小东西，但能说明一件事：**我喜欢琢磨**。看到一个问题就想自己写一个工具解决它，哪怕是凌晨两点。
+工作之余写过一些解决具体问题的小工具，都不大，但都在维护：
 
 <div class="cards">
 
-<a class="card" href="https://william-xue.github.io/rusty-pic/" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🦀 Rusty Pic</h3><span class="live">● 线上可玩</span></div>
-  <p class="sub">Rust + WebAssembly 极限图片压缩</p>
+<a class="card" href="https://william-xue.github.io/rusty-pic/demo" target="_blank" rel="noreferrer">
+  <div class="head"><h3>rusty-pic</h3><span class="live">● 线上可玩</span></div>
+  <p class="sub">Rust + WebAssembly 图片压缩</p>
   <p class="body">
-    为了减少图片带宽消耗写的：Rust 侧编译为 WebAssembly，在浏览器里直接处理，图片不出本地。除了 Web 版还提供了 <b>CLI</b> 与 <b>Vite 插件</b>，也能发布到 npm。
+    Rust 侧编译为 WebAssembly，浏览器里直接处理，图片不出本地。提供 Web 演示、CLI 与 Vite 插件，已发布到 npm。
   </p>
   <p class="tags"><span>Rust</span><span>WebAssembly</span><span>Vite 插件</span><span>CLI</span></p>
 </a>
 
 <a class="card" href="https://github.com/william-xue/port-checker" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🔧 port-checker</h3><span class="star">crates.io</span></div>
-  <p class="sub">Rust 命令行端口检测工具</p>
+  <div class="head"><h3>port-checker</h3><span class="star">Rust CLI</span></div>
+  <p class="sub">端口占用检测</p>
   <p class="body">
-    快速检测端口占用与对应进程，支持单端口与范围扫描、超时与并发控制、结果导出。跨 macOS / Linux / Windows。
+    检测端口占用与对应进程，支持单端口与范围扫描、超时与并发控制。跨 macOS / Linux / Windows。
   </p>
-  <p class="why"><b>最近还在维护</b>：收到 Linux 编译失败的 issue 后已定位并修复（分支路径在系统分配端口时返回 0），PR 上的 CI 已恢复运行。</p>
+  <p class="why"><b>在维护</b>：Linux 编译失败的 issue 已定位修复，记录公开。</p>
   <p class="tags"><span>Rust</span><span>CLI</span><span>跨平台</span></p>
 </a>
 
 <a class="card" href="https://github.com/william-xue/js-interaction-lens" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🔍 js-interaction-lens</h3><span class="star">调试工具</span></div>
+  <div class="head"><h3>js-interaction-lens</h3><span class="star">调试工具</span></div>
   <p class="sub">交互阶段对照工具</p>
   <p class="body">
-    把交互拆成开始 / 更新 / 完成 / 取消四个阶段并可视化对照，用来调试复杂手势与拖拽逻辑 —— 拖拽类 bug 最常见的原因就是这四个阶段没分清。
+    把交互拆成开始 / 更新 / 完成 / 取消四个阶段并可视化对照，用来调试复杂手势与拖拽逻辑。
   </p>
   <p class="tags"><span>JavaScript</span><span>调试工具</span></p>
 </a>
 
 </div>
 
+更多（死代码清理、未使用 CSS 裁剪、字体子集化等）见[首页](/)的工具列表。
+
 ## 开源贡献
 
-<div class="oss">
+AntV X6 端口编辑插件（[PR #5093](https://github.com/antvis/X6/pull/5093)）已并入主仓库；antdv-next 合并数最多（10 个）；openai-agents-python 5 个已合并；Varlet 日常参与 issue 分诊与 PR 评审；Element Plus、VisActor/VTable、naive-ui、vercel/ai、litellm、pydantic-ai、cline、OpenHands 均有 PR 记录；电力方向 Pyomo、PyPSA、PowerGridModel、Grid2op 有已合并 PR。
 
-| 项目 | 说明 |
-|---|---|
-| **Varlet** | Vue 3 移动端组件库，**组织成员**；提交并维护 `input` / `field-decorator` / `ellipsis` / `date-picker` 等改动 |
-| **AntV X6** | 图编辑引擎；**端口编辑插件已合并进主仓库**，另有多处文档与修复 |
-| **Element Plus** | 表格多选筛选、滚动条过渡等修复 |
-| **antdv-next** | 组件修复与文档改进（合并数最多，11 个） |
-| **vercel/ai** | OpenAI provider 与 codemod 相关改动 |
-| **其他** | plotly.js、recharts、deck.gl、naive-ui、vexip-ui、Pyomo、PyPSA、PowerGridModel、Grid2op、pandapower、litellm、cline、OpenHands、modelcontextprotocol |
-
-<p class="aside">
-累计提交 <b>94 个 PR</b>（<b>48 个已合并</b>）、覆盖 <b>39 个仓库</b>、提出 122 个 issue。全部可以在 GitHub 上按作者 @william-xue 查到。
-</p>
-
-</div>
+累计 **95 个 PR、47 个已合并、覆盖 40 个仓库**，按作者 [@william-xue](https://github.com/william-xue) 在 GitHub 可查。
 
 <style>
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
@@ -227,7 +216,6 @@ layout: page
 .series .link { flex: 0 0 auto; padding-top: .15rem; }
 .series .link a { font-size: .85rem; white-space: nowrap; }
 .aside { font-size: .85rem; color: var(--vp-c-text-2); line-height: 1.7; padding-left: .75rem; border-left: 3px solid var(--vp-c-divider); }
-.oss table { display: table; width: 100%; }
 @media (max-width: 640px) {
   .series .row { flex-wrap: wrap; }
   .series .link { flex-basis: 100%; }

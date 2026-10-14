@@ -101,10 +101,6 @@ One deterministically generated 20,000-node dataset, rendered with different eng
 
 <a class="more" href="/en/projects#visualisation-demo-series">See all six demos →</a>
 
-## Writing
-
-274 original technical articles, 1.02M reads — most of it in Chinese. The series I am proudest of is a **[programmer's guide to demystifying power systems](/en/writing)** (10 parts), taking a software engineer from "the grid is a concurrent data stream" through topology, power flow and optimisation constraints to running their first SCUC.
-
 ## Get in touch
 
 <div class="contact">

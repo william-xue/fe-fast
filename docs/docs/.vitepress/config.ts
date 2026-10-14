@@ -9,14 +9,12 @@ const GITHUB = 'https://github.com/william-xue'
 const ZH_NAV = [
   { text: '首页', link: '/' },
   { text: '作品', link: '/projects' },
-  { text: '写作', link: '/writing' },
   { text: '关于我', link: '/about' }
 ]
 
 const EN_NAV = [
   { text: 'Home', link: '/en/' },
   { text: 'Work', link: '/en/projects' },
-  { text: 'Writing', link: '/en/writing' },
   { text: 'About', link: '/en/about' }
 ]
 
@@ -24,7 +22,7 @@ export default defineConfig({
   base,
   title: 'William Xue',
   titleTemplate: ':title | William Xue',
-  description: '工业级可视化前端 · WebGL / GIS / 数字孪生',
+  description: '资深前端工程师 · 中后台业务系统与图形可视化',
 
   // 真实访客统计（不蒜子）。此前用的是 visitor-stats.js 里硬编码的模拟数字，该文件已删除。
   head: [
@@ -44,7 +42,7 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
       title: 'William Xue',
-      description: '工业级可视化前端 · WebGL / GIS / 数字孪生',
+  description: '资深前端工程师 · 中后台业务系统与图形可视化',
       themeConfig: {
         outlineTitle: '本页目录',
         nav: ZH_NAV,
