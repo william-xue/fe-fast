@@ -1,110 +1,196 @@
 ---
 layout: home
+titleTemplate: false
 
 hero:
   name: "William Xue"
-  text: "全栈开发者的技术探索与实践之路"
-  tagline: 前端 | 后端 | 云原生 | 开源贡献者
+  text: "工业级可视化前端"
+  tagline: 10 年前端 · 48 个开源 PR 被合并 · 20,000 节点 60 FPS
   image:
     src: https://avatars.githubusercontent.com/u/20151622?s=200&v=4
     alt: William Xue
   actions:
     - theme: brand
-      text: 查看文章
-      link: /articles
+      text: 看作品
+      link: /projects
     - theme: alt
-      text: 了解我
+      text: 关于我
       link: /about
     - theme: alt
-      text: 项目展示
-      link: /projects
+      text: GitHub
+      link: https://github.com/william-xue
 
 features:
-  - icon: 🚀
-    title: 前端技术栈
-    details: 精通 Vue.js、React、TypeScript，擅长构建现代化单页应用和组件库，具备丰富的前端工程化经验。
-  - icon: ⚙️
-    title: 后端开发
-    details: 熟练使用 Node.js、Golang、Java Spring Boot，具备微服务架构设计和 RESTful API 开发经验。
-  - icon: 🛠️
-    title: 系统工具
-    details: 使用 Rust 开发高性能命令行工具，关注系统编程和性能优化，追求代码的极致效率。
-  - icon: ☁️
-    title: 云原生技术
-    details: 熟悉云开发、Serverless 架构，具备小程序全栈开发经验，擅长云函数和云数据库应用。
-  - icon: 📱
-    title: 移动端开发
-    details: 具备小程序、H5、React Native 开发经验，关注跨平台解决方案和移动端性能优化。
-  - icon: 🌟
-    title: 开源实践
-    details: 积极维护开源项目，包括音乐云平台、Vue 源码分析、Electron 桌面应用等多个领域。
+  - icon: 🎯
+    title: 大规模图形与性能
+    details: 让几万个图元在浏览器里跑顺：20,000 节点 / 36,610 连线 60 FPS；自研 SVG 图编辑内核；把卡在同一处的方案换掉。
+  - icon: 🗺️
+    title: 多引擎 GIS 与数字孪生
+    details: 同一份数据集，用 MapLibre 做 2D 瓦片地图、用 CesiumJS 做 3D 地球，各实现一遍——数据一次建模，多视图复用。
+  - icon: 🔌
+    title: 可闭环的后端交付
+    details: 需要一个人把整条线做完时：Vue / React / 小程序前端 + Java 后端 + MySQL / Redis + Docker，CI/CD 一键部署。
+  - icon: 🌍
+    title: 开源工程影响力
+    details: 为 Varlet、AntV X6、Element Plus 等 39 个开源项目提交过 PR，48 个已被合并；Varlet 组织成员。
 ---
 
-<div style="text-align: center; margin: 3rem 0;">
-  <h2 style="margin-bottom: 1rem;">🔥 精选项目</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-    <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
-      <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="https://github.com/william-xue/serverless_music_cloud" style="text-decoration: none; color: inherit;">🎵 Serverless Music Cloud</a>
-      </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">小程序云开发全栈项目</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">基于微信小程序云开发的音乐平台，包含前端小程序、管理后台和云函数后端，实现完整的音乐播放和管理功能。</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: #e8f5e8; color: #2e7d32; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Vue</span>
-        <span style="background: #fff3e0; color: #f57c00; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">小程序</span>
-        <span style="background: #e3f2fd; color: #1976d2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">云开发</span>
-      </div>
-    </div>
-    <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
-      <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="https://github.com/william-xue/port-checker" style="text-decoration: none; color: inherit;">🔧 Port Checker</a>
-      </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">Rust 命令行工具</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">使用 Rust 开发的高性能端口检测工具，提供快速、用户友好的命令行界面，支持批量端口扫描和状态检测。</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: #fce4ec; color: #c2185b; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Rust</span>
-        <span style="background: #f3e5f5; color: #7b1fa2; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">CLI</span>
-      </div>
-    </div>
-    <div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 1.5rem; text-align: left;">
-      <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50;">
-        <a href="https://github.com/william-xue/miniVue" style="text-decoration: none; color: inherit;">⚡ Mini Vue</a>
-      </h3>
-      <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">Vue2 源码分析实现</p>
-      <p style="color: #888; margin: 0; line-height: 1.5;">深度解析 Vue2.x 源码，实现观察者模式、依赖收集和响应式系统，帮助理解 Vue 核心原理和设计思想。</p>
-      <div style="margin-top: 1rem;">
-        <span style="background: #e8f5e8; color: #2e7d32; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">Vue</span>
-        <span style="background: #e1f5fe; color: #0277bd; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.5rem;">源码分析</span>
-      </div>
-    </div>
-  </div>
-  <a href="/projects" style="display: inline-block; padding: 0.75rem 1.5rem; background: #646cff; color: white; text-decoration: none; border-radius: 6px; margin-top: 1rem;">查看更多项目 →</a>
+## 已上线产品
+
+这两个项目从**前端到 Java 后端再到部署**都由我独立完成，现在正在线上运行。
+
+<div class="cards">
+
+<a class="card" href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">
+  <h3>🏃 Crazy Trail</h3>
+  <p class="card-sub">越野跑赛事与路线平台 · 面向国际用户</p>
+  <p class="card-body">中国越野跑赛事、路线与故事的英文内容平台，含赛事信息、路线数据与内容展示，服务海外跑者。</p>
+  <p class="card-tags"><span>Vue</span><span>Java</span><span>MySQL</span><span>CI/CD</span></p>
+</a>
+
+<a class="card" href="https://aichechuhai.com/" target="_blank" rel="noreferrer">
+  <h3>🚗 AICHE CHUHAI</h3>
+  <p class="card-sub">二手车跨境交易平台</p>
+  <p class="card-body">一站式二手车跨境交易平台，覆盖车源、展示与交易流程，前端使用 Element Plus 组件体系。</p>
+  <p class="card-tags"><span>Vue 3</span><span>Element Plus</span><span>Java</span><span>Redis</span></p>
+</a>
+
 </div>
 
+## 精选开源作品
 
-<div style="text-align: center; margin: 3rem 0;">
-  <h2 style="margin-bottom: 2rem;">🤝 联系我</h2>
-  <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-    <a href="mailto:xueyuan99999@gmail.com" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
-      📧 邮箱联系
-    </a>
-    <a href="https://github.com/william-xue" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
-      🐙 GitHub
-    </a>
-    <a href="https://x.com/99999_yuan" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid #e1e5e9; border-radius: 6px; text-decoration: none; color: #2c3e50; transition: all 0.3s;">
-      🐦 Twitter
-    </a>
-  </div>
+<div class="cards">
+
+<a class="card" href="https://github.com/william-xue/selection-drag-engine" target="_blank" rel="noreferrer">
+  <h3>⭐ selection-drag-engine <em>101 ★</em></h3>
+  <p class="card-sub">渲染器无关的框选与多选拖拽引擎</p>
+  <p class="card-body">源于 AntV X6 issue #4823：rAF 合并、拖拽快照、preview / commit 分离。解决"拖 100 个图元时掉帧"这一具体问题。</p>
+  <p class="card-tags"><span>JavaScript</span><span>rAF 调度</span><span>拖拽状态机</span></p>
+</a>
+
+<a class="card" href="https://github.com/william-xue/pin-graph-lib" target="_blank" rel="noreferrer">
+  <h3>🧩 pin-graph-lib</h3>
+  <p class="card-sub">零依赖 SVG 图编辑内核</p>
+  <p class="card-body">2,108 行自研引擎：语义引脚、正交避障布线、吸附、撤销栈、JSON 存档。49 个单测 + 2 套 Chrome E2E。</p>
+  <p class="card-tags"><span>SVG</span><span>TypeScript</span><span>49 单测</span></p>
+</a>
+
 </div>
 
-<div style="text-align: center; margin: 3rem 0; padding: 1rem; border-top: 1px solid #e1e5e9;">
-  <p style="color: #888; margin: 0; font-style: italic;">"代码改变世界，技术创造未来"</p>
-  <footer style="text-align: center; margin-top: 10px;">
-  <span>
-    👀 访客数：<span id="custom_visitor_uv"></span> 人
-  </span>
-  <span>
-    📈 总访问量：<span id="custom_visitor_pv"></span> 次
-  </span>
-</footer>
+<a class="more" href="/projects">查看全部作品与演示 →</a>
+
+## 图形可视化演示系列
+
+同一份确定性生成的 20,000 节点数据集，用不同引擎做成 6 个可交互演示（附讲解视频）。
+
+<div class="cards">
+
+<a class="card" href="https://www.bilibili.com/video/BV1tPpq6yEdu/" target="_blank" rel="noreferrer">
+  <h3>🎬 01 · 瓦片化网络地图</h3>
+  <p class="card-sub">MapLibre + deck.gl · 20,000 节点</p>
+  <p class="card-body">瓦片模式首屏 1.62 MB / 16 块瓦片，完整模式单次 8.86 MB / 53 ms，两种模式都是 60 FPS。</p>
+</a>
+
+<a class="card" href="https://www.bilibili.com/video/BV1UPpq6yEpL/" target="_blank" rel="noreferrer">
+  <h3>🎬 05 · 3D 产品配置器</h3>
+  <p class="card-sub">Three.js · 点击即贴图</p>
+  <p class="card-body">上传 GLB 模型与素材，点击模型表面贴花（DecalGeometry 贴合曲面），支持拖动 / 缩放 / 旋转 / 分层与导出。</p>
+</a>
+
 </div>
+
+<a class="more" href="/projects#图形可视化演示系列">查看完整 6 个演示 →</a>
+
+## 写作
+
+在 CSDN 写了 **274 篇**原创文章、累计 **102 万**阅读。其中一组是我认真写的：[**《写给程序员的电力系统去魅指南》**](/writing)（10 篇）—— 把电网是并发数据流、拓扑、潮流计算、优化器约束一直讲到 SCUC 跑通和行业生态。
+
+<div class="cards">
+
+<a class="card" href="/writing">
+  <h3>✍️ 写给程序员的电力系统去魅指南</h3>
+  <p class="card-sub">10 篇 · 我最想让人看到的一组文章</p>
+  <p class="card-body">这个行业里既懂电力又能给程序员讲清楚的人很少。这组文章就是拆这道墙的。</p>
+</a>
+
+<a class="card" href="https://blog.csdn.net/baidu_31333625" target="_blank" rel="noreferrer">
+  <h3>📚 CSDN 博客</h3>
+  <p class="card-sub">274 篇原创 · 102 万阅读 · 818 关注</p>
+  <p class="card-body">早年的踩坑记录占多数，流量主要来自搜索引擎。写得碎，但一直在写。</p>
+</a>
+
+</div>
+
+## 联系方式
+
+<div class="contact">
+
+<a href="mailto:xueyuan99999@gmail.com">📧 xueyuan99999@gmail.com</a>
+<a href="https://github.com/william-xue" target="_blank" rel="noreferrer">🐙 github.com/william-xue</a>
+
+</div>
+
+<p class="note">
+接受远程合作与合同制项目，尤其欢迎：大规模图形 / 性能优化、GIS 与数字孪生、需要一个人把前后端打通的中小型项目。
+</p>
+
+<div class="visitors">
+  <span>👀 独立访客 <b id="busuanzi_value_site_uv">—</b></span>
+  <span>📈 总访问量 <b id="busuanzi_value_site_pv">—</b></span>
+</div>
+
+<style>
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.card {
+  display: block;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s, transform .2s;
+}
+.card:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
+.card h3 { margin: 0 0 .35rem; font-size: 1.05rem; }
+.card h3 em { font-style: normal; color: #e6a23c; font-size: .85rem; }
+.card-sub { margin: 0 0 .6rem; font-size: .85rem; color: var(--vp-c-text-2); }
+.card-body { margin: 0 0 .8rem; font-size: .9rem; line-height: 1.6; color: var(--vp-c-text-2); }
+.card-tags { margin: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-tags span {
+  font-size: .75rem;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+}
+.more { display: inline-block; margin: .5rem 0 1.5rem; font-size: .9rem; }
+.contact { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .6rem 1.1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: .9rem;
+}
+.contact a:hover { border-color: var(--vp-c-brand-1); }
+.note { color: var(--vp-c-text-2); font-size: .9rem; line-height: 1.7; }
+.visitors {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider);
+  font-size: .85rem;
+  color: var(--vp-c-text-2);
+}
+.visitors b { color: var(--vp-c-text-1); }
+</style>

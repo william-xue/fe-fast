@@ -1,39 +1,74 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.vuejs.org/config/app-configs
+// 生产环境（GitHub Pages）需要 /fe-fast/，本地开发不需要
+const base = (process as any).env.NODE_ENV === 'production' ? '/fe-fast/' : '/'
+
+const GITHUB = 'https://github.com/william-xue'
+
+// 语言切换由 VitePress 1.x 自带的下拉完成，不需要手写语言项。
+const ZH_NAV = [
+  { text: '首页', link: '/' },
+  { text: '作品', link: '/projects' },
+  { text: '写作', link: '/writing' },
+  { text: '关于我', link: '/about' }
+]
+
+const EN_NAV = [
+  { text: 'Home', link: '/en/' },
+  { text: 'Work', link: '/en/projects' },
+  { text: 'Writing', link: '/en/writing' },
+  { text: 'About', link: '/en/about' }
+]
+
 export default defineConfig({
-  lang: 'zh-CN',
-  title: "我的个人主页",
-  description: "前端开发者的技术分享与成长记录",
-  // 根据环境自动设置 base 路径
-  // 生产环境（GitHub Pages）需要 /fe-fast/，本地开发不需要
-  base: (process as any).env.NODE_ENV === 'production' ? '/fe-fast/' : '/',
+  base,
+  title: 'William Xue',
+  titleTemplate: ':title | William Xue',
+  description: '工业级可视化前端 · WebGL / GIS / 数字孪生',
+
+  // 真实访客统计（不蒜子）。此前用的是 visitor-stats.js 里硬编码的模拟数字，该文件已删除。
   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}favicon.svg` }],
     [
       'script',
-      {
-        src: (process as any).env.NODE_ENV === 'production' ? '/fe-fast/visitor-stats.js' : '/visitor-stats.js'
-      }
+      { async: '', src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js' }
     ]
   ],
-  themeConfig: {
-    // 文章布局配置
-    outline: 'deep',
 
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '关于我', link: '/about' },
-      { text: '项目展示', link: '/projects' },
-      { text: 'rusty-pic', link: '/rusty-pic' }
-    ],
-    sidebar: {},
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/william-xue' },
-      { icon: 'twitter', link: 'https://twitter.com/99999_yuan' }
-    ],
-    footer: {
-      message: '基于 VitePress 构建',
-      copyright: 'Copyright © 2024 我的个人主页'
+  themeConfig: {
+    socialLinks: [{ icon: 'github', link: GITHUB }]
+  },
+
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      title: 'William Xue',
+      description: '工业级可视化前端 · WebGL / GIS / 数字孪生',
+      themeConfig: {
+        outlineTitle: '本页目录',
+        nav: ZH_NAV,
+        docFooter: { prev: '上一篇', next: '下一篇' },
+        footer: {
+          message: '本站由 GitHub Actions 自动构建部署',
+          copyright: 'Copyright © 2024-present William Xue'
+        }
+      }
+    },
+    en: {
+      label: 'English',
+      lang: 'en-US',
+      title: 'William Xue',
+      description: 'Frontend & Visualization Engineer · WebGL / GIS / Digital Twin',
+      themeConfig: {
+        outlineTitle: 'On this page',
+        nav: EN_NAV,
+        docFooter: { prev: 'Previous', next: 'Next' },
+        footer: {
+          message: 'Built and deployed automatically with GitHub Actions',
+          copyright: 'Copyright © 2024-present William Xue'
+        }
+      }
     }
   }
 })

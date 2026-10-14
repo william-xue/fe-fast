@@ -4,378 +4,155 @@ layout: page
 
 # 关于我
 
-<div class="project-card" style="text-align: center; margin-bottom: 2rem; position: relative; padding: 2rem; border-radius: 12px; background: #0d1117; overflow: hidden; border: 1px solid var(--vp-c-brand-light);">
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5;">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 500 300">
-      <defs>
-        <pattern id="hacker-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M0 10h20M10 0v20" stroke="var(--vp-c-brand)" stroke-width="0.2"/>
-        </pattern>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <rect x="-50" y="-50" width="500" height="300" fill="url(#hacker-grid)" />
-      <g filter="url(#glow)" stroke-width="0.7" fill="none">
-        <path stroke="var(--vp-c-brand-light)">
-          <animate attributeName="d" dur="10s" repeatCount="indefinite" values="M-50,100 C50,0 150,200 250,100 S350,0 450,100; M-50,100 C50,200 150,0 250,100 S350,200 450,100; M-50,100 C50,0 150,200 250,100 S350,0 450,100;" />
-        </path>
-        <path stroke="var(--vp-c-brand-lighter)" stroke-dasharray="4 4">
-          <animate attributeName="d" dur="15s" repeatCount="indefinite" values="M-50,50 Q100,200 200,100 T450,150; M-50,150 Q100,0 200,100 T450,50; M-50,50 Q100,200 200,100 T450,150;" />
-        </path>
-      </g>
-      <g fill="var(--vp-c-brand-light)">
-        <animateTransform attributeName="transform" type="matrix" dur="20s" repeatCount="indefinite" values="1 0 0 1 0 0; 1 0.2 0 1 0 0; 1 0 0 1 0 0; 1 0 0.2 1 0 0; 1 0 0 1 0 0" />
-        <circle cx="100" cy="75" r="1.5" />
-        <circle cx="150" cy="125" r="1.5" />
-        <circle cx="250" cy="75" r="1.5" />
-        <circle cx="300" cy="125" r="1.5" />
-      </g>
-    </svg>
-  </div>
-  <div style="position: relative; z-index: 1; text-shadow: 0 0 8px var(--vp-c-brand);">
-    <img src="https://avatars.githubusercontent.com/u/20151622?s=200&v=4" alt="avatar" width="120" style="border-radius: 50%; margin-bottom: 1rem; border: 2px solid var(--vp-c-brand-light); box-shadow: 0 0 25px var(--vp-c-brand);" />
-    <h2 style="margin: 0; color: var(--vp-c-text-dark-1);">William Xue</h2>
-    <p style="color: var(--vp-c-text-dark-2); margin: 0.5rem 0; font-size: 1.1rem;">全栈开发工程师</p>
-    <p style="color: var(--vp-c-text-dark-3); margin: 0;">📍 中国 | 💼 5年+ 经验 | 🌟 开源贡献者</p>
+<div class="profile">
+  <img src="https://avatars.githubusercontent.com/u/20151622?s=200&v=4" alt="William Xue" width="96" />
+  <div>
+    <h2>William Xue</h2>
+    <p class="role">工业级可视化前端 · 10 年经验</p>
+    <p class="meta">WebGL / GIS / 数字孪生 · 可闭环的后端交付 · 开源贡献者</p>
   </div>
 </div>
 
-## 技能栈
+## 我是谁
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+做了 10 年前端，其中 9 年在上海。前 5 年主要在复杂业务系统里做组件化和工程化，最近几年稳定在**工业级图形可视化**这一块：把大规模图形、地图和数据在浏览器里跑顺。
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎨 前端技术</h3>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>框架</strong>: Vue.js (2/3)、React、TypeScript</li>
-    <li><strong>构建工具</strong>: Vite、Webpack、Rollup</li>
-    <li><strong>样式</strong>: CSS3、Sass、Less、Tailwind CSS</li>
-    <li><strong>移动端</strong>: 微信小程序、H5、React Native</li>
-    <li><strong>桌面端</strong>: Electron + Vue3</li>
+我的差异化不在"会用多少个框架"，而在**能把卡住的性能问题定位到根因并换掉方案**，以及**需要一个人把整条线做完时，前后端都能接上**。
+
+## 能力结构
+
+<div class="grid">
+
+<div class="block">
+  <h3>🎨 前端与图形可视化（主线）</h3>
+  <ul>
+    <li><b>框架</b>：Vue 2/3、React、TypeScript</li>
+    <li><b>图形</b>：WebGL、Three.js、deck.gl、CesiumJS、AntV X6、Canvas / SVG 自研引擎</li>
+    <li><b>工程</b>：Vite、Webpack、组件库与工具库建设、微前端</li>
+    <li><b>性能</b>：大数据量渲染、视口剔除、GPU 缓冲复用、Web Worker 卸载</li>
   </ul>
 </div>
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">⚙️ 后端技术</h3>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>Node.js</strong>: Express、Koa、Egg.js</li>
-    <li><strong>Golang</strong>: Gin 框架、RESTful API</li>
-    <li><strong>Java</strong>: Spring Boot、MyBatis Plus</li>
-    <li><strong>数据库</strong>: MongoDB、MySQL</li>
-    <li><strong>云服务</strong>: 微信云开发、Serverless</li>
+<div class="block">
+  <h3>🔌 后端与数据（可闭环，非长期主业）</h3>
+  <ul>
+    <li><b>语言</b>：Java / Spring Boot、Node.js、Python</li>
+    <li><b>数据</b>：MySQL、Redis（缓存、分布式锁、限流、队列）</li>
+    <li><b>接口</b>：RESTful API 设计、前后端联调、表设计、慢 SQL 定位</li>
+    <li><b>定位</b>：能把一条业务链从前端做到库；<b>不是</b>资深后端架构师，不写微服务与高并发量级</li>
   </ul>
 </div>
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🦀 系统编程</h3>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>Rust</strong>: 命令行工具开发、系统编程</li>
-    <li><strong>性能优化</strong>: 高并发、内存管理</li>
-    <li><strong>工具开发</strong>: CLI 工具、端口检测</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 工具链</h3>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>版本控制</strong>: Git、GitHub</li>
-    <li><strong>CI/CD</strong>: GitHub Actions</li>
-    <li><strong>可视化</strong>: WebGL、数据可视化</li>
-    <li><strong>架构</strong>: 微前端、微服务</li>
+<div class="block">
+  <h3>🚀 工程与部署</h3>
+  <ul>
+    <li><b>容器与网关</b>：Docker、Nginx</li>
+    <li><b>CI/CD</b>：GitHub Actions 一键构建部署（本站就是）</li>
+    <li><b>排查</b>：日志与错误码定位、分层排查（前端 / 网关 / 接口 / 库）</li>
   </ul>
 </div>
 
 </div>
 
-## 项目经历
+<p class="aside">
+说明：我不把"熟悉十种语言"当卖点。上面三块里，<b>图形可视化是主项</b>，后端是"需要时我能把这条链做完"的交付能力。
+</p>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+## 工作经历
 
-<div class="project-card">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-    <h3 style="margin: 0; color: var(--vp-c-brand-1);">🎵 Serverless Music Cloud</h3>
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">全栈音乐平台</span>
+<div class="timeline">
+
+<div class="item">
+  <div class="when">2025.05 – 2026.08</div>
+  <div class="what">
+    <h3>能源行业软件公司 · 高级前端</h3>
+    <p>主导电力系统图形编辑工具，把原方案（约 5,000 节点开始卡顿）换成 WebGL / deck.gl 渲染，在 <b>20,000+ 节点</b>算例下完成节点拖动与拐点编辑；从 0 到 1 搭建电力元件可视化编辑器；参与行业仿真平台与 AI Agent 工作台的前端落地。</p>
   </div>
-  <p style="color: var(--vp-c-text-2); font-size: 0.9rem; margin-bottom: 1rem;">*2020.02 - 2022.12*</p>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li>基于微信小程序云开发构建完整音乐平台生态</li>
-    <li>前端：Vue.js 管理后台 + 原生小程序用户端</li>
-    <li>后端：云函数 + 云数据库 + 云存储架构</li>
-    <li>实现音乐播放、用户管理、数据分析等核心功能</li>
-  </ul>
 </div>
 
-<div class="project-card">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-    <h3 style="margin: 0; color: var(--vp-c-brand-1);">⚡ Mini Vue</h3>
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">源码分析项目</span>
+<div class="item">
+  <div class="when">2020.05 – 2025.04</div>
+  <div class="what">
+    <h3>头部快递物流企业 · 前端开发 / 前端技术负责人</h3>
+    <p>负责服务全国 <b>30,000+ 网点</b>的核心业务系统前端；作为前端负责人组建并带领 <b>5 人团队</b>交付招聘、内训、绩效、考勤、薪酬五套系统；建设内部组件库与工具库、制定前端规范与上线流程；研发可配置公式计算组件并获<b>实用新型专利</b>。</p>
   </div>
-  <p style="color: var(--vp-c-text-2); font-size: 0.9rem; margin-bottom: 1rem;">*2018.08 - 2023.02*</p>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li>深度解析 Vue2.x 核心源码，实现简化版 Vue 框架</li>
-    <li>实现观察者模式、依赖收集、响应式系统</li>
-    <li>帮助开发者理解 Vue 内部工作原理和设计思想</li>
-  </ul>
 </div>
 
-<div class="project-card">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-    <h3 style="margin: 0; color: var(--vp-c-brand-1);">🛒 Egg Shop</h3>
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">电商系统</span>
+<div class="item">
+  <div class="when">2018.03 – 2020.05</div>
+  <div class="what">
+    <h3>出版文化公司 · 前端开发</h3>
+    <p>React + TypeScript 开发出版行业 ERP；主导小程序多端适配，通过条件编译与分包预加载把开发资源消耗降低约 60%。</p>
   </div>
-  <p style="color: var(--vp-c-text-2); font-size: 0.9rem; margin-bottom: 1rem;">*2020.10 - 2021.01*</p>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li>后端：Egg.js 提供 RESTful API</li>
-    <li>前端：Vue.js H5 用户端 + React TypeScript 管理端</li>
-    <li>实现完整的电商业务流程和权限管理系统</li>
-  </ul>
 </div>
 
-</div>
-
-## 技术特长
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 系统工具开发</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">Port Checker</span>
+<div class="item">
+  <div class="when">2016.01 – 2018.02</div>
+  <div class="what">
+    <h3>金融科技公司（上海） · 前端开发</h3>
+    <p>聚合支付平台技术栈重构；独立完成贷后管理系统前端从 0 到 1 搭建；设计跨项目统一单点登录方案。</p>
   </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>特点</strong>: 快速扫描、用户友好的命令行界面</li>
-    <li><strong>技术</strong>: Rust、CLI、网络编程</li>
-    <li><strong>优势</strong>: 使用 Rust 开发的高性能端口检测工具</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🖥️ 桌面应用开发</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">Electron + Vue3</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>特点</strong>: 现代化界面、高性能、跨平台兼容</li>
-    <li><strong>技术</strong>: Electron、Vue3、Concurrently 打包</li>
-    <li><strong>应用</strong>: 跨平台桌面应用开发</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎮 可视化开发</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">WebGL Demos</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>特点</strong>: 3D 渲染、数据可视化、交互体验</li>
-    <li><strong>技术</strong>: WebGL、Three.js、Canvas</li>
-    <li><strong>内容</strong>: 视频可视化代码收集和实现</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🌐 全栈架构</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Gin API</span>
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Next.js Serverless</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>后端</strong>: Golang 后端 API 开发</li>
-    <li><strong>前端</strong>: 现代化全栈应用</li>
-    <li><strong>特点</strong>: 高性能、可扩展、云原生</li>
-  </ul>
 </div>
 
 </div>
 
-## 开源贡献
+## 开源
 
-**GitHub**: [@william-xue](https://github.com/william-xue)  
-*36+ 个开源仓库 | 持续贡献*
+数字都能点开核对：
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+| 指标 | 数据 |
+|---|---|
+| 提交过的 PR | **94 个**（其中 **48 个已被合并**） |
+| 贡献过的仓库 | **39 个** |
+| 提过的 issue | 122 个 |
+| 组织成员 | **Varlet**（Vue 3 移动端组件库）公开成员 |
+| 被上游合并的代表性改动 | AntV X6 的**端口编辑插件**、Element Plus 表格筛选修复、varlet 的 ellipsis / date-picker 改动 |
+| 自研且被社区认可 | [`selection-drag-engine`](https://github.com/william-xue/selection-drag-engine) **101 ★** |
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎵 Serverless 音乐云平台</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue</span>
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Koa</span>
-    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">云开发</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/serverless_music_cloud" target="_blank" style="color: var(--vp-c-brand-1);">serverless_music_cloud</a></li>
-    <li><strong>技术栈</strong>: 微信小程序 + 云开发</li>
-    <li><strong>功能</strong>: 音乐播放、用户管理、数据分析</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🌟 Varlet UI 组件库</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue3</span>
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Material Design</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/varletjs/varlet" target="_blank" style="color: var(--vp-c-brand-1);">Varlet - Vue3 组件库</a></li>
-    <li><strong>贡献</strong>: 深度参与开发，提供60+高质量组件</li>
-    <li><strong>特色</strong>: 支持移动端和桌面端、国际化、暗色模式</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 Port Checker 工具</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">Rust</span>
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">CLI</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://crates.io/crates/port-checker" target="_blank" style="color: var(--vp-c-brand-1);">port-checker crate</a></li>
-    <li><strong>功能</strong>: 高性能端口检测和网络诊断工具</li>
-    <li><strong>技术</strong>: Rust、Clap、Tokio、跨平台支持</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">📦 fe-fast 工具包</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">NPM</span>
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">前端工具</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://www.npmjs.com/settings/fe-fast/packages" target="_blank" style="color: var(--vp-c-brand-1);">fe-fast npm packages</a></li>
-    <li><strong>内容</strong>: 前端快速开发工具包和组件库</li>
-    <li><strong>特点</strong>: 提升开发效率、模块化设计、易于集成</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔍 miniVue 源码分析</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">Vue2</span>
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">源码分析</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/miniVue" target="_blank" style="color: var(--vp-c-brand-1);">miniVue</a></li>
-    <li><strong>内容</strong>: 深度解析 Vue2.x 源码实现</li>
-    <li><strong>特点</strong>: 观察者模式、依赖收集和响应式原理</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🖥️ Electron 桌面应用</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Electron</span>
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Vue3</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/electron-vite-vue3" target="_blank" style="color: var(--vp-c-brand-1);">electron-vite-vue3</a></li>
-    <li><strong>技术</strong>: Electron + Vue3 + Vite</li>
-    <li><strong>特点</strong>: 跨平台桌面应用开发模板</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🎮 WebGL 可视化集合</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #ffeaa7; color: #d63031;">WebGL</span>
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">可视化</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/webgl-demos" target="_blank" style="color: var(--vp-c-brand-1);">webgl-demos</a></li>
-    <li><strong>内容</strong>: WebGL 可视化代码示例</li>
-    <li><strong>特点</strong>: 3D图形渲染、动画效果和交互设计</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🛒 全栈电商平台</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e8f5e8; color: #2e7d32;">Egg.js</span>
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Vue</span>
-    <span class="tech-tag" style="background: #fff3e0; color: #f57c00;">React</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/egg-shop" target="_blank" style="color: var(--vp-c-brand-1);">egg-shop</a></li>
-    <li><strong>技术</strong>: 前后端分离架构</li>
-    <li><strong>特点</strong>: Vue H5 用户端 + React 管理端</li>
-  </ul>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🚀 Next.js Serverless</h3>
-  <div style="margin-bottom: 1rem;">
-    <span class="tech-tag" style="background: #e3f2fd; color: #1976d2;">Next.js</span>
-    <span class="tech-tag" style="background: #f3e5f5; color: #7b1fa2;">Serverless</span>
-  </div>
-  <ul style="margin: 0; padding-left: 1.2rem;">
-    <li><strong>项目</strong>: <a href="https://github.com/william-xue/next-serverless" target="_blank" style="color: var(--vp-c-brand-1);">next-serverless</a></li>
-    <li><strong>技术</strong>: Next.js + React</li>
-    <li><strong>特点</strong>: 现代化全栈开发模式</li>
-  </ul>
-</div>
-
-</div>
+参与过的主要项目：Varlet、AntV X6、Element Plus、antdv-next、vercel/ai、plotly.js、recharts、deck.gl、naive-ui、vexip-ui，以及 Pyomo / PyPSA / PowerGridModel / pandapower 等电力系统与优化方向的工程库。
 
 ## 技术理念
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+- **先定位再优化。** 换渲染器之前先证明瓶颈在哪：是 DOM 数量、是重排，还是 GPU 提交。搞错一层，再优化也是白费。
+- **能不讲概念就不讲。** 面试也好、交付也好，我更愿意说"这个方案在 5,000 节点时卡住，我换成什么、为什么、验证数字是多少"。
+- **不写自己没做过的东西。** 这份主页上每个数字都能指向一个可点开的链接、一个可跑的测试或一个线上系统。
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🚀 追求极致</h3>
-  <blockquote style="margin: 1rem 0; padding: 0.5rem 1rem; border-left: 4px solid var(--vp-c-brand-1); background: var(--vp-c-bg-soft); font-style: italic; color: var(--vp-c-text-2);">
-    "代码改变世界，技术创造未来"
-  </blockquote>
-  <p style="margin: 0; padding-left: 1.2rem;">关注代码质量和性能优化，追求技术的极致表现</p>
+## 合作方式
+
+接受**远程合作**与**合同制项目**，尤其欢迎这三类：
+
+1. **大规模图形 / 性能优化** —— 你的可视化卡住了，需要有人定位到根因并换掉方案
+2. **GIS 与数字孪生** —— 2D 瓦片地图、3D 地球、拓扑图编辑器
+3. **需要一个人打通前后端的中小型项目** —— 前端 + 后端 + 部署一条线交给我
+
+<div class="contact">
+  <a href="mailto:xueyuan99999@gmail.com">📧 xueyuan99999@gmail.com</a>
+  <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">🐙 github.com/william-xue</a>
 </div>
 
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🔧 工具思维</h3>
-  <p style="margin: 0; padding-left: 1.2rem;">善于开发提升效率的工具，用技术解决实际问题</p>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🌱 持续学习</h3>
-  <p style="margin: 0; padding-left: 1.2rem;">保持对新技术的好奇心，不断探索和实践</p>
-</div>
-
-<div class="project-card">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1);">🤝 开源精神</h3>
-  <p style="margin: 0; padding-left: 1.2rem;">乐于分享和回馈社区，与开发者共同成长</p>
-</div>
-
-</div>
-
-## 联系方式
-
-<div class="project-card" style="max-width: 600px; margin: 2rem auto;">
-  <h3 style="margin-top: 0; color: var(--vp-c-brand-1); text-align: center;">🤝 让我们一起交流</h3>
-  <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap; justify-content: center;">
-    <a href="mailto:xueyuan99999@gmail.com" class="tech-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #e8f5e8; color: #2e7d32; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-      📧 Email
-    </a>
-    <a href="https://github.com/william-xue" class="tech-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #f3f4f6; color: #374151; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-       🐙 GitHub
-     </a>
-    <a href="https://x.com/99999_yuan" class="tech-tag" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #e3f2fd; color: #1976d2; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-      🐦 Twitter
-    </a>
-  </div>
-  <p style="text-align: center; color: var(--vp-c-text-2); margin: 0; font-style: italic;">
-    "欢迎与我交流技术问题，一起探讨前沿技术！"
-  </p>
-</div>
-
----
-
-<div class="article-card" style="text-align: center; margin: 2rem 0;">
-  <p style="margin: 0; color: var(--vp-c-text-2); font-style: italic; font-size: 1.1rem;">"热爱技术，享受编程，用代码创造价值"</p>
-</div>
-
----
-
-*"代码改变世界，技术创造未来"*
+<style>
+.profile { display: flex; align-items: center; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+.profile img { border-radius: 50%; border: 1px solid var(--vp-c-divider); }
+.profile h2 { margin: 0 0 .25rem; }
+.profile .role { margin: 0 0 .25rem; font-size: 1rem; color: var(--vp-c-text-1); font-weight: 600; }
+.profile .meta { margin: 0; font-size: .85rem; color: var(--vp-c-text-2); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+.block { border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 1.25rem; }
+.block h3 { margin: 0 0 .75rem; font-size: 1rem; }
+.block ul { margin: 0; padding-left: 1.1rem; font-size: .9rem; line-height: 1.8; color: var(--vp-c-text-2); }
+.block li b { color: var(--vp-c-text-1); }
+.aside { font-size: .85rem; color: var(--vp-c-text-2); line-height: 1.7; padding-left: .75rem; border-left: 3px solid var(--vp-c-divider); }
+.timeline { margin: 1.5rem 0; }
+.timeline .item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--vp-c-divider); }
+.timeline .item:last-child { border-bottom: none; }
+.timeline .when { flex: 0 0 150px; font-size: .82rem; color: var(--vp-c-text-2); font-variant-numeric: tabular-nums; padding-top: .15rem; }
+.timeline .what h3 { margin: 0 0 .4rem; font-size: .98rem; }
+.timeline .what p { margin: 0; font-size: .88rem; line-height: 1.75; color: var(--vp-c-text-2); }
+.contact { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
+.contact a { display: inline-flex; align-items: center; gap: .4rem; padding: .6rem 1.1rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; text-decoration: none; font-size: .9rem; }
+.contact a:hover { border-color: var(--vp-c-brand-1); }
+@media (max-width: 640px) {
+  .timeline .item { flex-direction: column; gap: .35rem; }
+  .timeline .when { flex: none; }
+}
+</style>
