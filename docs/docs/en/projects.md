@@ -6,34 +6,6 @@ layout: page
 
 Ordered by how easily you can verify it: **live products → own open-source projects → visualization demos → side projects → contributions**.
 
-## Live products
-
-Both built end to end by me — frontend, Java backend, deployment — and running in production.
-
-<div class="cards">
-
-<a class="card" href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🏃 Crazy Trail</h3><span class="live">● live</span></div>
-  <p class="sub">Trail-running races and routes platform · international audience</p>
-  <p class="body">Content platform for China's trail races, routes and stories, serving runners outside China: race information, route data and editorial content.</p>
-  <p class="stack"><b>Stack</b>: Vue · Java backend · MySQL · one-click CI/CD deploy</p>
-  <p class="tags"><span>Vue</span><span>Java</span><span>MySQL</span><span>CI/CD</span></p>
-</a>
-
-<a class="card" href="https://aichechuhai.com/" target="_blank" rel="noreferrer">
-  <div class="head"><h3>🚗 AICHE CHUHAI</h3><span class="live">● live</span></div>
-  <p class="sub">Cross-border used-car trading platform</p>
-  <p class="body">One-stop platform covering listings and the trading flow, built on the Element Plus component system.</p>
-  <p class="stack"><b>Stack</b>: Vue 3 · Element Plus · Java backend · Redis · one-click CI/CD deploy</p>
-  <p class="tags"><span>Vue 3</span><span>Element Plus</span><span>Java</span><span>Redis</span></p>
-</a>
-
-</div>
-
-<p class="aside">
-Both projects cover web and mini-program clients; frontends in Vue and React, backends in Java, with CI/CD configured for one-click deployment.
-</p>
-
 ## Own open-source projects
 
 <div class="cards">

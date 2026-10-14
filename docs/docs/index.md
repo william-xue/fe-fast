@@ -5,14 +5,14 @@ titleTemplate: false
 hero:
   name: "William Xue"
   text: "资深前端工程师"
-  tagline: 中后台业务系统与图形可视化，写了十年
+  tagline: 中后台业务系统与图形可视化 · 十年
   image:
     src: https://avatars.githubusercontent.com/u/20151622?s=200&v=4
     alt: William Xue
   actions:
     - theme: brand
-      text: 了解我
-      link: "#我是谁"
+      text: 看作品
+      link: /projects
     - theme: alt
       text: 关于我
       link: /about
@@ -21,40 +21,29 @@ hero:
       link: https://github.com/william-xue
 ---
 
-## 我是谁
+## 复杂业务系统
 
-我叫薛源，在上海做了十年前端。业务系统做稳过，大规模图形跑顺过，需要时也能一个人把服务端到部署走完。
+在中通快递负责业务前端五年，带领十二人前端团队。前三年聚焦集团智能办公，主导招聘、内训、绩效、考勤、薪酬五套内部系统；后两年转入核心业务域，负责商家端、物流中转及神州系统，覆盖发派件报价、账单管理等支撑全网三万余个网点运转的关键业务链路。期间主导建设部门组件库与工程规范，并制定开发规范与上线审核流程。
 
-## 中后台：在中通的五年
+## 大规模图形与可视化
 
-2020 到 2025，我在中通快递做前端，后两年负责智能办公业务——招聘、内训、绩效、考勤、薪酬五套系统，支撑全网三万多个网点的日常运转。
+2025 年起负责电网拓扑编辑器的图形渲染与交互。原 ECharts + SVG 方案在五千节点量级出现掉帧，定位后确认瓶颈在 DOM 重排与元素拾取，而非数据规模本身；改以 WebGL（deck.gl）实现，引入 GPU buffer、视口剔除与 GPU picking 后，在两万节点、三万六千条连线的实际算例上，节点拖动与拐点编辑稳定于 60 FPS。六种图形引擎的可交互演示见[作品页](/projects)。
 
-- 从零建起部门组件库和工程规范；
-- 带五人小组按季度交付五套系统的需求与迭代；
-- 可配置公式计算组件（规则解析 + 正则求值），应对绩效薪酬里口径不一的计算规则，获实用新型专利；
-- 小件分拣可视化大屏，Canvas 自绘传送带与包裹流转。
+## 端到端交付 · Vibe Coding
 
-## 图形：从一个卡顿的问题开始
+具备从需求到上线的全栈交付能力：前端之外，Java、Python、Go、Node 均可独立承担服务端开发；服务以 Docker 容器化，交付走 CI/CD，一次 push 即自动构建并部署上线。
 
-2025 年加入一家电力软件公司，接手电网拓扑编辑器。原方案 ECharts + SVG，五千节点开始掉帧——瓶颈在 DOM 重排和拾取，不在数据量。换成 WebGL（deck.gl）：GPU buffer、视口剔除、GPU picking。华东电网两万节点、三万六千条连线的实际算例，拖动与拐点编辑稳定 60 FPS。
+日常以 AI 辅助开发（Vibe Coding）驱动，整条链路的开发与迭代显著提速，可直接交付至生产环境。
 
-同一思路用回开源：[pin-graph-lib](https://github.com/william-xue/pin-graph-lib)（零依赖 SVG 图编辑内核）、[selection-drag-engine](https://github.com/william-xue/selection-drag-engine)（框选百级图元不掉帧）。同一份两万节点数据集的六种引擎演示在[作品页](/projects)。
+已独立完成多个平台的端到端交付（商业项目，不便展示）；公司内部的 AI 仿真助手，从客户端、服务端到流式链路，同样为全栈独立构建。
 
-## 端到端
+## 开源与工具
 
-两个独立交付、现在在线上跑的平台，前端、Java 后端、数据库、部署全是自己做的：[Crazy Trail](https://crazytrailchina.com/)、[AICHE CHUHAI](https://aichechuhai.com/)。这条链走通过两次。
+Varlet（Vue 3 移动端组件库）核心开发者，负责社区 PR 评审与 issue 分诊。为 AntV X6 开发的端口编辑插件（[PR #5093](https://github.com/antvis/X6/pull/5093)）已合并进主仓库，为该图编辑引擎补上端口的可视化编辑能力。另为 Element Plus、Ant Design Vue 等组件库贡献已合并的改动。
 
-## AI
-
-上一家公司内部的 AI 仿真助手，前端与流式链路从零搭建。处理过一个值得讲的问题：会话切换五次后流式响应永久挂起，最后用 Network 面板时间线定位到根因——旧 SSE 连接未随卸载释放，耗尽 HTTP/1.1 同源连接池。另给 openai-agents-python 提过数个已合并 PR。
-
-## 小工具
-
-[rusty-pic](https://william-xue.github.io/rusty-pic/demo)（Rust/WASM 图片压缩）、[port-checker](https://github.com/william-xue/port-checker)（端口检测）、[code-sweeper](https://github.com/william-xue/code-sweeper) / [unused-css-pruner](https://github.com/william-xue/unused-css-pruner) / [vite-plugin-font-subset](https://github.com/william-xue/vite-plugin-font-subset)。
+自研工具：[rusty-pic](https://william-xue.github.io/rusty-pic/demo)（Rust/WASM 图片压缩）、[port-checker](https://github.com/william-xue/port-checker)（端口检测）。
 
 ## 联系
-
-上海、南京的机会，中后台与图形方向优先。
 
 <div class="contact">
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>

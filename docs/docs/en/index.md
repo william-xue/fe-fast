@@ -35,28 +35,6 @@ features:
     details: PRs submitted to 39 open-source projects including Varlet, AntV X6 and Element Plus; 48 merged. Member of the Varlet organisation.
 ---
 
-## Live products
-
-Both of these were built end to end by me — frontend, Java backend and deployment — and they are running in production today.
-
-<div class="cards">
-
-<a class="card" href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">
-  <h3>🏃 Crazy Trail</h3>
-  <p class="card-sub">Trail-running races and routes platform · English-language, international audience</p>
-  <p class="card-body">A content platform for China's trail races, routes and stories, serving runners outside China.</p>
-  <p class="card-tags"><span>Vue</span><span>Java</span><span>MySQL</span><span>CI/CD</span></p>
-</a>
-
-<a class="card" href="https://aichechuhai.com/" target="_blank" rel="noreferrer">
-  <h3>🚗 AICHE CHUHAI</h3>
-  <p class="card-sub">Cross-border used-car trading platform</p>
-  <p class="card-body">A one-stop platform covering listings, presentation and the trading flow, built on the Element Plus component system.</p>
-  <p class="card-tags"><span>Vue 3</span><span>Element Plus</span><span>Java</span><span>Redis</span></p>
-</a>
-
-</div>
-
 ## Selected open source
 
 <div class="cards">
