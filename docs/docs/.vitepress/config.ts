@@ -22,7 +22,7 @@ export default defineConfig({
   base,
   title: 'William Xue',
   titleTemplate: ':title | William Xue',
-  description: '资深前端工程师 · 中后台业务系统与图形可视化',
+  description: '资深软件工程师 · 中后台业务系统与图形可视化',
 
   // 真实访客统计（不蒜子）。此前用的是 visitor-stats.js 里硬编码的模拟数字，该文件已删除。
   head: [
@@ -42,7 +42,7 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
       title: 'William Xue',
-  description: '资深前端工程师 · 中后台业务系统与图形可视化',
+  description: '资深软件工程师 · 中后台业务系统与图形可视化',
       themeConfig: {
         outlineTitle: '本页目录',
         nav: ZH_NAV,

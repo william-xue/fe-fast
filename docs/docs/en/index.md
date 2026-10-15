@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: "William Xue"
   text: "Large-Scale Visualization"
-  tagline: Frontend Engineer · 10 years · 48 merged open-source PRs · 20,000 nodes at 60 FPS
+  tagline: Software Engineer · 48 merged open-source PRs · 20,000 nodes at 60 FPS
   image:
     src: https://avatars.githubusercontent.com/u/20151622?s=200&v=4
     alt: William Xue

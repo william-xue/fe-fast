@@ -4,8 +4,8 @@ titleTemplate: false
 
 hero:
   name: "William Xue"
-  text: "资深前端工程师"
-  tagline: 中后台业务系统与图形可视化 · 十年
+  text: "资深软件工程师"
+  tagline: 中后台业务系统与图形可视化
   image:
     src: https://avatars.githubusercontent.com/u/20151622?s=200&v=4
     alt: William Xue
