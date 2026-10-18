@@ -31,7 +31,7 @@ hero:
 
 ## 端到端交付 · Vibe Coding
 
-具备从需求到上线的全栈交付能力：前端之外，Java、Python、Go、Node 均可独立承担服务端开发；服务以 Docker 容器化，交付走 CI/CD，一次 push 即自动构建并部署上线。
+具备从需求到上线的全栈交付能力：以 Java（Spring Boot / MyBatis-Plus）为坚实服务端底座，并熟练运用 Python、Go、Node 承担后端与工具链开发；服务以 Docker 容器化，交付走 CI/CD，一次 push 即自动构建并部署上线。
 
 日常以 AI 辅助开发（Vibe Coding）驱动，整条链路的开发与迭代显著提速，可直接交付至生产环境。
 
@@ -43,33 +43,33 @@ Varlet（Vue 3 移动端组件库）核心开发者，负责社区 PR 评审与 
 
 自研工具：[rusty-pic](https://william-xue.github.io/rusty-pic/demo)（Rust/WASM 图片压缩）、[port-checker](https://github.com/william-xue/port-checker)（端口检测）。
 
-## 我能为你做什么
+## 核心能力
 
 <div class="value">
 
 <a class="v" href="services">
-  <div class="k">卡住的东西，让它跑起来</div>
-  <p>先找出瓶颈在哪一层，再换掉那一层。20,000 节点 60 FPS，是量出来的。</p>
+  <div class="k">大规模图形与极端性能攻坚</div>
+  <p>穿透至管线与 GPU 拾取定位瓶颈。20,000 节点 60 FPS，是真实算例量出来的。</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">一个人接到底</div>
-  <p>前端、接口、容器化、上线。交付你一个能打开的网址。</p>
+  <div class="k">复杂业务系统端到端交付（Java 全栈）</div>
+  <p>以 Java（Spring Boot / MyBatis-Plus）为坚实底座，打通至复杂前端与容器化自动部署。独立闭环，对最终可用性负责。</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">AI 做成能用的东西</div>
-  <p>工具调用、流式链路、失败恢复、长任务。不是一个聊天框。</p>
+  <div class="k">生产级 AI 链路与工程化闭环</div>
+  <p>工具调用、流式链路、状态恢复、长任务。跑在真实业务数据上的系统，而非聊天框。</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">团队从零到能自己转</div>
-  <p>组件库、规范、审查、上线流程。带过 12 人的前端团队。</p>
+  <div class="k">研发工程化与团队体系建设</div>
+  <p>跨端组件库、架构分层、规范与发布流水线。带过 12 人前端团队。</p>
 </a>
 
 </div>
 
-<p class="more-link"><a href="services">完整说明：我能为你做什么 →</a></p>
+<p class="more-link"><a href="services">查看完整核心能力与专长 →</a></p>
 
 ## 联系
 

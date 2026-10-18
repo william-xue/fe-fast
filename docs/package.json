@@ -20,5 +20,8 @@
         "@algolia/client-search"
       ]
     }
+  },
+  "dependencies": {
+    "shaders": "^4.0.4"
   }
 }

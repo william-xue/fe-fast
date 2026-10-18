@@ -9,14 +9,14 @@ const GITHUB = 'https://github.com/william-xue'
 const ZH_NAV = [
   { text: '首页', link: '/' },
   { text: '作品', link: '/projects' },
-  { text: '为你做什么', link: '/services' },
+  { text: '核心能力', link: '/services' },
   { text: '关于我', link: '/about' }
 ]
 
 const EN_NAV = [
   { text: 'Home', link: '/en/' },
   { text: 'Work', link: '/en/projects' },
-  { text: 'Services', link: '/en/services' },
+  { text: 'Capabilities', link: '/en/services' },
   { text: 'About', link: '/en/about' }
 ]
 

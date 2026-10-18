@@ -79,33 +79,33 @@ One deterministically generated 20,000-node dataset, rendered with different eng
 
 <a class="more" href="projects#visualisation-demo-series">See all six demos →</a>
 
-## What I can do for you
+## Core capabilities
 
 <div class="value">
 
 <a class="v" href="services">
-  <div class="k">Make the stalled thing move</div>
-  <p>Find which layer is the bottleneck, then replace that layer. 20,000 nodes at 60 FPS, measured.</p>
+  <div class="k">Large-Scale Graphics & Extreme Performance</div>
+  <p>Diagnose deep into pipelines & GPU picking. 20,000 nodes at 60 FPS on real-world datasets.</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">Own the last mile</div>
-  <p>Frontend, API, containers, deploy. You get a URL that opens.</p>
+  <div class="k">End-to-End Delivery (Java Full-Stack)</div>
+  <p>Solid Java backend (Spring Boot / MyBatis-Plus), modern frontends, containers, and automated CI/CD.</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">AI that actually ships</div>
-  <p>Tool calling, streaming, failure recovery, long jobs. Not a chat box.</p>
+  <div class="k">Production-Grade AI & Reliability</div>
+  <p>Tool use, streaming, recovery, and long tasks. Systems on real business data, not chatbots.</p>
 </a>
 
 <a class="v" href="services">
-  <div class="k">A team that runs itself</div>
-  <p>Component library, standards, review, release. 12 frontend engineers, built and led.</p>
+  <div class="k">Engineering Systems & Team Enablement</div>
+  <p>Component libraries, architectural boundaries, and release pipelines. Built and led 12 engineers.</p>
 </a>
 
 </div>
 
-<p class="more-link"><a href="services">Full detail: what I can do for you →</a></p>
+<p class="more-link"><a href="services">Explore core capabilities & engineering focus →</a></p>
 
 ## Get in touch
 

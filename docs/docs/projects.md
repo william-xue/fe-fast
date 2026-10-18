@@ -2,16 +2,13 @@
 layout: doc
 ---
 
-# 作品
+# 作品与工程实践
 
-做过的项目，这页列不下。两个还在线上跑的，点开就看：
+<p class="lead">
+聚焦大规模图形渲染、可视化引擎、图编辑器与全栈工程落地。所有开源代码均公开可查，演示项目均可直接在线运行。
+</p>
 
-<div class="live">
-  <a href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">crazytrailchina.com</a>
-  <a href="https://aichechuhai.com/" target="_blank" rel="noreferrer">aichechuhai.com</a>
-</div>
-
-## 自研开源项目
+## 自研开源与架构工具
 
 <div class="cards">
 
@@ -53,9 +50,9 @@ layout: doc
 
 </div>
 
-## 图形可视化演示系列
+## 大规模图形可视化工程系列
 
-前六个共用同一份**确定性生成**的 20,000 节点数据集，用不同引擎各实现一遍；第 7 个是另一条线 —— 一个完整可编辑的应用。**每一个都可以直接点开在线运行**（不是录像），前六个另配有讲解视频。
+前六个共用同一份**确定性生成**的 20,000 节点真实拓扑数据集，以不同渲染器与管线分别实现；第 7 个为完整可交互的 3D 家居设计应用。**全部支持直接在线运行**（非录像演示），关键项目配有架构讲解视频。
 
 <div class="series">
 
@@ -149,9 +146,7 @@ layout: doc
 </p>
 
 <style>
-.live { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 2rem; }
-.live a { display: inline-flex; align-items: center; padding: .5rem 1.15rem; border: 1px solid var(--vp-c-brand-1); border-radius: 999px; font-size: .9rem; font-weight: 600; text-decoration: none; transition: background-color .2s, color .2s; }
-.live a:hover { background: var(--vp-c-brand-1); color: #fff; text-decoration: none; }
+.lead { font-size: 1.15rem; line-height: 1.8; color: var(--vp-c-text-2); margin-bottom: 2rem; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
 .card { display: block; border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
 .card:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }

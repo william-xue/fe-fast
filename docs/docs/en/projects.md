@@ -2,18 +2,13 @@
 layout: page
 ---
 
-# Work
+# Work & Engineering Projects
 
-Ordered by how easily you can verify it: **live products → own open-source projects → visualization demos → side projects → contributions**.
+<p class="lead">
+Focused on large-scale graphics rendering, visualization engines, graph editors, and end-to-end engineering. All open-source code is public and all demos run live in the browser.
+</p>
 
-I have built more than fits on this page. Two that are still running — take a look:
-
-<div class="live">
-  <a href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">crazytrailchina.com</a>
-  <a href="https://aichechuhai.com/" target="_blank" rel="noreferrer">aichechuhai.com</a>
-</div>
-
-## Own open-source projects
+## Own Open-Source & Core Tools
 
 <div class="cards">
 
@@ -210,9 +205,7 @@ Small things that do not belong on a CV, but say something: **I like building to
 </div>
 
 <style>
-.live { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 2rem; }
-.live a { display: inline-flex; align-items: center; padding: .5rem 1.15rem; border: 1px solid var(--vp-c-brand-1); border-radius: 999px; font-size: .9rem; font-weight: 600; text-decoration: none; transition: background-color .2s, color .2s; }
-.live a:hover { background: var(--vp-c-brand-1); color: #fff; text-decoration: none; }
+.lead { font-size: 1.15rem; line-height: 1.8; color: var(--vp-c-text-2); margin-bottom: 2rem; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
 .card { display: block; border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
 .card:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
