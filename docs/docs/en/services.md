@@ -68,7 +68,7 @@ Every number on this site points at a link that opens, a test that runs, or a pu
 <div class="contact">
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">github.com/william-xue</a>
-  <a href="/en/projects">See the work first</a>
+  <a href="projects">See the work first</a>
 </div>
 
 <style>

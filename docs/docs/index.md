@@ -47,29 +47,29 @@ Varlet（Vue 3 移动端组件库）核心开发者，负责社区 PR 评审与 
 
 <div class="value">
 
-<a class="v" href="/services">
+<a class="v" href="services">
   <div class="k">卡住的东西，让它跑起来</div>
   <p>先找出瓶颈在哪一层，再换掉那一层。20,000 节点 60 FPS，是量出来的。</p>
 </a>
 
-<a class="v" href="/services">
+<a class="v" href="services">
   <div class="k">一个人接到底</div>
   <p>前端、接口、容器化、上线。交付你一个能打开的网址。</p>
 </a>
 
-<a class="v" href="/services">
+<a class="v" href="services">
   <div class="k">AI 做成能用的东西</div>
   <p>工具调用、流式链路、失败恢复、长任务。不是一个聊天框。</p>
 </a>
 
-<a class="v" href="/services">
+<a class="v" href="services">
   <div class="k">团队从零到能自己转</div>
   <p>组件库、规范、审查、上线流程。带过 12 人的前端团队。</p>
 </a>
 
 </div>
 
-<p class="more-link"><a href="/services">完整说明：我能为你做什么 →</a></p>
+<p class="more-link"><a href="services">完整说明：我能为你做什么 →</a></p>
 
 ## 联系
 

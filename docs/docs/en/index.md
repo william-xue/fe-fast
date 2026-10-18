@@ -55,7 +55,7 @@ features:
 
 </div>
 
-<a class="more" href="/en/projects">All work and demos →</a>
+<a class="more" href="projects">All work and demos →</a>
 
 ## Visualization demo series
 
@@ -77,35 +77,35 @@ One deterministically generated 20,000-node dataset, rendered with different eng
 
 </div>
 
-<a class="more" href="/en/projects#visualisation-demo-series">See all six demos →</a>
+<a class="more" href="projects#visualisation-demo-series">See all six demos →</a>
 
 ## What I can do for you
 
 <div class="value">
 
-<a class="v" href="/en/services">
+<a class="v" href="services">
   <div class="k">Make the stalled thing move</div>
   <p>Find which layer is the bottleneck, then replace that layer. 20,000 nodes at 60 FPS, measured.</p>
 </a>
 
-<a class="v" href="/en/services">
+<a class="v" href="services">
   <div class="k">Own the last mile</div>
   <p>Frontend, API, containers, deploy. You get a URL that opens.</p>
 </a>
 
-<a class="v" href="/en/services">
+<a class="v" href="services">
   <div class="k">AI that actually ships</div>
   <p>Tool calling, streaming, failure recovery, long jobs. Not a chat box.</p>
 </a>
 
-<a class="v" href="/en/services">
+<a class="v" href="services">
   <div class="k">A team that runs itself</div>
   <p>Component library, standards, review, release. 12 frontend engineers, built and led.</p>
 </a>
 
 </div>
 
-<p class="more-link"><a href="/en/services">Full detail: what I can do for you →</a></p>
+<p class="more-link"><a href="services">Full detail: what I can do for you →</a></p>
 
 ## Get in touch
 

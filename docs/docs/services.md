@@ -68,7 +68,7 @@ AI 也一样。一个能回答问题的模型不值钱，值钱的是它出错�
 <div class="contact">
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">github.com/william-xue</a>
-  <a href="/projects">先看作品</a>
+  <a href="projects">先看作品</a>
 </div>
 
 <style>
