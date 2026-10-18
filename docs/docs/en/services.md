@@ -38,19 +38,6 @@ A decade of engineering, focused on <b>complex system architecture</b>, <b>large
 
 </div>
 
-## Key Engineering Metrics
-
-<div class="stats">
-
-<div><b>10 yrs</b><span>Hands-on architecture — Energy / Logistics / Fintech</span></div>
-<div><b>20,000+</b><span>Topology nodes & 36,610 links holding 60 FPS</span></div>
-<div><b>12</b><span>Frontend engineers — built and led from scratch</span></div>
-<div><b>101 ★</b><span>Proprietary engine originated from upstream issue</span></div>
-<div><b>48</b><span>Merged open-source PRs across 39 repos</span></div>
-<div><b>7</b><span>Live interactive demos — not screen recordings</span></div>
-
-</div>
-
 <div class="contact">
   <a href="/en/projects">Explore Projects →</a>
   <a href="/en/about">About William →</a>
@@ -61,16 +48,12 @@ A decade of engineering, focused on <b>complex system architecture</b>, <b>large
 <style>
 .lead { font-size: 1.15rem; line-height: 1.8; color: var(--vp-c-text-2); margin-bottom: 2rem; }
 .lead b { color: var(--vp-c-text-1); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin: 1.5rem 0 2.5rem; }
 .grid .item { position: relative; border: 1px solid var(--vp-c-divider); border-radius: 12px; padding: 1.35rem 1.4rem; transition: border-color .25s, transform .25s; }
 .grid .item:hover { border-color: var(--vp-c-brand-1); transform: translateY(-3px); }
 .grid .no { font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--vp-c-brand-1); margin-bottom: .5rem; }
 .grid h3 { margin: 0 0 .6rem; font-size: 1.05rem; padding: 0; line-height: 1.5; }
 .grid p { margin: 0; font-size: .9rem; line-height: 1.8; color: var(--vp-c-text-2); }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
-.stats > div { border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 1.1rem 1.2rem; background: var(--vp-c-bg-soft); }
-.stats b { display: block; font-size: 1.5rem; font-weight: 700; color: var(--vp-c-brand-1); font-variant-numeric: tabular-nums; line-height: 1.2; }
-.stats span { display: block; margin-top: .4rem; font-size: .82rem; line-height: 1.6; color: var(--vp-c-text-2); }
 .contact { display: flex; flex-wrap: wrap; gap: .75rem; margin: 2rem 0; }
 .contact a { display: inline-flex; align-items: center; gap: .4rem; padding: .6rem 1.1rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; text-decoration: none; font-size: .9rem; color: var(--vp-c-text-1); }
 .contact a:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
