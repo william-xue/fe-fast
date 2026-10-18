@@ -79,6 +79,34 @@ One deterministically generated 20,000-node dataset, rendered with different eng
 
 <a class="more" href="/en/projects#visualisation-demo-series">See all six demos →</a>
 
+## What I can do for you
+
+<div class="value">
+
+<a class="v" href="/en/services">
+  <div class="k">Make the stalled thing move</div>
+  <p>Find which layer is the bottleneck, then replace that layer. 20,000 nodes at 60 FPS, measured.</p>
+</a>
+
+<a class="v" href="/en/services">
+  <div class="k">Own the last mile</div>
+  <p>Frontend, API, containers, deploy. You get a URL that opens.</p>
+</a>
+
+<a class="v" href="/en/services">
+  <div class="k">AI that actually ships</div>
+  <p>Tool calling, streaming, failure recovery, long jobs. Not a chat box.</p>
+</a>
+
+<a class="v" href="/en/services">
+  <div class="k">A team that runs itself</div>
+  <p>Component library, standards, review, release. 12 frontend engineers, built and led.</p>
+</a>
+
+</div>
+
+<p class="more-link"><a href="/en/services">Full detail: what I can do for you →</a></p>
+
 ## Get in touch
 
 <div class="contact">
@@ -151,4 +179,10 @@ Available for remote and contract work — especially large-scale rendering and 
   color: var(--vp-c-text-2);
 }
 .visitors b { color: var(--vp-c-text-1); }
+.value { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.value .v { display: block; border: 1px solid var(--vp-c-divider); border-left: 3px solid var(--vp-c-brand-1); border-radius: 0 10px 10px 0; padding: 1rem 1.1rem; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+.value .v:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
+.value .k { font-size: .95rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: .4rem; }
+.value p { margin: 0; font-size: .88rem; line-height: 1.7; color: var(--vp-c-text-2); }
+.more-link { margin: .5rem 0 1.5rem; font-size: .9rem; }
 </style>

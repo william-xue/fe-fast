@@ -74,7 +74,7 @@ I do not sell "familiar with ten languages". Of the three blocks above, <b>visua
   <div class="when">2020.05 – 2025.04</div>
   <div class="what">
     <h3>Frontend Engineer / Frontend Lead · national logistics</h3>
-    <p>Core business systems serving <b>30,000+ outlets</b> nationwide. As frontend lead, built and ran a <b>5-person team</b> delivering five internal systems (recruiting, training, performance, attendance, payroll). Established the component library, coding standards and release process; authored a configurable formula-calculation component that earned a <b>utility-model patent</b>.</p>
+    <p>Core business systems serving <b>30,000+ outlets</b> nationwide. As frontend lead, built and ran a <b>12-person team</b> delivering five internal systems (recruiting, training, performance, attendance, payroll). Established the component library, coding standards and release process; authored a configurable formula-calculation component that earned a <b>utility-model patent</b>.</p>
   </div>
 </div>
 
@@ -119,11 +119,7 @@ Projects I have contributed to: Varlet, AntV X6, Element Plus, antdv-next, verce
 
 ## Working together
 
-I take **remote** and **contract** work. Three kinds fit best:
-
-1. **Large-scale rendering / performance rescue** — your visualization stalls and you need the root cause found and the approach replaced
-2. **GIS and digital twin** — 2D tiled maps, 3D globes, topology editors
-3. **Small-to-mid projects that need one person across the stack** — frontend, backend and deployment
+I take **remote** and **contract** work. [What I can do for you →](/en/services)
 
 <div class="contact">
   <a href="mailto:xueyuan99999@gmail.com">📧 xueyuan99999@gmail.com</a>
