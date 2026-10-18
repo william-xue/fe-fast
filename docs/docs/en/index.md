@@ -59,7 +59,7 @@ features:
 
 ## Visualization demo series
 
-One deterministically generated 20,000-node dataset, rendered with different engines across six interactive demos — each with a walkthrough video.
+One deterministically generated 20,000-node dataset, rendered with different engines across six interactive demos — **all of them run live in the browser**, each with a walkthrough video.
 
 <div class="cards">
 

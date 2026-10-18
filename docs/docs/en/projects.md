@@ -54,7 +54,7 @@ Ordered by how easily you can verify it: **live products → own open-source pro
 
 ## Visualisation demo series
 
-One **deterministically generated** 20,000-node dataset, rendered with different engines across six interactive demos — one for each capability a client tends to ask about. Each has a walkthrough video.
+One **deterministically generated** 20,000-node dataset, rendered with different engines across six interactive demos — one for each capability a client tends to ask about. **Every one of them opens and runs live in the browser** — these are not recordings. Each also has a walkthrough video.
 
 <div class="series">
 
@@ -64,7 +64,10 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>Tiled network map <span class="k">MapLibre + deck.gl</span></h3>
     <p>20,000 nodes / 36,610 links. Tiled mode delivers the first screen in <b>1.62 MB across 16 tiles</b>; full-dataset mode pulls <b>8.86 MB in 53 ms</b>. Both hold <b>60 FPS</b>. A live inspector shows visible tiles, transferred bytes and per-request timing.</p>
   </div>
-  <div class="link"><a href="https://www.bilibili.com/video/BV1tPpq6yEdu/" target="_blank" rel="noreferrer">▶ Video</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-01-network-topo.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://www.bilibili.com/video/BV1tPpq6yEdu/" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 <div class="row">
@@ -73,7 +76,10 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>Interactive 3D scene <span class="k">Three.js</span></h3>
     <p>42 linked sites: instanced rendering via <code>InstancedMesh</code>, glow with no post-processing pass, bezier link arcs with animated particles, and raycast picking that returns an <code>instanceId</code> straight into the data model. <b>60 FPS / 83 draw calls</b>.</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ Series</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-02-3d-viewer.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 <div class="row">
@@ -82,7 +88,10 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>Real-time fleet tracking <span class="k">MapLibre + deck.gl</span></h3>
     <p>500 vehicles moving live, with trail history, geofenced zones and live occupancy counts, and click-to-inspect. Positions update every frame; trails are sampled at 400 ms — <b>60 FPS</b>.</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ Series</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-03-fleet-tracking.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 <div class="row">
@@ -91,7 +100,10 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>Graph editor engine <span class="k">Zero-dependency SVG + TypeScript</span></h3>
     <p>Component designer and assembly canvas: semantic pins, connection-policy validation, orthogonal obstacle-avoiding routing, command-based undo/redo. A stress-test button generates <b>2,000 nodes and holds 60 FPS</b>; <b>211 unit tests pass</b>; the bundle is 130 KB (36 KB gzipped).</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ Series</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-04-x6-editor.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 <div class="row">
@@ -100,7 +112,10 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>3D product configurator <span class="k">Three.js</span></h3>
     <p>Upload a GLB and artwork, click the model surface to place a decal that conforms to the geometry via <code>DecalGeometry</code> rather than floating in front of it, then drag, resize, rotate, manage layers, undo and export an image.</p>
   </div>
-  <div class="link"><a href="https://www.bilibili.com/video/BV1UPpq6yEpL/" target="_blank" rel="noreferrer">▶ Video</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-05-configurator.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://www.bilibili.com/video/BV1UPpq6yEpL/" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 <div class="row">
@@ -109,13 +124,16 @@ One **deterministically generated** 20,000-node dataset, rendered with different
     <h3>3D globe view <span class="k">CesiumJS</span></h3>
     <p>The <b>same dataset</b> as demo 01 rendered on a Cesium globe — one dataset, two engines. All detail levels (Backbone / Regional / all 20,000 nodes) hold <b>60 FPS</b>, with no ion token and no imagery-provider dependency, and click-to-locate on any node.</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ Series</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-06-cesium-globe.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">Video</a>
+  </div>
 </div>
 
 </div>
 
 <p class="aside">
-What the six have in common: the data is always deterministically generated synthetic data (no client data, no real topology), so every reload reproduces the same scene; and every demo carries a live frame-rate counter, so performance can be verified on the spot instead of taken on trust.
+What the six have in common: the data is always deterministically generated synthetic data (no client data, no real topology), so every reload reproduces the same scene; and every demo carries a live frame-rate counter, so performance can be verified on the spot instead of taken on trust. <b>The links open straight away — no login, no install.</b>
 </p>
 
 ## Side projects &amp; experiments
@@ -196,8 +214,10 @@ Small things that do not belong on a CV, but say something: **I like building to
 .series .info h3 { margin: 0 0 .4rem; font-size: .98rem; }
 .series .info h3 .k { font-size: .75rem; font-weight: 500; color: var(--vp-c-text-2); border: 1px solid var(--vp-c-divider); border-radius: 4px; padding: .1rem .4rem; margin-left: .4rem; vertical-align: middle; }
 .series .info p { margin: 0; font-size: .88rem; line-height: 1.75; color: var(--vp-c-text-2); }
-.series .link { flex: 0 0 auto; padding-top: .15rem; }
+.series .link { flex: 0 0 auto; padding-top: .15rem; display: flex; flex-direction: column; gap: .3rem; align-items: flex-end; }
 .series .link a { font-size: .85rem; white-space: nowrap; }
+.series .link a.demo { font-weight: 600; }
+.series .link a.vid { font-size: .8rem; color: var(--vp-c-text-2); }
 .aside { font-size: .85rem; color: var(--vp-c-text-2); line-height: 1.7; padding-left: .75rem; border-left: 3px solid var(--vp-c-divider); }
 .oss table { display: table; width: 100%; }
 @media (max-width: 640px) {

@@ -48,7 +48,7 @@ layout: doc
 
 ## 图形可视化演示系列
 
-同一份**确定性生成**的 20,000 节点数据集，用不同引擎做成 6 个可交互演示。每个都有讲解视频。
+同一份**确定性生成**的 20,000 节点数据集，用不同引擎做成 6 个可交互演示。**每一个都可以直接点开在线运行**（不是录像），也都配有讲解视频。
 
 <div class="series">
 
@@ -58,7 +58,10 @@ layout: doc
     <h3>瓦片化网络地图 <span class="k">MapLibre + deck.gl</span></h3>
     <p>20,000 节点 / 36,610 连线。瓦片模式首屏 <b>1.62 MB / 16 块瓦片</b>，完整模式单次 <b>8.86 MB / 53 ms</b>，两种模式都保持 <b>60 FPS</b>。左侧实时显示可见瓦片数、传输字节、每次请求耗时。</p>
   </div>
-  <div class="link"><a href="https://www.bilibili.com/video/BV1tPpq6yEdu/" target="_blank" rel="noreferrer">▶ 看视频</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-01-network-topo.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://www.bilibili.com/video/BV1tPpq6yEdu/" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 <div class="row">
@@ -67,7 +70,10 @@ layout: doc
     <h3>交互式 3D 场景 <span class="k">Three.js</span></h3>
     <p>42 个互联站点的可交互 3D 场景：InstancedMesh 实例化渲染、无后处理的辉光、曲线连线与流动粒子、射线拾取 → instanceId 直接索引数据模型。<b>60 FPS / 83 draw calls</b>。</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ 合集</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-02-3d-viewer.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 <div class="row">
@@ -76,7 +82,10 @@ layout: doc
     <h3>车队实时监控 <span class="k">MapLibre + deck.gl</span></h3>
     <p>500 台车实时跑动、拖尾历史、电子围栏（实时在场计数）、点击查看详情。位置逐帧更新，拖尾按 400ms 采样 —— <b>60 FPS</b>。</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ 合集</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-03-fleet-tracking.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 <div class="row">
@@ -85,7 +94,10 @@ layout: doc
     <h3>图编辑器引擎 <span class="k">零依赖 SVG + TypeScript</span></h3>
     <p>元件设计器 + 装配画布：语义引脚、连接策略校验、正交避障路由、命令式撤销重做。压测按钮可生成 <b>2,000 个节点并保持 60 FPS</b>；配套单元测试覆盖核心路径。</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ 合集</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-04-x6-editor.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 <div class="row">
@@ -94,7 +106,10 @@ layout: doc
     <h3>3D 产品配置器 <span class="k">Three.js</span></h3>
     <p>上传 GLB 模型与素材，点击模型表面贴花（DecalGeometry 贴合曲面而非浮在表面），支持拖动 / 缩放 / 旋转、分层管理、撤销与导出图片。</p>
   </div>
-  <div class="link"><a href="https://www.bilibili.com/video/BV1UPpq6yEpL/" target="_blank" rel="noreferrer">▶ 看视频</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-05-configurator.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://www.bilibili.com/video/BV1UPpq6yEpL/" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 <div class="row">
@@ -103,13 +118,16 @@ layout: doc
     <h3>3D 地球视图 <span class="k">CesiumJS</span></h3>
     <p>与 01 <b>共用同一份数据集</b>的 Cesium 地球视图 —— 一份数据、两套引擎。分级细节（Backbone / Regional / 全部 20,000 节点）均 <b>60 FPS</b>，无 ion token、无影像服务依赖，点击节点可定位。</p>
   </div>
-  <div class="link"><a href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">▶ 合集</a></div>
+  <div class="link">
+    <a class="demo" href="https://showcase-06-cesium-globe.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="https://space.bilibili.com/169548308" target="_blank" rel="noreferrer">看视频</a>
+  </div>
 </div>
 
 </div>
 
 <p class="aside">
-合成数据，刷新即复现；每个演示都挂了实时帧率计数器。
+合成数据，刷新即复现；每个演示都挂了实时帧率计数器。<b>链接直接可开，不需要登录或安装</b> —— 帧率数字请以你打开时左下角/右上角的实时读数为准。
 </p>
 
 <style>
@@ -134,8 +152,10 @@ layout: doc
 .series .info h3 { margin: 0 0 .4rem; font-size: .98rem; }
 .series .info h3 .k { font-size: .75rem; font-weight: 500; color: var(--vp-c-text-2); border: 1px solid var(--vp-c-divider); border-radius: 4px; padding: .1rem .4rem; margin-left: .4rem; vertical-align: middle; }
 .series .info p { margin: 0; font-size: .88rem; line-height: 1.75; color: var(--vp-c-text-2); }
-.series .link { flex: 0 0 auto; padding-top: .15rem; }
+.series .link { flex: 0 0 auto; padding-top: .15rem; display: flex; flex-direction: column; gap: .3rem; align-items: flex-end; }
 .series .link a { font-size: .85rem; white-space: nowrap; }
+.series .link a.demo { font-weight: 600; }
+.series .link a.vid { font-size: .8rem; color: var(--vp-c-text-2); }
 .aside { font-size: .85rem; color: var(--vp-c-text-2); line-height: 1.7; padding-left: .75rem; border-left: 3px solid var(--vp-c-divider); }
 @media (max-width: 640px) {
   .series .row { flex-wrap: wrap; }
