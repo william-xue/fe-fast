@@ -119,9 +119,10 @@ Projects I have contributed to: Varlet, AntV X6, Element Plus, antdv-next, verce
 
 ## Working together
 
-I take **remote** and **contract** work. [What I can do for you →](/en/services)
+I take **remote** and **contract** work. [Core capabilities →](/en/services)
 
 <div class="contact">
+  <a href="tel:+8615895929981">📞 +86 158 9592 9981</a>
   <a href="mailto:xueyuan99999@gmail.com">📧 xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">🐙 github.com/william-xue</a>
 </div>

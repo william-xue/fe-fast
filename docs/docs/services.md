@@ -41,6 +41,7 @@ layout: doc
 <div class="contact">
   <a href="projects">查看代表作品 →</a>
   <a href="about">关于技术经历 →</a>
+  <a href="tel:15895929981">158 9592 9981</a>
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">GitHub</a>
 </div>

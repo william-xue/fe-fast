@@ -45,6 +45,7 @@ Varlet（Vue 3 移动端组件库，5.3k 星）核心开发者，日常做社区
 ## 联系
 
 <div class="contact">
+  <a href="tel:15895929981">158 9592 9981</a>
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue">github.com/william-xue</a>
 </div>

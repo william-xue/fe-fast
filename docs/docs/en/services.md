@@ -41,6 +41,7 @@ A decade of engineering, focused on <b>complex system architecture</b>, <b>large
 <div class="contact">
   <a href="/en/projects">Explore Projects →</a>
   <a href="/en/about">About William →</a>
+  <a href="tel:+8615895929981">+86 158 9592 9981</a>
   <a href="mailto:xueyuan99999@gmail.com">xueyuan99999@gmail.com</a>
   <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">GitHub</a>
 </div>

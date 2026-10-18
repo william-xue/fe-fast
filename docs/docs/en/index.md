@@ -111,6 +111,7 @@ One deterministically generated 20,000-node dataset, rendered with different eng
 
 <div class="contact">
 
+<a href="tel:+8615895929981">📞 +86 158 9592 9981</a>
 <a href="mailto:xueyuan99999@gmail.com">📧 xueyuan99999@gmail.com</a>
 <a href="https://github.com/william-xue" target="_blank" rel="noreferrer">🐙 github.com/william-xue</a>
 
