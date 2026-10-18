@@ -4,6 +4,13 @@ layout: doc
 
 # 作品
 
+做过的项目，这页列不下。两个还在线上跑的，点开就看：
+
+<div class="live">
+  <a href="https://crazytrailchina.com/" target="_blank" rel="noreferrer">crazytrailchina.com</a>
+  <a href="https://aichechuhai.com/" target="_blank" rel="noreferrer">aichechuhai.com</a>
+</div>
+
 ## 自研开源项目
 
 <div class="cards">
@@ -142,6 +149,9 @@ layout: doc
 </p>
 
 <style>
+.live { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 2rem; }
+.live a { display: inline-flex; align-items: center; padding: .5rem 1.15rem; border: 1px solid var(--vp-c-brand-1); border-radius: 999px; font-size: .9rem; font-weight: 600; text-decoration: none; transition: background-color .2s, color .2s; }
+.live a:hover { background: var(--vp-c-brand-1); color: #fff; text-decoration: none; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
 .card { display: block; border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
 .card:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
