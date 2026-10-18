@@ -54,7 +54,7 @@ Ordered by how easily you can verify it: **live products → own open-source pro
 
 ## Visualisation demo series
 
-One **deterministically generated** 20,000-node dataset, rendered with different engines across six interactive demos — one for each capability a client tends to ask about. **Every one of them opens and runs live in the browser** — these are not recordings. Each also has a walkthrough video.
+The first six share one **deterministically generated** 20,000-node dataset, each rendered with a different engine; the seventh is a different kind of build — a complete editing application. **Every one of them opens and runs live in the browser** — these are not recordings. The first six also have walkthrough videos.
 
 <div class="series">
 
@@ -130,10 +130,21 @@ One **deterministically generated** 20,000-node dataset, rendered with different
   </div>
 </div>
 
+<div class="row">
+  <div class="no">07</div>
+  <div class="info">
+    <h3>Home 3D configurator <span class="k">React Three Fiber + Zustand</span></h3>
+    <p>The floorplan <b>is data</b> — change <code>floorplan.json</code> and the house changes, with no code edit. 24 furniture SKUs over 28 real CC0 models. Dragging snaps to a grid and to walls, furniture can stack, and an illegal drop is pulled to the nearest legal spot with a footprint marker. Variants, colour and material swaps, a bill of materials with a running total, saved scenes with version-conflict handling, first-person walkthrough and HDRI lighting — <b>all of it on one undo history</b>.</p>
+  </div>
+  <div class="link">
+    <a class="demo" href="https://showcase-07-home3d-editor.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+  </div>
+</div>
+
 </div>
 
 <p class="aside">
-What the six have in common: the data is always deterministically generated synthetic data (no client data, no real topology), so every reload reproduces the same scene; and every demo carries a live frame-rate counter, so performance can be verified on the spot instead of taken on trust. <b>The links open straight away — no login, no install.</b>
+All data is synthetic or CC0; every reload reproduces the same scene, and the network demos carry live frame-rate counters. <b>The links open straight away — no login, no install.</b>
 </p>
 
 ## Side projects &amp; experiments

@@ -48,7 +48,7 @@ layout: doc
 
 ## 图形可视化演示系列
 
-同一份**确定性生成**的 20,000 节点数据集，用不同引擎做成 6 个可交互演示。**每一个都可以直接点开在线运行**（不是录像），也都配有讲解视频。
+前六个共用同一份**确定性生成**的 20,000 节点数据集，用不同引擎各实现一遍；第 7 个是另一条线 —— 一个完整可编辑的应用。**每一个都可以直接点开在线运行**（不是录像），前六个另配有讲解视频。
 
 <div class="series">
 
@@ -124,10 +124,21 @@ layout: doc
   </div>
 </div>
 
+<div class="row">
+  <div class="no">07</div>
+  <div class="info">
+    <h3>家居 3D 配置器 <span class="k">React Three Fiber + Zustand</span></h3>
+    <p>户型<b>本身是一份数据</b>（改 <code>floorplan.json</code> 就改房型，不用动代码），24 个 SKU 商品库 + 28 个真实 CC0 模型。拖动摆放支持网格吸附、贴墙、叠放；非法落点会就近顺到合法位置并留下脚印。换款 / 换色 / 换材质、商品清单与合计、本地存档与版本冲突、第一人称漫游、HDRI 光照 —— <b>所有操作共用同一条撤销历史</b>。</p>
+  </div>
+  <div class="link">
+    <a class="demo" href="https://showcase-07-home3d-editor.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+  </div>
+</div>
+
 </div>
 
 <p class="aside">
-合成数据，刷新即复现；每个演示都挂了实时帧率计数器。<b>链接直接可开，不需要登录或安装</b> —— 帧率数字请以你打开时左下角/右上角的实时读数为准。
+数据全部是合成或 CC0 素材，刷新即复现；网络类演示都挂了实时帧率计数器。<b>链接直接可开，不需要登录或安装</b>。
 </p>
 
 <style>
