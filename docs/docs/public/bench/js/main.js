@@ -1,6 +1,6 @@
 import { seriesDefs, generateBackfill, LiveProducer } from './producer.js';
 import { FrameMeter, LatencyMeter, heapMB, envInfo } from './metrics.js';
-import { CanvasEngine, WebGLEngine } from 'ts-columns';   // 自研渲染层，已抽成包
+import { CanvasEngine, WebGLEngine } from 'timeseries-renderer';   // 自研渲染层，已抽成包
 import { EChartsEngine } from './engines/engine-echarts.js';
 
 const HIST_SPAN_MS = 3 * 3600 * 1000; // 历史回填跨度：3 小时
