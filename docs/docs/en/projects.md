@@ -56,7 +56,7 @@ Focused on large-scale graphics rendering, visualization engines, graph editors,
 
 ## Visualisation demo series
 
-The first six share one **deterministically generated** 20,000-node dataset, each rendered with a different engine; the seventh is a different kind of build — a complete editing application. **Every one of them opens and runs live in the browser** — these are not recordings. The first six also have walkthrough videos.
+The first six share one **deterministically generated** 20,000-node dataset, each rendered with a different engine; the seventh is a different kind of build — a complete editing application; the eighth inverts the format into a **render benchmark**, putting three backends on the same data so the numbers can be re-run. **Every one of them opens and runs live in the browser** — these are not recordings. The first six also have walkthrough videos.
 
 <div class="series">
 
@@ -140,6 +140,17 @@ The first six share one **deterministically generated** 20,000-node dataset, eac
   </div>
   <div class="link">
     <a class="demo" href="https://showcase-07-home3d-editor.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="no">08</div>
+  <div class="info">
+    <h3>Industrial timeseries render benchmark <span class="k">Layered Canvas 2D + TypedArray</span></h3>
+    <p>Same data, same machine, same viewport — three backends head to head on a million-point live stream: <b>layered Canvas (mine) / tuned ECharts / naive ECharts</b>. The page reports first-frame, per-update p50/p95, load factor, end-to-end latency and heap. Naive ECharts at 100k points costs <b>104 ms per update</b> (load factor 2.2 — latency must grow without bound); the layered renderer holds <b>1.2 ms at 1M points</b>; reviewing the full 3-hour history at 1M takes <b>22.6 ms / 27 MB</b> versus <b>930 ms / 316 MB</b> for ECharts. <b>Re-run it yourself and export the JSON.</b></p>
+  </div>
+  <div class="link">
+    <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ Live demo</a>
   </div>
 </div>
 

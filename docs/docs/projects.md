@@ -52,7 +52,7 @@ layout: doc
 
 ## 大规模图形可视化工程系列
 
-前六个共用同一份**确定性生成**的 20,000 节点真实拓扑数据集，以不同渲染器与管线分别实现；第 7 个为完整可交互的 3D 家居设计应用。**全部支持直接在线运行**（非录像演示），关键项目配有架构讲解视频。
+前六个共用同一份**确定性生成**的 20,000 节点真实拓扑数据集，以不同渲染器与管线分别实现；第 7 个为完整可交互的 3D 家居设计应用；第 8 个反过来做 —— 一个**渲染性能基准**，把三种后端放在同一份数据上硬碰，数字可复跑。**全部支持直接在线运行**（非录像演示），关键项目配有架构讲解视频。
 
 <div class="series">
 
@@ -136,6 +136,17 @@ layout: doc
   </div>
   <div class="link">
     <a class="demo" href="https://showcase-07-home3d-editor.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="no">08</div>
+  <div class="info">
+    <h3>工业时序渲染基准 <span class="k">Canvas 2D 分层 + TypedArray</span></h3>
+    <p>同一份数据、同一台机器、同一个窗口，三种后端同场对比百万点实时流：<b>分层 Canvas（自研）/ ECharts 调优 / ECharts 朴素</b>。页面直接给出首帧、单次更新 p50/p95、负载率、端到端延迟与堆内存 —— 朴素写法 10 万点每次更新 <b>104 ms</b>（负载率 2.2，延迟必然持续增长）；自研分层 100 万点仅 <b>1.2 ms</b>；回看全历史 100 万点 <b>22.6 ms / 27 MB</b>，同条件下 ECharts 为 <b>930 ms / 316 MB</b>。<b>可在页面上自己跑一遍并导出 JSON</b>。</p>
+  </div>
+  <div class="link">
+    <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ 在线演示</a>
   </div>
 </div>
 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>工业时序渲染基准 · Industrial Timeseries Render Benchmark</title>
+<link rel="stylesheet" href="./css/app.css" />
+</head>
+<body>
+<header class="hdr">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>工业时序渲染基准</h1>
+    <span class="sub">百万点 · 实时流 · 三种渲染后端</span>
+  </div>
+  <nav class="hdr-right">
+    <span id="env-chip" class="chip">检测中…</span>
+  </nav>
+</header>
+
+<section class="bar">
+  <label class="field">
+    <span>渲染后端</span>
+    <select id="sel-engine">
+      <option value="canvas">分层 Canvas（自研）</option>
+      <option value="tuned">ECharts（调优：lttb + rAF）</option>
+      <option value="naive">ECharts（朴素：全量 setOption）</option>
+    </select>
+  </label>
+
+  <label class="field">
+    <span>历史点数</span>
+    <select id="sel-points">
+      <option value="100000">10 万</option>
+      <option value="300000">30 万</option>
+      <option value="1000000" selected>100 万</option>
+    </select>
+  </label>
+
+  <label class="field">
+    <span>实时速率</span>
+    <select id="sel-rate">
+      <option value="100">100 点/秒</option>
+      <option value="400" selected>400 点/秒</option>
+      <option value="2000">2000 点/秒</option>
+    </select>
+  </label>
+
+  <label class="field">
+    <span>可视窗口</span>
+    <select id="sel-window">
+      <option value="10000">10 秒</option>
+      <option value="60000" selected>60 秒</option>
+      <option value="600000">10 分钟</option>
+    </select>
+  </label>
+
+  <div class="actions">
+    <button id="btn-run" class="btn primary">启动</button>
+    <button id="btn-stop" class="btn" disabled>停止</button>
+    <button id="btn-sweep" class="btn ghost">一键全基准</button>
+    <button id="btn-review" class="btn ghost">回看全历史</button>
+  </div>
+</section>
+
+<section class="stats" id="stats">
+  <div class="stat"><b id="s-fps">–</b><span>渲染 FPS</span></div>
+  <div class="stat"><b id="s-frame">–</b><span>帧时 p95</span></div>
+  <div class="stat"><b id="s-lag50">–</b><span>端到端延迟 p50</span></div>
+  <div class="stat"><b id="s-lag95">–</b><span>端到端延迟 p95</span></div>
+  <div class="stat"><b id="s-drop">–</b><span>合并/丢弃批次</span></div>
+  <div class="stat"><b id="s-heap">–</b><span>JS 堆</span></div>
+  <div class="stat"><b id="s-points">–</b><span>窗口内点数</span></div>
+  <div class="stat"><b id="s-first">–</b><span>首帧耗时</span></div>
+</section>
+
+<main class="stage">
+  <div id="chart-host" class="chart-host"></div>
+  <canvas id="overlay" class="overlay"></canvas>
+  <div id="banner" class="banner" hidden></div>
+</main>
+
+<section class="results">
+  <div class="results-head">
+    <h2>基准结果</h2>
+    <span class="hint">同一份数据、同一台机器、同一窗口；端到端延迟 = 采样产生时刻 → 上屏时刻</span>
+    <button id="btn-export" class="btn ghost sm" disabled>导出 JSON</button>
+  </div>
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>后端</th><th>点数</th><th>首帧</th><th>FPS</th>
+          <th>帧时 p95</th><th>延迟 p50</th><th>延迟 p95</th><th>丢批</th><th>堆</th><th>结论</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p class="note" id="note"></p>
+</section>
+
+<section class="results">
+  <div class="results-head">
+    <h2>回看全历史</h2>
+    <span class="hint">整段 3 小时历史一次性成图（对应现场“查故障瞬间”）；这一组才是手里有全量历史时的真实代价</span>
+  </div>
+  <div class="table-wrap">
+    <table id="tbl-review">
+      <thead>
+        <tr>
+          <th>后端</th><th>点数</th><th>首帧</th><th>全览成图</th>
+          <th>列数</th><th>全览重绘</th><th>堆</th><th>结论</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p class="note" id="note2"></p>
+</section>
+
+<footer class="ftr">
+  <span>零构建 · 纯静态 · 可离线运行</span>
+  <span id="ver"></span>
+</footer>
+
+<script src="./vendor/echarts.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
