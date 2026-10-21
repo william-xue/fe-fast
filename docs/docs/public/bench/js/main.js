@@ -1,6 +1,7 @@
 import { seriesDefs, generateBackfill, LiveProducer } from './producer.js';
 import { FrameMeter, LatencyMeter, heapMB, envInfo } from './metrics.js';
 import { CanvasEngine } from './engines/engine-canvas.js';
+import { WebGLEngine } from './engines/engine-webgl.js';
 import { EChartsEngine } from './engines/engine-echarts.js';
 
 const HIST_SPAN_MS = 3 * 3600 * 1000; // 历史回填跨度：3 小时
@@ -25,6 +26,7 @@ function defs() { return seriesDefs(); }
 
 function makeEngine(kind, host, opts) {
   if (kind === 'canvas') return new CanvasEngine(host, opts);
+  if (kind === 'webgl') return new WebGLEngine(host, opts);
   return new EChartsEngine(host, { ...opts, mode: kind });
 }
 
@@ -118,7 +120,7 @@ async function runOnce({ kind, points, rate = 400, spanMs = 60000, streamMs = 12
 }
 
 function labelOf(kind) {
-  return { canvas: 'WebGL 曲线（试用）', tuned: 'ECharts 调优（lttb+rAF）', naive: 'ECharts 朴素（全量）' }[kind] || kind;
+  return { canvas: '分层 Canvas 2D', tuned: 'ECharts 调优（lttb+rAF）', naive: 'ECharts 朴素（全量）', webgl: 'WebGL 曲线（试用）' }[kind] || kind;
 }
 
 /**
@@ -142,7 +144,7 @@ async function runReview({ kind, points = 1000000 }) {
   let cols = null;
   let redrawP50 = null;
 
-  if (kind === 'canvas') {
+  if (kind === 'canvas' || kind === 'webgl') {
     const r = S.engine.reviewFull();
     reviewMs = r.ms;
     cols = r.cols;
@@ -175,6 +177,7 @@ async function reviewSweep() {
   const plan = [];
   for (const p of [100000, 300000, 1000000]) plan.push({ kind: 'canvas', points: p });
   for (const p of [100000, 300000]) plan.push({ kind: 'tuned', points: p });
+  for (const p of [100000, 300000, 1000000]) plan.push({ kind: 'webgl', points: p });
 
   S.review = [];
   renderReview();
@@ -282,6 +285,7 @@ async function sweep() {
   for (const p of pointsList) plan.push({ kind: 'canvas', points: p });
   for (const p of pointsList) plan.push({ kind: 'tuned', points: p });
   plan.push({ kind: 'naive', points: 100000 });
+  for (const p of pointsList) plan.push({ kind: 'webgl', points: p });
 
   S.results = [];
   renderTable();
@@ -406,9 +410,23 @@ window.__bench = {
     await Promise.resolve(S.engine.load(backfill));
     window.__engine = S.engine;
 
+    // load() 建好栅格但不会清 invalidateView；不清掉的话 push 会跳过列聚合，
+    // 测出来的就是"新点根本没参与绘制"的空转耗时。这里先让视图落定。
+    if (S.engine._layoutScale) {
+      S.engine._layoutScale(S.engine._latestT());
+      S.engine.invalidateView = false;
+      S.engine.dirty = false;
+    }
+
     const queue = [];
     const prod = new LiveProducer(ds, rate, (b) => queue.push(b), 50);
     for (let i = 0; i < batches; i++) prod.tick();
+
+    // 批量生产时时间戳几乎相同，需按 50ms 间距重排，才有真实的窗口推进与列位移
+    queue.forEach((b, k) => {
+      const shift = k * 50;
+      for (const s of b.series) for (let i = 0; i < s.t.length; i++) s.t[i] += shift;
+    });
 
     const costs = [];
     for (const b of queue) {

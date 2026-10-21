@@ -1,12 +1,11 @@
 /**
- * 曲线层使用 WebGL2；背景和光标保留 Canvas 2D。
- * 原始点 → ColumnGrid 像素列 → 线段端点缓冲 → GPU 三角形。
- * 保留 CanvasEngine 名称和原入口，供当前页面直接替换试用。
+ * 分层Canvas 2D：背景、曲线、光标各自刷新。
+ * WebGLEngine复用此处的数据聚合和交互，独立管理曲线层的GPU资源。
  */
 import { SeriesBuffer } from '../util/ringbuffer.js';
 import { ColumnGrid } from '../util/columns.js';
 
-const PAD = { l: 64, r: 14, t: 14, b: 26 };
+export const PAD = { l: 64, r: 14, t: 14, b: 26 };
 
 export class CanvasEngine {
   constructor(host, opts) {
@@ -22,6 +21,10 @@ export class CanvasEngine {
     this.pendingTs = 0;
     this.hover = null;
     this.raf = 0;
+    this.drawnRight = 0;
+    this.drawnSpan = 0;
+    this.drawnColPx = 0;
+    this.incFrames = 0;
     this.fullFrames = 0;
     this._buildDom();
   }
@@ -38,7 +41,7 @@ export class CanvasEngine {
     this.cvBg.getContext('2d', { alpha: false });
     this.cvData = mk(2);
     this.cvCursor = mk(3);
-    this._initGL();
+    this._initDataLayer();
 
     this.resize();
     this._ro = new ResizeObserver(() => { this.resize(); this.invalidateView = true; this.dirty = true; });
@@ -79,8 +82,7 @@ export class CanvasEngine {
     for (const c of [this.cvBg, this.cvCursor]) {
       c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    // 每列最多四条线段，每条线段保存两端点；各序列复用这块 CPU 缓冲。
-    this.segments = new Float32Array(Math.max(64, this.w - PAD.l - PAD.r) * 16);
+    if (this.dataCtx) this.dataCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.invalidateView = true;
   }
 
@@ -162,6 +164,8 @@ export class CanvasEngine {
   /** 按同一时间右边界重建各序列的可视列栅格。 */
   _layoutScale(endT) {
     this.nCols = Math.max(64, Math.floor(this.w - PAD.l - PAD.r));
+    this.colPx = 1;
+    this.drawnRight = 0;
     this.endT = endT;
 
     for (const d of this.defs) {
@@ -228,112 +232,97 @@ export class CanvasEngine {
     }
   }
 
-  _initGL() {
-    const gl = this.cvData.getContext('webgl2', { alpha: true, antialias: true, depth: false });
-    if (!gl) throw new Error('当前浏览器无法创建 WebGL2 曲线上下文');
-    this.gl = gl;
-    const compile = (type, source) => {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        const message = gl.getShaderInfoLog(shader);
-        gl.deleteShader(shader);
-        throw new Error('曲线着色器编译失败：' + message);
-      }
-      return shader;
-    };
-    const vertex = compile(gl.VERTEX_SHADER, `#version 300 es
-      in vec4 aSegment;
-      uniform vec2 uSize;
-      void main() {
-        vec2 delta = aSegment.zw - aSegment.xy;
-        vec2 normal = vec2(-delta.y, delta.x) / max(length(delta), 0.001);
-        float side = gl_VertexID % 2 == 0 ? -1.0 : 1.0;
-        vec2 endpoint = gl_VertexID < 2 ? aSegment.xy : aSegment.zw;
-        vec2 position = endpoint + normal * side * 0.7;
-        vec2 clip = position / uSize * 2.0 - 1.0;
-        gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
-      }
-    `);
-    const fragment = compile(gl.FRAGMENT_SHADER, `#version 300 es
-      precision mediump float;
-      uniform vec3 uColor;
-      out vec4 color;
-      void main() { color = vec4(uColor, 1.0); }
-    `);
-    this.program = gl.createProgram();
-    gl.attachShader(this.program, vertex);
-    gl.attachShader(this.program, fragment);
-    gl.linkProgram(this.program);
-    gl.deleteShader(vertex);
-    gl.deleteShader(fragment);
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      throw new Error('曲线着色器链接失败：' + gl.getProgramInfoLog(this.program));
-    }
-    this.vertexBuffer = gl.createBuffer();
-    this.segmentLocation = gl.getAttribLocation(this.program, 'aSegment');
-    this.sizeLocation = gl.getUniformLocation(this.program, 'uSize');
-    this.colorLocation = gl.getUniformLocation(this.program, 'uColor');
+  _initDataLayer() {
+    this.dataCtx = this.cvData.getContext('2d', { alpha: true });
   }
 
-  _render(forceFull) {
-    const gl = this.gl;
-    const top = PAD.t, bot = this.h - PAD.b;
-    const sx = this.cvData.width / this.w, sy = this.cvData.height / this.h;
-    gl.viewport(0, 0, this.cvData.width, this.cvData.height);
-    gl.disable(gl.SCISSOR_TEST);
-    gl.clearColor(0, 0, 0, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.enable(gl.SCISSOR_TEST);
-    gl.scissor(Math.ceil(PAD.l * sx), Math.ceil(PAD.b * sy),
-      Math.floor(this.nCols * sx), Math.floor((bot - top) * sy));
-    gl.useProgram(this.program);
-    gl.uniform2f(this.sizeLocation, this.w, this.h);
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-    gl.enableVertexAttribArray(this.segmentLocation);
-    gl.vertexAttribPointer(this.segmentLocation, 4, gl.FLOAT, false, 0, 0);
-    gl.vertexAttribDivisor(this.segmentLocation, 1);
-
-    const vertices = this.segments;
-    let count = 0;
-    const segment = (x0, y0, x1, y1) => {
-      vertices[count++] = x0; vertices[count++] = y0;
-      vertices[count++] = x1; vertices[count++] = y1;
-    };
+  /** 只画 [c0, c1) 的列 */
+  _drawCols(ctx, c0, c1, top, bot) {
     for (const d of this.defs) {
       const g = this.grids.get(d.id);
-      if (!g || !g.colW) continue;
-      const [lo, hi] = this._visibleRange(g);
-      if (!isFinite(lo)) continue;
-      if (forceFull || d._lo === undefined || lo < d._lo || hi > d._hi) {
-        const pad = (hi - lo) * 0.06 || 1;
-        d._lo = lo - pad; d._hi = hi + pad;
-      }
-      const scale = (bot - top) / (d._hi - d._lo);
-      count = 0;
-      let previousX, previousY;
-      for (let c = 0; c < this.nCols; c++) {
+      if (!g || !g.colW || d._lo === undefined) continue;
+      const scale = (bot - top) / (d._hi - d._lo || 1);
+      ctx.beginPath();
+      let started = false;
+      for (let c = c0; c < c1; c++) {
         if (!g.count[c]) continue;
         const x = PAD.l + c + 0.5;
-        const firstY = bot - (g.first[c] - d._lo) * scale;
-        const minY = bot - (g.min[c] - d._lo) * scale;
-        const maxY = bot - (g.max[c] - d._lo) * scale;
-        const lastY = bot - (g.last[c] - d._lo) * scale;
-        if (previousX !== undefined) segment(previousX, previousY, x, firstY);
-        segment(x, firstY, x, minY);
-        segment(x, minY, x, maxY);
-        segment(x, maxY, x, lastY);
-        previousX = x; previousY = lastY;
+        const yf = bot - (g.first[c] - d._lo) * scale;
+        if (!started) { ctx.moveTo(x, yf); started = true; } else ctx.lineTo(x, yf);
+        const ymn = bot - (g.min[c] - d._lo) * scale;
+        const ymx = bot - (g.max[c] - d._lo) * scale;
+        if (ymn - ymx > 0.7) { ctx.lineTo(x, ymn); ctx.lineTo(x, ymx); }
+        ctx.lineTo(x, bot - (g.last[c] - d._lo) * scale);
       }
-      const color = parseInt(d.color.slice(1), 16);
-      gl.uniform3f(this.colorLocation, (color >> 16) / 255, ((color >> 8) & 255) / 255, (color & 255) / 255);
-      gl.bufferData(gl.ARRAY_BUFFER, vertices.subarray(0, count), gl.DYNAMIC_DRAW);
-      // 每个实例是一条 1.4 CSS 像素宽的线段，避免依赖设备支持的原生线宽。
-      gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, count / 4);
+      ctx.strokeStyle = d.color;
+      ctx.lineWidth = 1.4;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
     }
-    gl.disable(gl.SCISSOR_TEST);
-    this.fullFrames++;
+  }
+
+  /**
+   * forceFull=true 时整幅重画；否则若只是时间向前推进了整数列、量程未变，
+   * 就整幅左移 + 只补最右侧新增的列（脏区增量）。
+   */
+  _render(forceFull) {
+    const ctx = this.cvData.getContext('2d');
+    const top = PAD.t, bot = this.h - PAD.b;
+    const g0 = this.grids.get(this.defs[0].id);
+    if (!g0 || !g0.colW) return;
+
+    const shiftCols = Math.round((g0.right - this.drawnRight) / g0.colW);
+    let incremental =
+      !forceFull &&
+      this.drawnRight > 0 &&
+      this.drawnSpan === this.spanMs &&
+      this.drawnColPx === this.colPx &&
+      shiftCols > 0 &&
+      shiftCols < this.nCols * 0.5;
+
+    if (incremental) {
+      for (const d of this.defs) {
+        const g = this.grids.get(d.id);
+        if (!g || d._lo === undefined) continue;
+        const [lo, hi] = this._visibleRange(g);
+        if (!isFinite(lo)) continue;
+        if (lo < d._lo || hi > d._hi) { incremental = false; break; }
+      }
+    }
+
+    if (incremental) {
+      const dx = shiftCols * this.colPx;
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(PAD.l, top, this.nCols, bot - top);
+      ctx.clip();
+      // 位图是物理像素，目标尺寸必须用 CSS 像素，否则高分屏每帧都会再次放大。
+      ctx.imageSmoothingEnabled = false;
+      ctx.globalCompositeOperation = 'copy';
+      ctx.drawImage(this.cvData, -dx, 0, this.w, this.h);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(PAD.l + this.nCols - dx, top, dx, bot - top);
+      this._drawCols(ctx, this.nCols - shiftCols - 1, this.nCols, top, bot);
+      ctx.restore();
+      this.incFrames++;
+    } else {
+      for (const d of this.defs) {
+        const g = this.grids.get(d.id);
+        if (!g) continue;
+        const [lo, hi] = this._visibleRange(g);
+        if (!isFinite(lo)) continue;
+        const pad = (hi - lo) * 0.06 || 1;
+        d._lo = lo - pad;
+        d._hi = hi + pad;
+      }
+      ctx.clearRect(0, 0, this.w, this.h);
+      this._drawCols(ctx, 0, this.nCols, top, bot);
+      this.fullFrames++;
+    }
+
+    this.drawnRight = g0.right;
+    this.drawnSpan = this.spanMs;
+    this.drawnColPx = this.colPx;
   }
 
   _drawCursor() {
@@ -432,9 +421,6 @@ export class CanvasEngine {
     this.host.removeEventListener('mousemove', this._onMove);
     this.host.removeEventListener('mouseleave', this._onLeave);
     this.host.removeEventListener('wheel', this._onWheel);
-    this.gl.useProgram(null);
-    this.gl.deleteBuffer(this.vertexBuffer);
-    this.gl.deleteProgram(this.program);
     this.host.innerHTML = '';
   }
 }

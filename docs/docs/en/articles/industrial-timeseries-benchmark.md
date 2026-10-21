@@ -60,7 +60,7 @@ For full-history review, each implementation expands to three hours and runs thr
 
 These times include data processing and drawing calls, without waiting for all WebGL GPU work to complete. They do not establish physical presentation time or a fixed speed advantage.
 
-The Canvas reference was temporarily imported from the earlier snapshot, with the sign of the extrema pixel-difference check corrected so extrema participate in drawing. Complete pixel equivalence has not been checked. The live page currently offers WebGL2 and the two ECharts variants; it cannot directly rerun all four implementations in one sweep.
+The Canvas reference was temporarily imported from the earlier snapshot, with the sign of the extrema pixel-difference check corrected so extrema participate in drawing. Complete pixel equivalence has not been checked. The live page now offers four backends (layered Canvas 2D / WebGL2 trial / tuned ECharts / naive ECharts), so all four can be re-run in sequence on the same page; "layered Canvas 2D" is the Canvas reference used here.
 
 ## Why WebGL did not clearly pull ahead
 

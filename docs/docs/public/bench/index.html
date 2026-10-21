@@ -11,7 +11,7 @@
   <div class="brand">
     <span class="dot"></span>
     <h1>工业时序渲染基准</h1>
-    <span class="sub">百万点 · 实时流 · 三种渲染后端</span>
+    <span class="sub">百万点 · 实时流 · 四种渲染方案</span>
   </div>
   <nav class="hdr-right">
     <span id="env-chip" class="chip">检测中…</span>
@@ -22,9 +22,10 @@
   <label class="field">
     <span>渲染后端</span>
     <select id="sel-engine">
-      <option value="canvas">WebGL 曲线（试用）</option>
+      <option value="canvas">分层 Canvas 2D</option>
       <option value="tuned">ECharts（调优：lttb + rAF）</option>
       <option value="naive">ECharts（朴素：全量 setOption）</option>
+      <option value="webgl">WebGL 曲线（试用）</option>
     </select>
   </label>
 
