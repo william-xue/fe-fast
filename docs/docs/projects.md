@@ -147,6 +147,7 @@ layout: doc
   </div>
   <div class="link">
     <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="vid" href="articles/industrial-timeseries-benchmark">读分析</a>
   </div>
 </div>
 

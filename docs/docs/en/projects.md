@@ -151,6 +151,7 @@ The first six share one **deterministically generated** 20,000-node dataset, eac
   </div>
   <div class="link">
     <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="vid" href="articles/industrial-timeseries-benchmark">Read the write-up</a>
   </div>
 </div>
 
