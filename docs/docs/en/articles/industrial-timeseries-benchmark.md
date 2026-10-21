@@ -24,6 +24,10 @@ Raw samples → visible window → pixel-column aggregation → curves
 
 Receiving data, storing history, clipping the window and interpreting mouse coordinates are still application work.
 
+![Pipeline: ring buffer → viewport → pixel columns → envelope → incremental shift](/img/series-pipeline.svg)
+
+*Five steps: samples land in a ring buffer → the viewport is cut out → the time axis is sliced into 1,348 pixel columns → each column collapses into four numbers and is drawn as an envelope → in steady state only the newly added column is drawn. WebGL and Canvas 2D differ only in the last step.*
+
 ## The GPU does not receive a million raw points
 
 Each CSS-pixel column keeps its minimum, maximum, first and last value. The plot is about 1426 CSS pixels wide, leaving 1348 data columns after padding, separately populated for each signal.
