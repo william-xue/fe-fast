@@ -56,7 +56,7 @@ Focused on large-scale graphics rendering, visualization engines, graph editors,
 
 ## Visualisation demo series
 
-The first six share one **deterministically generated** 20,000-node dataset, each rendered with a different engine; the seventh is a different kind of build — a complete editing application; the eighth inverts the format into a **render benchmark**, putting three backends on the same data so the numbers can be re-run. **Every one of them opens and runs live in the browser** — these are not recordings. The first six also have walkthrough videos.
+The first six share one **deterministically generated** 20,000-node dataset, each rendered with a different engine; the seventh is a different kind of build — a complete editing application; the eighth inverts the format into a **render benchmark**, putting four rendering approaches on the same data so the numbers can be re-run. **Every one of them opens and runs live in the browser** — these are not recordings. The first six also have walkthrough videos.
 
 <div class="series">
 
@@ -147,7 +147,7 @@ The first six share one **deterministically generated** 20,000-node dataset, eac
   <div class="no">08</div>
   <div class="info">
     <h3>Industrial timeseries render benchmark <span class="k">WebGL2 curves + TypedArray</span></h3>
-    <p>Six locally generated signals with an <b>experimental WebGL2 layer for aggregated curves</b>, alongside tuned and naive ECharts. Supports 100k to 1M historical points, streaming updates, full-history review and JSON export. The write-up compares Canvas 2D and WebGL measurements, drawing approaches and timing boundaries.</p>
+    <p>Six locally generated signals with four independent options: <b>Canvas 2D, tuned ECharts, naive ECharts and experimental WebGL2</b>. Supports 100k to 1M historical points, streaming updates, full-history review and JSON export. The write-up compares Canvas 2D and WebGL measurements, drawing approaches and timing boundaries.</p>
   </div>
   <div class="link">
     <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>

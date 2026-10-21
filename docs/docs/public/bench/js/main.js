@@ -204,8 +204,7 @@ async function reviewSweep() {
   banner('');
   btnA.disabled = btnB.disabled = btnC.disabled = false;
   $('note2').textContent =
-    '回看全历史 = 把整段 3 小时历史一次性画出来（对应现场"查故障瞬间"的动作）。' +
-    '实时流那一组数字好，是因为它只画窗口内约 2 万点；这一组才是"手里有全量历史"时的真实代价。' +
+    '回看全历史会把三小时数据纳入视窗；Canvas与WebGL都按像素列聚合后绘制。' +
     'ECharts 在 100 万点全量回看会长时间占用主线程，扫描故意止于 30 万。';
 }
 

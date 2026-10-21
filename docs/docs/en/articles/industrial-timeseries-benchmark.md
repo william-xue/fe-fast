@@ -6,7 +6,7 @@ outline: deep
 
 # A million-point chart: measuring a switch from Canvas 2D to WebGL
 
-The curve layer now uses WebGL2. The six synthetic signals and column aggregation are unchanged; the background grid and crosshair still use Canvas 2D.
+WebGL2 is now a separate fourth option alongside the existing Canvas 2D, tuned ECharts and naive ECharts implementations. They share the six synthetic signals; Canvas and WebGL also share column aggregation, the Canvas 2D background and crosshair.
 
 Both implementations ran smoothly in this test. With 1M historical points, both reached about 60 rAF callbacks per second. Median CPU-side full-history review time was 13.1 ms for Canvas 2D and 12.3 ms for WebGL2. That small difference does not establish a ranking of completed GPU rendering.
 
