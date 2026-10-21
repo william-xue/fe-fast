@@ -24,7 +24,7 @@ Raw samples → visible window → pixel-column aggregation → curves
 
 Receiving data, storing history, clipping the window and interpreting mouse coordinates are still application work.
 
-<a href="/img/series-pipeline.svg" target="_blank" rel="noreferrer"><img src="/img/series-pipeline.svg" alt="Pipeline: ring buffer → viewport → pixel columns → envelope → incremental shift" title="Pipeline diagram (open full size)"></a>
+![Pipeline: ring buffer → viewport → pixel columns → envelope → incremental shift](/img/series-pipeline.svg)
 
 *Five steps: samples land in a ring buffer → the viewport is cut out → the time axis is sliced into 1,348 pixel columns → each column collapses into four numbers and is drawn as an envelope → in steady state only the newly added column is drawn. WebGL and Canvas 2D differ only in the last step.*
 
