@@ -142,8 +142,8 @@ layout: doc
 <div class="row">
   <div class="no">08</div>
   <div class="info">
-    <h3>工业时序渲染基准 <span class="k">Canvas 2D 分层 + TypedArray</span></h3>
-    <p>用六路本地合成信号，对比<b>分层 Canvas、ECharts 调优版和朴素版</b>。支持十万到一百万历史点、实时追加、全历史回看和 JSON 导出。配套文章记录数据处理方式、高分屏闪烁的修复，以及现有性能测量的限制。</p>
+    <h3>工业时序渲染基准 <span class="k">WebGL2 曲线 + TypedArray</span></h3>
+    <p>六路本地合成信号，当前试用版用 <b>WebGL2 绘制聚合后的曲线</b>，保留 ECharts 调优版和朴素版作为对照。支持十万到一百万历史点、实时追加、全历史回看和 JSON 导出。配套文章记录 Canvas 2D 实验、闪烁修复和测量限制。</p>
   </div>
   <div class="link">
     <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>

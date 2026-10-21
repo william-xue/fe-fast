@@ -118,7 +118,7 @@ async function runOnce({ kind, points, rate = 400, spanMs = 60000, streamMs = 12
 }
 
 function labelOf(kind) {
-  return { canvas: '分层 Canvas（自研）', tuned: 'ECharts 调优（lttb+rAF）', naive: 'ECharts 朴素（全量）' }[kind] || kind;
+  return { canvas: 'WebGL 曲线（试用）', tuned: 'ECharts 调优（lttb+rAF）', naive: 'ECharts 朴素（全量）' }[kind] || kind;
 }
 
 /**

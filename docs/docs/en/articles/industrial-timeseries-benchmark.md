@@ -6,6 +6,8 @@ outline: deep
 
 # Industrial time-series charts: a Canvas and ECharts experiment
 
+> Update, 2026-10-21: the live demo now uses an experimental WebGL2 curve layer with the same column aggregation. The background and cursor remain Canvas 2D. The Canvas 2D implementation and bug report below describe the earlier version, rather than WebGL performance.
+
 <div class="meta">
   <span>2026-10-21</span><span>·</span>
   <a href="../../bench/" target="_blank" rel="noreferrer">Run the demo</a>
@@ -61,13 +63,13 @@ Eight consecutive incremental updates now pass at DPR 1, 1.25 and 2. At DPR 2, t
 
 ## Measurements that cannot be compared directly
 
-Earlier results included near-zero update times for tuned ECharts. That path measured synchronous work without waiting for the next rAF callback to call `setOption`. It did not measure the complete render.
+The old synchronous Canvas test skipped real updates: a view-invalidation flag remained set after loading, so appending data did not update the column grid, while the synchronous flush rendered the old grid. Its reported cost therefore did not cover drawing the new data. The WebGL trial now shares one refresh path between synchronous and animation-frame updates.
 
-Canvas's synchronous refresh directly calls `_render`, so the timing endpoints differ. Those values cannot support a speed comparison. A separate measurement ran while the display was asleep and rAF was throttled, so it cannot establish 60 fps either.
+ECharts's synchronous flush does call `setOption` directly. A near-zero result cannot simply be attributed to waiting for a later rAF callback. GPU completion and physical presentation also require separate timing boundaries. A separate run happened while the display was asleep and rAF was throttled, so it cannot establish 60 fps either.
 
 Dividing processing time by batch interval helps identify insufficient processing capacity. Persistent backlog requires sustained arrivals and a queue that processes every batch without coalescing or dropping work. Browser timers can be delayed, and rendering can coalesce updates. This local demo does not establish that a chart becomes 60 seconds late after 50 seconds of operation.
 
-The page's FPS counter measures rAF callback frequency. Its latency endpoint is a drawing callback or ECharts's `rendered` event, not the exact physical display time. The earlier performance suite has not been rerun after this fix, so speed multipliers and claims about other devices have been removed.
+The page's FPS counter measures rAF callback frequency. Its latency endpoint is a drawing callback or ECharts's `rendered` event, not the exact physical display time. The old performance table is not treated as a result for the current trial, and does not support speed multipliers or claims about other devices.
 
 ## Run it
 
