@@ -30,7 +30,7 @@ Canvas 2D 提供现成的画线指令：移到一个点、连到下一个点、�
 
 所以 WebGL 接到的是聚合后的线段，而不是直接处理一百万个原始点。六路曲线各有自己的列数据。缩放或切换到全历史时，仍需要从原始数据重建列栅格；同一列内部的采样顺序已经压缩，精确分析还得看原始点。
 
-![绘制管线：环形缓冲 → 可视窗口 → 像素列 → 包络 → 增量左移](/img/series-pipeline.svg)
+<a href="/img/series-pipeline.svg" target="_blank" rel="noreferrer"><img src="/img/series-pipeline.svg" alt="绘制管线：环形缓冲 → 可视窗口 → 像素列 → 包络 → 增量左移" title="绘制管线示意（点击看大图）"></a>
 
 *整条链路五步：数据进环形缓冲 → 按窗口裁 → 切成 1348 个像素列 → 每列压成 4 个数画成包络 → 稳态下每帧只画新增的一列。WebGL 与 Canvas 2D 的区别只在最后一步。*
 
@@ -87,6 +87,20 @@ Canvas 参考来自替换前的快照，只在参考副本修正了极值绘制�
 本轮的[原始 JSON](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.json)和[测量说明](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.md)保留了环境与限制。这是单机、固定顺序的短测，不替代目标设备上的验证。
 
 <style>
+/* 管线图需要比正文列更宽，否则 1200px 的图缩到 624px 后小字不可读 */
+.vp-doc img[src*="series-pipeline"] {
+  display: block;
+  width: min(980px, calc(100vw - 56px));
+  max-width: none;
+  margin: 1.5rem 0 1rem 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+@media (max-width: 1024px) {
+  .vp-doc img[src*="series-pipeline"] { width: 100%; margin-left: 0; transform: none; }
+}
+
 .meta { display: flex; gap: .5rem; align-items: center; color: var(--vp-c-text-3); font-size: .875rem; margin: -.5rem 0 2rem; }
 .meta a { color: var(--vp-c-brand-1); text-decoration: none; }
 .meta a:hover { text-decoration: underline; }

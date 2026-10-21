@@ -24,7 +24,7 @@ Raw samples → visible window → pixel-column aggregation → curves
 
 Receiving data, storing history, clipping the window and interpreting mouse coordinates are still application work.
 
-![Pipeline: ring buffer → viewport → pixel columns → envelope → incremental shift](/img/series-pipeline.svg)
+<a href="/img/series-pipeline.svg" target="_blank" rel="noreferrer"><img src="/img/series-pipeline.svg" alt="Pipeline: ring buffer → viewport → pixel columns → envelope → incremental shift" title="Pipeline diagram (open full size)"></a>
 
 *Five steps: samples land in a ring buffer → the viewport is cut out → the time axis is sliced into 1,348 pixel columns → each column collapses into four numbers and is drawn as an envelope → in steady state only the newly added column is drawn. WebGL and Canvas 2D differ only in the last step.*
 
@@ -87,6 +87,20 @@ WebGL now redraws the aggregated segments instead of shifting the old bitmap. Co
 The [raw JSON](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.json) and [measurement notes](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.md) record the conditions and limits. This is a short, single-machine test in a fixed order; target-device validation is still required.
 
 <style>
+/* 管线图需要比正文列更宽，否则 1200px 的图缩到 624px 后小字不可读 */
+.vp-doc img[src*="series-pipeline"] {
+  display: block;
+  width: min(980px, calc(100vw - 56px));
+  max-width: none;
+  margin: 1.5rem 0 1rem 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+@media (max-width: 1024px) {
+  .vp-doc img[src*="series-pipeline"] { width: 100%; margin-left: 0; transform: none; }
+}
+
 .meta { display: flex; gap: .5rem; align-items: center; color: var(--vp-c-text-3); font-size: .875rem; margin: -.5rem 0 2rem; }
 .meta a { color: var(--vp-c-brand-1); text-decoration: none; }
 .meta a:hover { text-decoration: underline; }
