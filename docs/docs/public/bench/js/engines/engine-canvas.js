@@ -53,7 +53,7 @@ export class CanvasEngine {
       return c;
     };
     this.cvBg = mk(1, false);
-    this.cvData = mk(2, false);
+    this.cvData = mk(2, true);
     this.cvCursor = mk(3, true);
 
     this.resize();
@@ -307,9 +307,18 @@ export class CanvasEngine {
 
     if (incremental) {
       const dx = shiftCols * this.colPx;
-      ctx.drawImage(this.cvData, -dx, 0);        // 整幅左移
-      ctx.clearRect(this.w - dx, 0, dx, this.h); // 清掉右侧新露出的条带
-      this._drawCols(ctx, this.nCols - shiftCols, this.nCols, top, bot);
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(PAD.l, top, this.nCols, bot - top);
+      ctx.clip();
+      // 位图是物理像素，目标尺寸必须用 CSS 像素，否则高分屏每帧都会再次放大。
+      ctx.imageSmoothingEnabled = false;
+      ctx.globalCompositeOperation = 'copy';
+      ctx.drawImage(this.cvData, -dx, 0, this.w, this.h);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(PAD.l + this.nCols - dx, top, dx, bot - top);
+      this._drawCols(ctx, this.nCols - shiftCols - 1, this.nCols, top, bot);
+      ctx.restore();
       this.incFrames++;
     } else {
       for (const d of this.defs) {

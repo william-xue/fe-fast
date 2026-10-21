@@ -10,8 +10,8 @@ Everything here was measured on a real machine and can be re-run: numbers, code,
 <div class="list">
 
 <a class="item" href="./industrial-timeseries-benchmark">
-  <div class="t">Why a million-point chart cannot be drawn in industrial software</div>
-  <div class="d">A load-factor model that explains why charts get slower the longer they run, plus three backends measured on identical data: naive ECharts costs 104 ms per update at 100k points (load factor 2.2), while a layered canvas renderer holds 1.2 ms at 1M.</div>
+  <div class="t">Industrial time-series charts: a Canvas and ECharts experiment</div>
+  <div class="d">How three implementations process data, why the Canvas chart disappeared on a high-DPI screen, and which earlier measurements cannot be compared directly.</div>
   <div class="tag">Performance · Canvas · Streaming</div>
 </a>
 

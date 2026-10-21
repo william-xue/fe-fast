@@ -1,101 +1,89 @@
 ---
-title: Why a million-point chart cannot be drawn in industrial software
-description: A load-factor model for streaming charts, measured on three backends with identical data.
+title: 'Industrial time-series charts: a Canvas and ECharts experiment'
+description: Three rendering implementations, a high-DPI Canvas flicker fix, and the limits of the current performance measurements.
 outline: deep
 ---
 
-# Why a million-point chart cannot be drawn in industrial software
+# Industrial time-series charts: a Canvas and ECharts experiment
 
 <div class="meta">
-  <span>2026-10</span><span>·</span><span>12 min read</span><span>·</span>
-  <span>Runnable benchmark: <a href="../bench/" target="_blank" rel="noreferrer">run it in the browser</a></span>
+  <span>2026-10-21</span><span>·</span>
+  <a href="../../bench/" target="_blank" rel="noreferrer">Run the demo</a>
 </div>
 
-Industrial software keeps producing the same requirement: dozens of signals, hours of history, sub-second refresh, and the ability to zoom into the exact moment something tripped. Teams build it on a general-purpose charting library, the demo looks fine, and three months after launch the operators complain that *the screen is a minute behind reality*.
+This experiment compares three ways to update a chart: send every batch to ECharts, trim the visible window before updating ECharts, or draw with Canvas. The question is how much data each update still needs to process as history grows.
 
-That minute is not a feeling. It is arithmetic.
+The browser generates six synthetic signals representing power, frequency, voltage, oil temperature and battery charge. Three hours of history contain 100k, 300k or 1M points in total, followed by a batch every 50 ms. No real device or network is connected, and production reliability has not been tested.
 
-## The short version
+## What the implementations do
 
-- Naive usage is already insolvent at **100k points**: 104 ms per update against a 50 ms arrival interval → load factor **2.2**
-- Load factor > 1 means consumption is slower than production, so latency grows linearly with uptime
-- The layered renderer holds **1.2 ms per update at 1M points**; full 3-hour history review costs **22.6 ms / 27 MB**
-- ECharts on the same review: **930 ms / 316 MB**
-
-## 1. Compute the deficit before optimising
-
-```
-load factor = main-thread ms per "receive → updated" ÷ arrival interval
-```
-
-| Load factor | Meaning |
+| Implementation | Streaming updates |
 |---|---|
-| < 0.3 | comfortable |
-| 0.6 – 1.0 | critical — any long task starts a backlog |
-| > 1 | **consumption is slower than production; latency accumulates every second** |
+| Naive ECharts | Keep every point and pass the complete series to `setOption` on each batch |
+| Tuned ECharts | Trim old points, enable LTTB, disable animation and coalesce updates with rAF |
+| Canvas | Store raw points in ring buffers, aggregate the visible window into pixel columns, then draw |
 
-After 50 seconds you are looking at data from 60 seconds ago. Reconnects, deduplication and WebSockets are irrelevant to this.
+The default viewport is 60 seconds. A million stored historical points does not mean a million points are drawn during each live update. Full-history review expands the viewport to the entire dataset and is measured separately.
 
-## 2. Three implementations, one dataset
+The Canvas implementation has wheel zoom and a crosshair, but lacks much of a general charting library's functionality. These are specific implementations with different capabilities, rather than a general ranking of the technologies.
 
-Same machine, same synthetic substation signals (6 series, spikes included), same 60-second viewport, 20 points per batch every 50 ms:
+## Where the Canvas work happens
 
-| Backend | 100k points | 1M points | Load factor p95 |
-|---|---|---|---|
-| Naive ECharts (full `setOption`) | **104.2 ms/update** | not measured (page becomes unresponsive) | **2.22** |
-| Tuned ECharts (LTTB + rAF + windowed) | ≈0 ms | ≈0 ms | ≈0 |
-| Layered Canvas (custom) | 0.5 ms | 1.2 ms | 0.024 |
+Fixed-capacity ring buffers store timestamps in `Float64Array` and values in `Float32Array`. Once full, they overwrite the oldest points. This reduces per-point object allocation, but history that must remain queryable needs separate storage.
 
-::: warning The measurement trap nobody mentions
-The `≈0 ms` for tuned ECharts is not "it is as fast as the custom renderer". `setOption` renders asynchronously, so the synchronous return is zero.
+The visible time interval is divided into CSS-pixel columns. Each keeps `min / max / first / last`, and the drawing path uses those values instead of visiting every raw point. Extrema remain available to draw, but sample ordering inside each column is compressed. The aggregate cannot replace raw data for analysis.
 
-Benchmarking a charting library by timing its API call will give you a beautiful, completely wrong table. Measure to the `rendered` event, or to the moment the frame reaches the screen.
-:::
+Zooming or changing the viewport still reads visible raw points through `_layoutScale` to rebuild the grid. Aggregation does not make every later interaction independent of the original data.
 
-## 3. The real gap opens on full-history review
+Three canvases hold the background, curves and cursor. Mouse movement redraws only the cursor. When the range is unchanged and time advances by a few columns, the data layer shifts its existing bitmap left and draws the new columns on the right. Other updates redraw the full plot. Moving the bitmap also has a cost; drawing fewer new columns does not make the entire frame a one-column operation.
 
-Streaming is only half of the job. The daily action in the control room is *"pull up the trip at 2:13 last night"* — zoom from 60 seconds to 3 hours and face the entire history at once.
+## Why the chart flashed and disappeared
 
-| Backend | 100k | 300k | 1M | Heap at 1M |
-|---|---|---|---|---|
-| Tuned ECharts (lttb) | 94.4 ms | 248.7 ms | **930.2 ms** | 316.3 MB |
-| Layered Canvas (custom) | 7.5 ms | 7.4 ms | **22.6 ms** | 27.6 MB |
+On a screen with `devicePixelRatio` set to 2, the initial chart appeared, then disappeared after a few incremental updates.
 
-The difference is not drawing speed, it is **who still has to process the data**:
+A canvas 600 CSS pixels wide has a 1200-pixel bitmap at DPR 2. Its context is scaled so drawing code can use CSS coordinates. The original self-copy was:
 
-- The custom renderer keeps history in `Float64Array` and aggregates it once into 1,158 pixel columns. Every later zoom or pan works on those columns, never on raw points.
-- ECharts has to rebuild a million `[t, v]` pairs and run a full `setOption`. Cost scales linearly with the point count and the heap jumps from 78 MB to 316 MB.
+```js
+ctx.drawImage(canvas, -dx, 0);
+```
 
-One second of white screen is nothing in a demo. On a dispatch wall display it is "this software is slow".
+This used the source bitmap's dimensions under the scaled context, enlarging it again on every copy. In a fixed regression fixture, the initial curve covered 6,489 colored pixels. By the third update, none remained in the canvas.
 
-## 4. Four techniques that move the cost
+The copy now specifies its destination in CSS pixels:
 
-1. **Fixed-capacity ring buffer** instead of `push` + `shift`: O(1) writes, zero allocation, flat memory.
-2. **Pixel-column grid**: slice the time axis into columns, keep `min / max / first / last`. Drawing cost depends on pixel width (~1,200), not on point count. Use min/max rather than averaging or sampling — averaging erases single-sample spikes, and spikes are exactly what industrial operators care about.
-3. **Dirty-rect incremental drawing**: shift the bitmap left by N pixels, clear the newly exposed strip, redraw only those columns. On machines without a GPU this is the difference between 60 fps and 15 fps, because a full 1236×357 repaint costs ~65 ms while the JS itself takes 0.2 ms.
-4. **Layered canvases + rAF coalescing**: background redraws only on layout change, data layer redraws incrementally, cursor layer only on mousemove; multiple batches arriving within one frame collapse into a single render.
+```js
+ctx.drawImage(canvas, -dx, 0, cssWidth, cssHeight);
+```
 
-## 5. Is ECharts still usable?
+The data layer is transparent so the background grid remains visible. The copy uses `copy` compositing to replace old pixels, is clipped to the plot, and is followed by drawing the new right-hand columns. Smoothing is disabled during the copy to avoid repeated interpolation spreading the curves at fractional pixel ratios. The complete code is in `_render` in `js/engines/engine-canvas.js`.
 
-Yes — and it should remain the default for most work. Its boundaries are clear:
+Eight consecutive incremental updates now pass at DPR 1, 1.25 and 2. At DPR 2, the curve pixel count goes from 7,257 to 7,205. A million-point live run also retained the curves through 66 incremental updates; wheel zoom and resizing were checked. These are display-correctness checks, not evidence of long-running performance.
 
-- Static charts under 100k points: tune `sampling: 'lttb'`, disable animation, add `dataZoom`. Done.
-- Streaming charts: usable, provided you feed only the visible window and decouple rendering from arrival rate.
-- Million points + many series + long-history review + weak client machines: three walls at once — full-diff `setOption`, object-array memory and GC, and compositor cost on full repaints. The third one cannot be fixed by swapping libraries.
+## Measurements that cannot be compared directly
 
-## 6. How to judge the system in front of you
+Earlier results included near-zero update times for tuned ECharts. That path measured synchronous work without waiting for the next rAF callback to call `setOption`. It did not measure the complete render.
 
-1. Stamp every sample with its creation time and log the percentile of `screen time − creation time`.
-2. Compute the load factor over a window of traffic. Above 1 means you are running on debt.
-3. Run it again with the WebSocket replaced by local synthetic data. Still slow → rendering. Instantly fine → transport and backpressure.
+Canvas's synchronous refresh directly calls `_render`, so the timing endpoints differ. Those values cannot support a speed comparison. A separate measurement ran while the display was asleep and rAF was throttled, so it cannot establish 60 fps either.
 
-Either outcome beats switching chart libraries again.
+Dividing processing time by batch interval helps identify insufficient processing capacity. Persistent backlog requires sustained arrivals and a queue that processes every batch without coalescing or dropping work. Browser timers can be delayed, and rendering can coalesce updates. This local demo does not establish that a chart becomes 60 seconds late after 50 seconds of operation.
 
-## 7. Re-run it yourself
+The page's FPS counter measures rAF callback frequency. Its latency endpoint is a drawing callback or ECharts's `rendered` event, not the exact physical display time. The earlier performance suite has not been rerun after this fix, so speed multipliers and claims about other devices have been removed.
 
-<a href="../bench/" target="_blank" rel="noreferrer">Open the benchmark</a>, hit *Run full sweep* for the seven configurations, then *Full-history review* for the industrial case, and export the JSON.
+## Run it
 
-The absolute numbers will differ on your machine. The order of magnitude between the three backends will not.
+ECharts is included locally and the demo has no build step. From the project directory:
+
+```bash
+python3 -m http.server 8765
+```
+
+Open `http://127.0.0.1:8765/`, run one configuration and check that the curves remain visible before comparing live updates with full-history review. Export the JSON together with the browser, DPR, viewport size and whether the tab was in the foreground.
+
+Run the flicker regression from the demo's console:
+
+```js
+await (await import('./tests/canvas-regression.js')).runCanvasRegression();
+```
 
 <style>
 .meta { display: flex; gap: .5rem; align-items: center; color: var(--vp-c-text-3); font-size: .875rem; margin: -.5rem 0 2rem; }

@@ -143,7 +143,7 @@ layout: doc
   <div class="no">08</div>
   <div class="info">
     <h3>工业时序渲染基准 <span class="k">Canvas 2D 分层 + TypedArray</span></h3>
-    <p>同一份数据、同一台机器、同一个窗口，三种后端同场对比百万点实时流：<b>分层 Canvas（自研）/ ECharts 调优 / ECharts 朴素</b>。页面直接给出首帧、单次更新 p50/p95、负载率、端到端延迟与堆内存 —— 朴素写法 10 万点每次更新 <b>104 ms</b>（负载率 2.2，延迟必然持续增长）；自研分层 100 万点仅 <b>1.2 ms</b>；回看全历史 100 万点 <b>22.6 ms / 27 MB</b>，同条件下 ECharts 为 <b>930 ms / 316 MB</b>。<b>可在页面上自己跑一遍并导出 JSON</b>。</p>
+    <p>用六路本地合成信号，对比<b>分层 Canvas、ECharts 调优版和朴素版</b>。支持十万到一百万历史点、实时追加、全历史回看和 JSON 导出。配套文章记录数据处理方式、高分屏闪烁的修复，以及现有性能测量的限制。</p>
   </div>
   <div class="link">
     <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
