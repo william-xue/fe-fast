@@ -1,91 +1,86 @@
 ---
-title: 'Industrial time-series charts: a Canvas and ECharts experiment'
-description: Three rendering implementations, a high-DPI Canvas flicker fix, and the limits of the current performance measurements.
+title: 'A million-point chart: measuring a switch from Canvas 2D to WebGL'
+description: A WebGL2 time-series experiment, compared with Canvas 2D and ECharts, with explicit timing limits.
 outline: deep
 ---
 
-# Industrial time-series charts: a Canvas and ECharts experiment
+# A million-point chart: measuring a switch from Canvas 2D to WebGL
 
-> Update, 2026-10-21: the live demo now uses an experimental WebGL2 curve layer with the same column aggregation. The background and cursor remain Canvas 2D. The Canvas 2D implementation and bug report below describe the earlier version, rather than WebGL performance.
+The curve layer now uses WebGL2. The six synthetic signals and column aggregation are unchanged; the background grid and crosshair still use Canvas 2D.
 
-<div class="meta">
-  <span>2026-10-21</span><span>·</span>
-  <a href="../../bench/" target="_blank" rel="noreferrer">Run the demo</a>
-</div>
+Both implementations ran smoothly in this test. With 1M historical points, both reached about 60 rAF callbacks per second. Median CPU-side full-history review time was 13.1 ms for Canvas 2D and 12.3 ms for WebGL2. That small difference does not establish a ranking of completed GPU rendering.
 
-This experiment compares three ways to update a chart: send every batch to ECharts, trim the visible window before updating ECharts, or draw with Canvas. The question is how much data each update still needs to process as history grows.
+## What changes when a chart moves away from DOM
 
-The browser generates six synthetic signals representing power, frequency, voltage, oil temperature and battery charge. Three hours of history contain 100k, 300k or 1M points in total, followed by a batch every 50 ms. No real device or network is connected, and production reliability has not been tested.
+With DOM, the browser manages individual elements, their styles and their hit targets. A canvas is itself a DOM element, but its curves have no corresponding DOM nodes. The application keeps their coordinates and handles interaction.
 
-## What the implementations do
+Canvas 2D provides drawing commands: move to a point, connect to the next point, choose a color and stroke the path. The WebGL version supplies segment endpoints to small GPU programs, drawing each thick segment as two triangles.
 
-| Implementation | Streaming updates |
-|---|---|
-| Naive ECharts | Keep every point and pass the complete series to `setOption` on each batch |
-| Tuned ECharts | Trim old points, enable LTTB, disable animation and coalesce updates with rAF |
-| Canvas | Store raw points in ring buffers, aggregate the visible window into pixel columns, then draw |
+The shared path remains:
 
-The default viewport is 60 seconds. A million stored historical points does not mean a million points are drawn during each live update. Full-history review expands the viewport to the entire dataset and is measured separately.
-
-The Canvas implementation has wheel zoom and a crosshair, but lacks much of a general charting library's functionality. These are specific implementations with different capabilities, rather than a general ranking of the technologies.
-
-## Where the Canvas work happens
-
-Fixed-capacity ring buffers store timestamps in `Float64Array` and values in `Float32Array`. Once full, they overwrite the oldest points. This reduces per-point object allocation, but history that must remain queryable needs separate storage.
-
-The visible time interval is divided into CSS-pixel columns. Each keeps `min / max / first / last`, and the drawing path uses those values instead of visiting every raw point. Extrema remain available to draw, but sample ordering inside each column is compressed. The aggregate cannot replace raw data for analysis.
-
-Zooming or changing the viewport still reads visible raw points through `_layoutScale` to rebuild the grid. Aggregation does not make every later interaction independent of the original data.
-
-Three canvases hold the background, curves and cursor. Mouse movement redraws only the cursor. When the range is unchanged and time advances by a few columns, the data layer shifts its existing bitmap left and draws the new columns on the right. Other updates redraw the full plot. Moving the bitmap also has a cost; drawing fewer new columns does not make the entire frame a one-column operation.
-
-## Why the chart flashed and disappeared
-
-On a screen with `devicePixelRatio` set to 2, the initial chart appeared, then disappeared after a few incremental updates.
-
-A canvas 600 CSS pixels wide has a 1200-pixel bitmap at DPR 2. Its context is scaled so drawing code can use CSS coordinates. The original self-copy was:
-
-```js
-ctx.drawImage(canvas, -dx, 0);
+```text
+Raw samples → visible window → pixel-column aggregation → curves
 ```
 
-This used the source bitmap's dimensions under the scaled context, enlarging it again on every copy. In a fixed regression fixture, the initial curve covered 6,489 colored pixels. By the third update, none remained in the canvas.
+Receiving data, storing history, clipping the window and interpreting mouse coordinates are still application work.
 
-The copy now specifies its destination in CSS pixels:
+## The GPU does not receive a million raw points
 
-```js
-ctx.drawImage(canvas, -dx, 0, cssWidth, cssHeight);
-```
+Each CSS-pixel column keeps its minimum, maximum, first and last value. The plot is about 1426 CSS pixels wide, leaving 1348 data columns after padding, separately populated for each signal.
 
-The data layer is transparent so the background grid remains visible. The copy uses `copy` compositing to replace old pixels, is clipped to the plot, and is followed by drawing the new right-hand columns. Smoothing is disabled during the copy to avoid repeated interpolation spreading the curves at fractional pixel ratios. The complete code is in `_render` in `js/engines/engine-canvas.js`.
+WebGL receives segments built from these aggregates. Zooming or expanding to full history still rebuilds the grid from raw data. Ordering inside a column is compressed, so exact analysis still needs the original samples.
 
-Eight consecutive incremental updates now pass at DPR 1, 1.25 and 2. At DPR 2, the curve pixel count goes from 7,257 to 7,205. A million-point live run also retained the curves through 66 incremental updates; wheel zoom and resizing were checked. These are display-correctness checks, not evidence of long-running performance.
+Stored point count, visible point count and drawn geometry count are different quantities.
 
-## Measurements that cannot be compared directly
+## Conditions and results
 
-The old synchronous Canvas test skipped real updates: a view-invalidation flag remained set after loading, so appending data did not update the column grid, while the synchronous flush rendered the old grid. Its reported cost therefore did not cover drawing the new data. The WebGL trial now shares one refresh path between synchronous and animation-frame updates.
+Chrome 155, 8 cores, DPR 2, a plot of about 1426×483 CSS pixels, with the page visible throughout. Historical values use the same random seed; timestamps are shifted to each run's current time. The viewport is 60 seconds.
 
-ECharts's synchronous flush does call `setOption` directly. A near-zero result cannot simply be attributed to waiting for a later rAF callback. GPU completion and physical presentation also require separate timing boundaries. A separate run happened while the display was asleep and rAF was throttled, so it cannot establish 60 fps either.
+Each live configuration runs for 4 seconds with a batch every 50 ms. The rate setting is 400 points/s, but rounding down across six signals produces 18 points per batch, nominally 360 points/s. Each configuration received and drew 80 batches in this run.
 
-Dividing processing time by batch interval helps identify insufficient processing capacity. Persistent backlog requires sustained arrivals and a queue that processes every batch without coalescing or dropping work. Browser timers can be delayed, and rendering can coalesce updates. This local demo does not establish that a chart becomes 60 seconds late after 50 seconds of operation.
+| Implementation | Historical points | rAF callbacks/s | Drawing-callback latency p95 |
+|---|---:|---:|---:|
+| Canvas 2D reference | 100k | 60 | 14.1 ms |
+| WebGL2 | 100k | 60 | 10.9 ms |
+| Tuned ECharts | 100k | 60 | 14.4 ms |
+| Naive ECharts | 100k | 58.6 | 36.6 ms |
+| Canvas 2D reference | 1M | 60 | 11.0 ms |
+| WebGL2 | 1M | 60 | 12.0 ms |
+| Tuned ECharts | 1M | 60 | 25.6 ms |
 
-The page's FPS counter measures rAF callback frequency. Its latency endpoint is a drawing callback or ECharts's `rendered` event, not the exact physical display time. The old performance table is not treated as a result for the current trial, and does not support speed multipliers or claims about other devices.
+rAF counts animation callbacks, rather than curve redraws. Latency ends at a drawing callback or ECharts's `rendered` event; it does not precisely measure physical presentation.
 
-## Run it
+For full-history review, each implementation expands to three hours and runs three times in alternating order:
 
-ECharts is included locally and the demo has no build step. From the project directory:
+| Implementation | Three CPU-side times | Median |
+|---|---|---:|
+| Canvas 2D reference | 18.4 / 13.1 / 10.8 ms | 13.1 ms |
+| WebGL2 | 14.1 / 12.3 / 12.1 ms | 12.3 ms |
+| Tuned ECharts | 258.7 / 231.4 / 238.1 ms | 238.1 ms |
 
-```bash
-python3 -m http.server 8765
-```
+These times include data processing and drawing calls, without waiting for all WebGL GPU work to complete. They do not establish physical presentation time or a fixed speed advantage.
 
-Open `http://127.0.0.1:8765/`, run one configuration and check that the curves remain visible before comparing live updates with full-history review. Export the JSON together with the browser, DPR, viewport size and whether the tab was in the foreground.
+The Canvas reference was temporarily imported from the earlier snapshot, with the sign of the extrema pixel-difference check corrected so extrema participate in drawing. Complete pixel equivalence has not been checked. The live page currently offers WebGL2 and the two ECharts variants; it cannot directly rerun all four implementations in one sweep.
 
-Run the flicker regression from the demo's console:
+## Why WebGL did not clearly pull ahead
 
-```js
-await (await import('./tests/canvas-regression.js')).runCanvasRegression();
-```
+The implementations perform different work. When the scale is unchanged and time advances by a few columns, the Canvas reference shifts the existing bitmap and draws the new columns. The current WebGL trial rebuilds and uploads all visible segments on each update.
+
+The million-point live run recorded 76 incremental Canvas updates and 7 full redraws, versus 82 full WebGL redraws. Hardware choice alone does not describe the workload.
+
+Aggregation has already reduced the geometry substantially. Preparing coordinates, uploading data and submitting commands still have costs. They may affect the benefit of GPU batching, but this run did not isolate those costs.
+
+Both implementations ran smoothly in this short test on this machine. Further optimization should follow an actual workload that needs it.
+
+## Display correctness is a separate check
+
+Before this switch, Canvas initially drew the curves and then lost them after a few updates at DPR 2. Its bitmap copy mixed physical dimensions with CSS coordinates, repeatedly enlarging the image until the curves left the canvas.
+
+WebGL now redraws the aggregated segments instead of shifting the old bitmap. Continuous updates, zoom, resizing, full-history review and GPU resource release pass at DPR 1, 1.25 and 2. Context-loss recovery, multiple devices and long-running stability remain untested.
+
+[Open the live demo](https://showcase-08-timeseries-bench.vercel.app/) and choose the experimental WebGL curve option. Locally, run `python3 -m http.server 8765`; no build is required. Regression checks are in `tests/canvas-regression.js`.
+
+The [raw JSON](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.json) and [measurement notes](https://github.com/william-xue/webgl-portfolio/blob/daa23db/showcase-08-timeseries-bench/results/2026-10-21-webgl-comparison.md) record the conditions and limits. This is a short, single-machine test in a fixed order; target-device validation is still required.
 
 <style>
 .meta { display: flex; gap: .5rem; align-items: center; color: var(--vp-c-text-3); font-size: .875rem; margin: -.5rem 0 2rem; }

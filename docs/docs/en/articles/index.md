@@ -10,9 +10,9 @@ Everything here was measured on a real machine and can be re-run: numbers, code,
 <div class="list">
 
 <a class="item" href="./industrial-timeseries-benchmark">
-  <div class="t">Industrial time-series charts: a Canvas and ECharts experiment</div>
-  <div class="d">How three implementations process data, why the Canvas chart disappeared on a high-DPI screen, and which earlier measurements cannot be compared directly.</div>
-  <div class="tag">Performance · Canvas · Streaming</div>
+  <div class="t">A million-point chart: measuring a switch from Canvas 2D to WebGL</div>
+  <div class="d">How DOM and canvas differ, measurements of Canvas 2D and WebGL under the same conditions, and why the GPU did not clearly pull ahead.</div>
+  <div class="tag">Performance · Canvas · WebGL</div>
 </a>
 
 </div>

@@ -10,9 +10,9 @@ description: 长文写作：性能实测、架构取舍、踩坑复盘。每篇�
 <div class="list">
 
 <a class="item" href="./industrial-timeseries-benchmark">
-  <div class="t">工业时序曲线：一次 Canvas 与 ECharts 的对照实验</div>
-  <div class="d">三种实现分别处理多少数据，Canvas 为什么在高分屏上闪一下就消失，以及旧测量里哪些数字不能直接比较。</div>
-  <div class="tag">性能 · Canvas · 实时流</div>
+  <div class="t">百万点曲线：Canvas 2D 换成 WebGL 的一次实测</div>
+  <div class="d">从 DOM 到画布的区别，Canvas 2D 与 WebGL 的同条件数据，以及 GPU 为什么没有明显领先。</div>
+  <div class="tag">性能 · Canvas · WebGL</div>
 </a>
 
 </div>
