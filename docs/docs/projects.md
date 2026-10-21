@@ -146,7 +146,7 @@ layout: doc
     <p>同一份数据、同一台机器、同一个窗口，三种后端同场对比百万点实时流：<b>分层 Canvas（自研）/ ECharts 调优 / ECharts 朴素</b>。页面直接给出首帧、单次更新 p50/p95、负载率、端到端延迟与堆内存 —— 朴素写法 10 万点每次更新 <b>104 ms</b>（负载率 2.2，延迟必然持续增长）；自研分层 100 万点仅 <b>1.2 ms</b>；回看全历史 100 万点 <b>22.6 ms / 27 MB</b>，同条件下 ECharts 为 <b>930 ms / 316 MB</b>。<b>可在页面上自己跑一遍并导出 JSON</b>。</p>
   </div>
   <div class="link">
-    <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ 在线演示</a>
+    <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
     <a class="vid" href="articles/industrial-timeseries-benchmark">读分析</a>
   </div>
 </div>

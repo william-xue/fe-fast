@@ -150,7 +150,7 @@ The first six share one **deterministically generated** 20,000-node dataset, eac
     <p>Same data, same machine, same viewport — three backends head to head on a million-point live stream: <b>layered Canvas (mine) / tuned ECharts / naive ECharts</b>. The page reports first-frame, per-update p50/p95, load factor, end-to-end latency and heap. Naive ECharts at 100k points costs <b>104 ms per update</b> (load factor 2.2 — latency must grow without bound); the layered renderer holds <b>1.2 ms at 1M points</b>; reviewing the full 3-hour history at 1M takes <b>22.6 ms / 27 MB</b> versus <b>930 ms / 316 MB</b> for ECharts. <b>Re-run it yourself and export the JSON.</b></p>
   </div>
   <div class="link">
-    <a class="demo" href="https://william-xue.github.io/fe-fast/bench/" target="_blank" rel="noreferrer">▶ Live demo</a>
+    <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ Live demo</a>
     <a class="vid" href="articles/industrial-timeseries-benchmark">Read the write-up</a>
   </div>
 </div>
