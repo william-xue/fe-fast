@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SemiYield Pro · 半导体质量分析平台 (Wafer Map 晶圆图与缺陷联动)</title>
+<script src="libs/vue.global.prod.js"></script>
+<script src="libs/echarts.min.js"></script>
+<style>
+  :root {
+    --bg-main: #0f141c;
+    --bg-card: #161e2b;
+    --bg-card-hover: #1c2738;
+    --border: #223147;
+    --border-light: #2c3e59;
+    --text-primary: #e2e8f0;
+    --text-regular: #94a3b8;
+    --text-muted: #64748b;
+    --color-pass: #10b981;
+    --color-scratch: #ef4444;
+    --color-particle: #f59e0b;
+    --color-edge: #8b5cf6;
+    --color-cluster: #ec4899;
+    --color-accent: #38bdf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 顶部导航 */
+  header {
+    height: 52px;
+    background: #111823;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #38bdf8, #10b981, #f59e0b, #38bdf8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon-inner {
+    width: 20px;
+    height: 20px;
+    background: #111823;
+    border-radius: 50%;
+  }
+  .logo-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+  .logo-tag {
+    font-size: 11px;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+  .lot-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--text-regular);
+  }
+  .lot-info span b {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* 核心指标统计条 */
+  .metrics-bar {
+    height: 60px;
+    background: #141b27;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .metric-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .metric-value {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "JetBrains Mono", Consolas, monospace;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .metric-value.pass { color: var(--color-pass); }
+  .metric-value.defect { color: var(--color-scratch); }
+  .metric-value.yield { color: var(--color-accent); }
+  .metric-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+  }
+
+  /* 主工作台栅格 */
+  .workbench {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 12px;
+    padding: 12px 16px;
+    overflow: hidden;
+  }
+
+  /* 晶圆图主卡片 */
+  .wafer-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel-header {
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: #192231;
+    flex-shrink: 0;
+  }
+  .panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    background: var(--color-accent);
+    border-radius: 2px;
+  }
+  .panel-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-filter {
+    background: #223044;
+    border: 1px solid var(--border-light);
+    color: var(--text-regular);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-filter:hover, .btn-filter.active {
+    background: #2b3d57;
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+  .btn-filter.reset {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+  }
+
+  .wafer-chart-container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  #waferChart {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 图例浮动在晶圆图左下角 */
+  .wafer-legend {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(17, 24, 35, 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  /* 右侧多维分析与数据浏览器 */
+  .side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+  }
+  .chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    height: 260px;
+    flex-shrink: 0;
+  }
+  #paretoChart {
+    flex: 1;
+    width: 100%;
+  }
+
+  .inspector-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .die-details-box {
+    padding: 12px 14px;
+    background: #141c27;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .die-prop {
+    color: var(--text-muted);
+  }
+  .die-val {
+    color: #fff;
+    font-weight: 600;
+    font-family: monospace;
+  }
+  .die-val.badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  /* 数据浏览器列表 */
+  .table-container {
+    flex: 1;
+    overflow-y: auto;
+  }
+  table.die-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    text-align: left;
+  }
+  table.die-table th {
+    background: #192231;
+    padding: 8px 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border-bottom: 1px solid var(--border);
+  }
+  table.die-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #1a2536;
+    color: var(--text-regular);
+  }
+  table.die-table tr:hover {
+    background: var(--bg-card-hover);
+    cursor: pointer;
+  }
+  table.die-table tr.active {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+  }
+
+  /* 底部状态条 */
+  footer {
+    height: 28px;
+    background: #0d121a;
+    border-top: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .status-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-pass);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--color-pass);
+  }
+</style>
+</head>
+<body>
+
+<div id="app" style="display: flex; flex-direction: column; height: 100vh;">
+  <!-- 顶部 Header -->
+  <header>
+    <div class="logo-group">
+      <div class="logo-icon"><div class="logo-icon-inner"></div></div>
+      <div class="logo-title">SemiYield Pro 质量分析平台</div>
+      <div class="logo-tag">Wafer Map 晶圆缺陷量测</div>
+    </div>
+    <div class="lot-info">
+      <span>批次 Lot ID: <b>WF-202610-09A</b></span>
+      <span>晶圆号: <b>#08 (300mm / 12 Inch)</b></span>
+      <span>工艺制程: <b>7nm FinFET (Poly-Si)</b></span>
+    </div>
+  </header>
+
+  <!-- 统计指标条 -->
+  <div class="metrics-bar">
+    <div class="metric-item">
+      <div class="metric-label">Total Dies (总晶粒)</div>
+      <div class="metric-value">{{ metrics.totalDies.toLocaleString() }}</div>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <div class="metric-label">Pass Dies (良品)</div>
+      <div class="metric-value pass">{{ metrics.passDies.toLocaleString() }}</div>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <div class="metric-label">Defect Dies (缺陷)</div>
+      <div class="metric-value defect">{{ metrics.defectDies }}</div>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <div class="metric-label">Gross Yield (综合良率)</div>
+      <div class="metric-value yield">{{ metrics.yieldRate }}%</div>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <div class="metric-label">ECharts Custom 首帧/热帧</div>
+      <div class="metric-value" style="color: #a78bfa; font-size: 15px;">{{ renderTime }} ms <span style="font-size: 11px; color: var(--text-muted);">(热帧)</span></div>
+    </div>
+  </div>
+
+  <!-- 主工作台 -->
+  <div class="workbench">
+    <!-- 左侧：Wafer Map 晶圆图主工作台 -->
+    <div class="wafer-panel">
+      <div class="panel-header">
+        <div class="panel-title">Wafer Map 晶圆全景视图 (基于 ECharts Canvas Custom 渲染)</div>
+        <div class="panel-tools">
+          <button class="btn-filter" :class="{ active: filterMode === 'all' }" @click="setFilter('all')">全部晶粒</button>
+          <button class="btn-filter" :class="{ active: filterMode === 'defect' }" @click="setFilter('defect')">仅看缺陷 ({{ metrics.defectDies }})</button>
+          <button class="btn-filter reset" @click="resetView">重置视口</button>
+        </div>
+      </div>
+
+      <div class="wafer-chart-container">
+        <div id="waferChart"></div>
+
+        <!-- 悬浮图例 -->
+        <div class="wafer-legend">
+          <div class="legend-row"><span class="legend-dot" style="background: var(--color-pass);"></span> Bin 1: Pass (良品)</div>
+          <div class="legend-row"><span class="legend-dot" style="background: var(--color-scratch);"></span> Bin 2: Scratch (划痕缺陷)</div>
+          <div class="legend-row"><span class="legend-dot" style="background: var(--color-particle);"></span> Bin 3: Particle (尘埃颗粒)</div>
+          <div class="legend-row"><span class="legend-dot" style="background: var(--color-edge);"></span> Bin 4: Edge Fail (边缘失效)</div>
+          <div class="legend-row"><span class="legend-dot" style="background: var(--color-cluster);"></span> Bin 5: Cluster (聚集性缺陷)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧：多维分析看板 + 数据浏览器 -->
+    <div class="side-panel">
+      <!-- 缺陷 Pareto 分析看板 -->
+      <div class="chart-card">
+        <div class="panel-header">
+          <div class="panel-title">Defect Pareto (缺陷分类与联动下钻)</div>
+          <span style="font-size: 11px; color: var(--text-muted);">点击柱状图联动高亮</span>
+        </div>
+        <div id="paretoChart"></div>
+      </div>
+
+      <!-- 数据浏览器 / Die 检查器 -->
+      <div class="inspector-card">
+        <div class="panel-header">
+          <div class="panel-title">Data Browser (选定 Die 量测属性)</div>
+          <span v-if="selectedDie" style="font-size: 11px; color: var(--color-accent);">[选中: ({{ selectedDie.x }}, {{ selectedDie.y }})]</span>
+        </div>
+
+        <div class="die-details-box" v-if="selectedDie">
+          <div><span class="die-prop">Die 坐标:</span> <span class="die-val">({{ selectedDie.x }}, {{ selectedDie.y }})</span></div>
+          <div><span class="die-prop">Bin 编号:</span> <span class="die-val badge" :style="{ background: selectedDie.color + '33', color: selectedDie.color }">{{ selectedDie.binName }}</span></div>
+          <div><span class="die-prop">膜厚量测 (Thk):</span> <span class="die-val">{{ selectedDie.thickness }} nm</span></div>
+          <div><span class="die-prop">缺陷尺寸 (Size):</span> <span class="die-val">{{ selectedDie.defectSize ? selectedDie.defectSize + ' μm' : 'N/A' }}</span></div>
+        </div>
+        <div class="die-details-box" v-else style="grid-template-columns: 1fr; color: var(--text-muted); text-align: center; padding: 18px 0;">
+          点击晶圆图中的任意 Die，实时检视量测数据
+        </div>
+
+        <!-- 缺陷列表数据浏览器 -->
+        <div class="table-container">
+          <table class="die-table">
+            <thead>
+              <tr>
+                <th>坐标 (X, Y)</th>
+                <th>Bin 分类</th>
+                <th>缺陷类型</th>
+                <th>膜厚 (nm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="d in defectList.slice(0, 30)" :key="d.id" :class="{ active: selectedDie && selectedDie.id === d.id }" @click="selectDie(d)">
+                <td>({{ d.x }}, {{ d.y }})</td>
+                <td><span :style="{ color: d.color, fontWeight: 600 }">Bin {{ d.bin }}</span></td>
+                <td>{{ d.defectType }}</td>
+                <td>{{ d.thickness }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部状态条 -->
+  <footer>
+    <div class="status-tag">
+      <div class="status-dot"></div>
+      <span>数据链路正常 · 实时量测流模拟 (3,848 Dies / ECharts Canvas Custom 渲染)</span>
+    </div>
+    <div>半导体缺陷检测与良率分析平台 · Vue 3 + ECharts 5 工业架构实践</div>
+  </footer>
+  <div id="debug-box" style="display:none;"></div>
+</div>
+
+<script>
+const { createApp, ref, reactive, onMounted } = Vue;
+
+createApp({
+  setup() {
+    const filterMode = ref('all');
+    const selectedDie = ref(null);
+    const renderTime = ref(0);
+    const defectList = ref([]);
+    const metrics = reactive({
+      totalDies: 0,
+      passDies: 0,
+      defectDies: 0,
+      yieldRate: '0.00'
+    });
+
+    let waferChartInstance = null;
+    let paretoChartInstance = null;
+    let rawDieData = []; // 存储所有 Die 数据
+
+    // 缺陷颜色映射
+    const BIN_CONFIG = {
+      1: { name: 'Pass (合格品)', color: '#10b981', type: 'Pass' },
+      2: { name: 'Bin 2: Scratch', color: '#ef4444', type: '划痕缺陷' },
+      3: { name: 'Bin 3: Particle', color: '#f59e0b', type: '尘埃颗粒' },
+      4: { name: 'Bin 4: Edge Fail', color: '#8b5cf6', type: '边缘失效' },
+      5: { name: 'Bin 5: Cluster', color: '#ec4899', type: '聚集缺陷' }
+    };
+
+    // 1. 生成 12 寸晶圆 (300mm) 的仿真网格与缺陷数据 (约 3,800 个 Die)
+    const generateWaferData = () => {
+      const radius = 35; // 晶圆半径（以 Die 为单位，直径 70 个 Die）
+      const list = [];
+      let total = 0;
+      let pass = 0;
+      let defect = 0;
+
+      // 预设一条划痕缺陷路径 (Scratch) 从 (-15, -10) 到 (20, 15)
+      // 预设一个聚集缺陷中心 (Cluster) 在 (12, -18)
+      for (let r = -radius; r <= radius; r++) {
+        for (let c = -radius; c <= radius; c++) {
+          const dist = Math.sqrt(r * r + c * c);
+          // 晶圆圆盘范围判定（裁去外圆）
+          if (dist > radius) continue;
+
+          // 底部切角 Notch 模拟 (在底部中心附近切去极微小缺口)
+          if (r > radius - 2 && Math.abs(c) <= 2) continue;
+
+          total++;
+          let bin = 1; // 默认 Pass
+          let defectSize = 0;
+
+          // 边缘失效判定 (靠近晶圆外圈)
+          if (dist > radius - 2.5 && Math.random() < 0.45) {
+            bin = 4;
+            defectSize = (Math.random() * 5 + 8).toFixed(1);
+          }
+          // 划痕缺陷判定 (Scratch: 沿直线扰动)
+          else if (Math.abs(r - (c * 0.7 - 2)) < 1.2 && c > -20 && c < 15 && Math.random() < 0.75) {
+            bin = 2;
+            defectSize = (Math.random() * 15 + 10).toFixed(1);
+          }
+          // 聚集缺陷 (Cluster)
+          else if (Math.sqrt(Math.pow(c - 12, 2) + Math.pow(r + 15, 2)) < 4.5 && Math.random() < 0.6) {
+            bin = 5;
+            defectSize = (Math.random() * 6 + 4).toFixed(1);
+          }
+          // 随机尘埃颗粒 (Particle)
+          else if (Math.random() < 0.015) {
+            bin = 3;
+            defectSize = (Math.random() * 2 + 0.5).toFixed(1);
+          }
+
+          if (bin === 1) {
+            pass++;
+          } else {
+            defect++;
+          }
+
+          const dieItem = {
+            id: `DIE-${c}-${r}`,
+            x: c,
+            y: r,
+            bin: bin,
+            binName: BIN_CONFIG[bin].name,
+            color: BIN_CONFIG[bin].color,
+            defectType: BIN_CONFIG[bin].type,
+            thickness: (102.5 + (Math.random() * 2 - 1)).toFixed(2), // 膜厚模拟
+            defectSize: defectSize
+          };
+
+          list.push(dieItem);
+        }
+      }
+
+      metrics.totalDies = total;
+      metrics.passDies = pass;
+      metrics.defectDies = defect;
+      metrics.yieldRate = ((pass / total) * 100).toFixed(2);
+      defectList.value = list.filter(d => d.bin > 1);
+
+      return list;
+    };
+
+    // 2. 初始化 Wafer Map 晶圆图 (ECharts Custom 系列)
+    const initWaferChart = () => {
+      const chartDom = document.getElementById('waferChart');
+      waferChartInstance = echarts.init(chartDom, null, { renderer: 'canvas' });
+
+      renderWaferMap();
+      // 首帧包含图表初始化；再跑一帧热渲染，指标更接近真实交互
+      requestAnimationFrame(() => renderWaferMap());
+
+      // 点击 Die 拾取与联动
+      waferChartInstance.on('click', (params) => {
+        if (params.data) {
+          const item = rawDieData[params.dataIndex];
+          if (item) {
+            selectDie(item);
+          }
+        }
+      });
+    };
+
+    // 核心渲染逻辑：ECharts Custom 系列绘制方形 Die
+    const renderWaferMap = (highlightBin = null) => {
+      const t0 = performance.now();
+
+      // 数据集映射为 [x, y, bin, index]
+      const seriesData = rawDieData.map((d, index) => {
+        let displayColor = d.color;
+        // 如果处于缺陷筛选模式
+        if (filterMode.value === 'defect' && d.bin === 1) {
+          displayColor = 'rgba(255, 255, 255, 0.03)'; // 弱化良品
+        }
+        // 如果处于 Pareto 单类缺陷联动模式
+        if (highlightBin !== null) {
+          if (d.bin !== highlightBin) {
+            displayColor = 'rgba(255, 255, 255, 0.04)'; // 其余变暗
+          }
+        }
+        return [d.x, d.y, d.bin, displayColor, index];
+      });
+
+      let totalRendered = 0;
+      let posRendered = 0;
+      let negRendered = 0;
+
+      const option = {
+        animation: false,
+        backgroundColor: '#161e2b',
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(15, 20, 28, 0.95)',
+          borderColor: '#2c3e59',
+          textStyle: { color: '#e2e8f0', fontSize: 12 },
+          formatter: (params) => {
+            const d = rawDieData[params.data[4]];
+            return `
+              <div style="font-weight:700; color:#38bdf8; margin-bottom:4px;">Die (${d.x}, ${d.y})</div>
+              <div>状态: <span style="color:${d.color}; font-weight:600;">${d.binName}</span></div>
+              <div>膜厚: ${d.thickness} nm</div>
+              ${d.defectSize ? `<div>缺陷尺寸: ${d.defectSize} μm</div>` : ''}
+            `;
+          }
+        },
+        grid: {
+          top: 30,
+          bottom: 30,
+          left: 30,
+          right: 30
+        },
+        xAxis: {
+          type: 'value',
+          min: -38,
+          max: 38,
+          splitLine: { show: false },
+          axisLine: { lineStyle: { color: '#2c3e59' } },
+          axisLabel: { color: '#64748b' }
+        },
+        yAxis: {
+          type: 'value',
+          min: -38,
+          max: 38,
+          splitLine: { show: false },
+          axisLine: { lineStyle: { color: '#2c3e59' } },
+          axisLabel: { color: '#64748b' }
+        },
+        dataZoom: [
+          { type: 'inside', xAxisIndex: 0, yAxisIndex: 0, zoomOnMouseWheel: true, moveOnMouseMove: true },
+        ],
+        series: [
+          {
+            type: 'custom',
+            animation: false,
+            progressive: 0,
+            encode: { x: 0, y: 1 },
+            renderItem: (params, api) => {
+              const xVal = api.value(0);
+              const yVal = api.value(1);
+              const color = api.value(3);
+
+              totalRendered++;
+              if (yVal > 0) posRendered++;
+              if (yVal < 0) negRendered++;
+
+              // 将逻辑网格坐标转为像素坐标
+              const point = api.coord([xVal, yVal]);
+              // 计算单个 Die 的像素宽高
+              const size = api.size([1, 1]);
+              const width = Math.max(Math.abs(size[0]) - 1, 2);
+              const height = Math.max(Math.abs(size[1]) - 1, 2);
+
+              return {
+                type: 'rect',
+                shape: {
+                  x: point[0] - width / 2,
+                  y: point[1] - height / 2,
+                  width: width,
+                  height: height
+                },
+                style: {
+                  fill: color,
+                  stroke: 'rgba(0, 0, 0, 0.15)',
+                  lineWidth: 0.5
+                }
+              };
+            },
+            data: seriesData
+          }
+        ]
+      };
+
+      waferChartInstance.setOption(option);
+      renderTime.value = (performance.now() - t0).toFixed(1);
+
+      const el = document.getElementById('debug-box');
+      if (el) el.innerText = JSON.stringify({ totalRendered, posRendered, negRendered, totalData: seriesData.length });
+    };
+
+    // 3. 初始化 Defect Pareto 柱状图分析看板
+    const initParetoChart = () => {
+      const dom = document.getElementById('paretoChart');
+      paretoChartInstance = echarts.init(dom, null, { renderer: 'canvas' });
+
+      // 统计各缺陷数量
+      const counts = { 2: 0, 3: 0, 4: 0, 5: 0 };
+      rawDieData.forEach(d => {
+        if (counts[d.bin] !== undefined) counts[d.bin]++;
+      });
+
+      const paretoData = [
+        { name: 'Scratch (划痕)', bin: 2, value: counts[2], color: '#ef4444' },
+        { name: 'Edge (边缘)', bin: 4, value: counts[4], color: '#8b5cf6' },
+        { name: 'Cluster (聚集)', bin: 5, value: counts[5], color: '#ec4899' },
+        { name: 'Particle (颗粒)', bin: 3, value: counts[3], color: '#f59e0b' }
+      ].sort((a, b) => b.value - a.value);
+
+      const option = {
+        backgroundColor: '#161e2b',
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        grid: { top: 20, bottom: 25, left: 50, right: 20 },
+        xAxis: {
+          type: 'category',
+          data: paretoData.map(d => d.name),
+          axisLabel: { color: '#94a3b8', fontSize: 11 }
+        },
+        yAxis: {
+          type: 'value',
+          splitLine: { lineStyle: { color: '#223147' } },
+          axisLabel: { color: '#64748b' }
+        },
+        series: [
+          {
+            name: '缺陷数量',
+            type: 'bar',
+            barWidth: '40%',
+            data: paretoData.map(d => ({
+              value: d.value,
+              bin: d.bin,
+              itemStyle: { color: d.color, borderRadius: [3, 3, 0, 0] }
+            }))
+          }
+        ]
+      };
+
+      paretoChartInstance.setOption(option);
+
+      // 联动：点击柱子高亮晶圆图对应类型缺陷
+      paretoChartInstance.on('click', (params) => {
+        const binCode = params.data.bin;
+        renderWaferMap(binCode);
+      });
+    };
+
+    // 交互方法：选择某个 Die
+    const selectDie = (die) => {
+      selectedDie.value = die;
+    };
+
+    // 切换筛选视图
+    const setFilter = (mode) => {
+      filterMode.value = mode;
+      renderWaferMap();
+    };
+
+    // 重置视口
+    const resetView = () => {
+      filterMode.value = 'all';
+      renderWaferMap();
+      waferChartInstance.dispatchAction({
+        type: 'dataZoom',
+        start: 0,
+        end: 100
+      });
+    };
+
+    onMounted(() => {
+      rawDieData = generateWaferData();
+      initWaferChart();
+      initParetoChart();
+
+      // 默认选中第一个缺陷 Die
+      if (defectList.value.length > 0) {
+        selectedDie.value = defectList.value[0];
+      }
+
+      window.addEventListener('resize', () => {
+        waferChartInstance && waferChartInstance.resize();
+        paretoChartInstance && paretoChartInstance.resize();
+      });
+    });
+
+    return {
+      filterMode,
+      selectedDie,
+      renderTime,
+      defectList,
+      metrics,
+      setFilter,
+      resetView,
+      selectDie
+    };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

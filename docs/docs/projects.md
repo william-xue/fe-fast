@@ -52,7 +52,7 @@ layout: doc
 
 ## 大规模图形可视化工程系列
 
-前六个共用同一份**确定性生成**的 20,000 节点真实拓扑数据集，以不同渲染器与管线分别实现；第 7 个为完整可交互的 3D 家居设计应用；第 8 个反过来做 —— 一个**渲染性能基准**，把四种渲染方案放在同一份数据上比较，数字可复跑。**全部支持直接在线运行**（非录像演示），关键项目配有架构讲解视频。
+前六个共用同一份**确定性生成**的 20,000 节点真实拓扑数据集，以不同渲染器与管线分别实现；第 7 个为完整可交互的 3D 家居设计应用；第 8 个反过来做 —— 一个**渲染性能基准**，把四种渲染方案放在同一份数据上比较，数字可复跑；第 9 个是晶圆图交互实验台，可切换三种绘图方案。**全部支持直接在线运行**（非录像演示），关键项目配有架构讲解视频。
 
 <div class="series">
 
@@ -148,6 +148,17 @@ layout: doc
   <div class="link">
     <a class="demo" href="https://showcase-08-timeseries-bench.vercel.app" target="_blank" rel="noreferrer">▶ 在线演示</a>
     <a class="vid" href="articles/industrial-timeseries-benchmark">读分析</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="no">09</div>
+  <div class="info">
+    <h3>晶圆图交互实验台 <span class="k">ECharts + Canvas 2D + deck.gl</span></h3>
+    <p>三种绘图方案一键切换：ECharts 自定义 Die 方块与图表联动；Canvas / deck.gl 以 <b>17,294 个 Die、30 万个模拟缺陷</b>演示缩放、平移、点选、分类筛选和框选统计，并可追加缺陷。低倍率显示密度图，高倍率显示缺陷点。各方案数据规模不同，<b>不是同条件性能基准</b>，不涉及真实产线数据。</p>
+  </div>
+  <div class="link">
+    <a class="demo" href="./wafer-map/index.html" target="_blank" rel="noreferrer">▶ 在线演示</a>
   </div>
 </div>
 

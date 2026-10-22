@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晶圆图 · 三种绘制方案</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #070b12; color: #d8e5f3; font: 14px "PingFang SC", sans-serif; }
+  header { padding: 14px 20px; border-bottom: 1px solid #2c3e59; }
+  h1 { margin: 0 0 12px; font-size: 18px; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  button { cursor: pointer; color: #abc0d6; background: #142033; border: 1px solid #2c3e59; border-radius: 5px; padding: 9px 14px; font: inherit; }
+  button[aria-pressed="true"] { color: #07111b; background: #38bdf8; border-color: #38bdf8; }
+  button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+  p { margin: 10px 0 0; color: #9bb1c8; line-height: 1.6; }
+  iframe { display: block; width: 100%; height: calc(100dvh - 170px); min-height: 650px; border: 0; }
+  @media (max-width: 600px) { header { padding: 12px; } iframe { height: 850px; } }
+</style>
+<header>
+  <h1>晶圆图实验台 / 同一问题，三种画法</h1>
+  <nav aria-label="绘制方案">
+    <button data-mode="echarts" aria-pressed="false">01 ECharts / 自定义方块</button>
+    <button data-mode="canvas" aria-pressed="false">02 Canvas / 自己重画</button>
+    <button data-mode="deck" aria-pressed="false">03 deck.gl / GPU 图层</button>
+  </nav>
+  <p id="description"></p>
+  <p>操作：拖动平移 → 滚轮放大 → 点击 Die 看详情。Canvas / deck.gl 还可框选、增加缺陷。切换会重置数据和视口；ECharts 数据规模不同，不是同条件跑分。</p>
+</header>
+<iframe id="demo" title="晶圆图演示"></iframe>
+<script>
+  const modes = {
+    echarts: ['demo/', 'ECharts：renderItem 返回矩形，库负责绘制；点击右侧柱子观察联动。'],
+    canvas: ['prototype/', 'Canvas：CPU 逐个画方块和点；缩小时用密度图，放大后画可见点。'],
+    deck: ['prototype/?renderer=deck', 'deck.gl：PolygonLayer 画 Die，ScatterplotLayer 画缺陷；拖动只改变观察位置，不改变缺陷坐标。']
+  };
+  function select(mode) {
+    if (!modes[mode]) mode = 'deck';
+    document.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
+    document.querySelector('#description').textContent = modes[mode][1];
+    document.querySelector('#demo').src = modes[mode][0];
+    history.replaceState(null, '', '#' + mode);
+  }
+  document.querySelector('nav').addEventListener('click', event => {
+    if (event.target.dataset.mode) select(event.target.dataset.mode);
+  });
+  select(location.hash.slice(1));
+</script>
+</html>
